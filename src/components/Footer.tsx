@@ -6,23 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#2a2a2a] border-t border-gold/20">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gold">
-                <Star className="w-4 h-4 text-gold fill-gold" />
-              </div>
-              <div className="font-serif font-semibold text-gold text-sm" style={{ letterSpacing: '0.12em' }}>
-                <div className="leading-tight">E-CARDS</div>
-                <div className="leading-tight">CORPORATE</div>
-              </div>
-            </div>
-            <p className="text-sm text-white/60 leading-relaxed">
-              La plateforme inspirationnelle qui donne une seconde vie aux e-cards.
-              Archives d'e-cards corporate depuis 2007.
-            </p>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div>
             <h4 className="text-gold font-serif mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
@@ -52,6 +36,21 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+          </div>
+
+          <div className="flex flex-col items-center justify-start">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 flex items-center justify-center rounded-full border border-gold">
+                <Star className="w-5 h-5 text-gold fill-gold" />
+              </div>
+              <div className="font-serif font-semibold text-gold" style={{ letterSpacing: '0.12em' }}>
+                <div className="leading-tight">E-CARDS</div>
+                <div className="leading-tight">CORPORATE</div>
+              </div>
+            </div>
+            <p className="text-sm text-white/60 text-center leading-relaxed max-w-xs">
+              La plateforme inspirationnelle qui donne une seconde vie aux e-cards.
+            </p>
           </div>
 
           <div>
