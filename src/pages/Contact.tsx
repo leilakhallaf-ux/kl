@@ -3,8 +3,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { supabase } from '../lib/supabase';
 import { Send } from 'lucide-react';
+import { useTranslations } from '../hooks/useTranslations';
 
 export default function Contact() {
+  const { t } = useTranslations();
   const [formData, setFormData] = useState({
     lastName: '',
     firstName: '',
@@ -42,7 +44,7 @@ export default function Contact() {
     if (formFillTime < 3000) {
       console.log('Bot detected via timing check');
       setSubmitStatus('error');
-      setErrorMessage('Veuillez prendre le temps de remplir le formulaire correctement.');
+      setErrorMessage(t('contact.form.error.timing'));
       return;
     }
 
@@ -50,7 +52,7 @@ export default function Contact() {
     if (!acceptTerms) {
       setShowTermsError(true);
       setSubmitStatus('error');
-      setErrorMessage('Vous devez accepter les Conditions Générales d\'Utilisation et la Politique de Confidentialité pour envoyer votre message.');
+      setErrorMessage(t('contact.form.error.consent'));
       return;
     }
 
@@ -104,7 +106,7 @@ export default function Contact() {
     } catch (error) {
       console.error('Error submitting contact form:', error);
       setSubmitStatus('error');
-      setErrorMessage('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.');
+      setErrorMessage(t('contact.form.error.general'));
     } finally {
       setIsSubmitting(false);
     }
@@ -117,29 +119,28 @@ export default function Contact() {
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
           <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-            CONTACT
+            {t('contact.title')}
           </h1>
 
           <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
-            Envoyez-nous un message
+            {t('contact.hero.title')}
           </h2>
 
           <div className="text-white/80 space-y-8 leading-relaxed">
             <p className="text-lg">
-              Vous avez une question, une suggestion ou souhaitez contribuer à l'archive ?
-              N'hésitez pas à nous contacter via le formulaire ci-dessous. Nous vous répondrons dans les plus brefs délais.
+              {t('contact.intro')}
             </p>
 
             {submitStatus === 'success' && (
               <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 text-green-100">
-                <p className="font-semibold">Message envoyé avec succès !</p>
-                <p className="text-sm mt-1">Nous vous répondrons dans les plus brefs délais.</p>
+                <p className="font-semibold">{t('contact.form.success.title')}</p>
+                <p className="text-sm mt-1">{t('contact.form.success.text')}</p>
               </div>
             )}
 
             {submitStatus === 'error' && (
               <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-red-100">
-                <p className="font-semibold">Erreur</p>
+                <p className="font-semibold">{t('contact.form.error.title')}</p>
                 <p className="text-sm mt-1">{errorMessage}</p>
               </div>
             )}
@@ -148,7 +149,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="lastName" className="block text-white font-semibold mb-2">
-                    Votre nom *
+                    {t('contact.form.lastName')} *
                   </label>
                   <input
                     type="text"
@@ -158,13 +159,13 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="Votre nom"
+                    placeholder={t('contact.form.lastName')}
                   />
                 </div>
 
                 <div>
                   <label htmlFor="firstName" className="block text-white font-semibold mb-2">
-                    Votre prénom *
+                    {t('contact.form.firstName')} *
                   </label>
                   <input
                     type="text"
@@ -174,7 +175,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                    placeholder="Votre prénom"
+                    placeholder={t('contact.form.firstName')}
                   />
                 </div>
               </div>
@@ -182,7 +183,7 @@ export default function Contact() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="userType" className="block text-white font-semibold mb-2">
-                    Vous êtes *
+                    {t('contact.form.userType')} *
                   </label>
                   <select
                     id="userType"
@@ -192,18 +193,18 @@ export default function Contact() {
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                   >
-                    <option value="" className="bg-slate-800">Sélectionnez...</option>
-                    <option value="particulier" className="bg-slate-800">Particulier</option>
-                    <option value="professionnel" className="bg-slate-800">Professionnel</option>
-                    <option value="journaliste" className="bg-slate-800">Journaliste</option>
-                    <option value="chercheur" className="bg-slate-800">Chercheur</option>
-                    <option value="autre" className="bg-slate-800">Autre</option>
+                    <option value="" className="bg-slate-800">{t('contact.form.userType.select')}</option>
+                    <option value="particulier" className="bg-slate-800">{t('contact.form.userType.individual')}</option>
+                    <option value="professionnel" className="bg-slate-800">{t('contact.form.userType.professional')}</option>
+                    <option value="journaliste" className="bg-slate-800">{t('contact.form.userType.journalist')}</option>
+                    <option value="chercheur" className="bg-slate-800">{t('contact.form.userType.researcher')}</option>
+                    <option value="autre" className="bg-slate-800">{t('contact.form.userType.other')}</option>
                   </select>
                 </div>
 
                 <div>
                   <label htmlFor="email" className="block text-white font-semibold mb-2">
-                    Email *
+                    {t('contact.form.email')} *
                   </label>
                   <input
                     type="email"
@@ -220,7 +221,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="subject" className="block text-white font-semibold mb-2">
-                  Sujet *
+                  {t('contact.form.subject')} *
                 </label>
                 <input
                   type="text"
@@ -230,13 +231,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
-                  placeholder="L'objet de votre message"
+                  placeholder={t('contact.form.subject.placeholder')}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-white font-semibold mb-2">
-                  Message *
+                  {t('contact.form.message')} *
                 </label>
                 <textarea
                   id="message"
@@ -246,7 +247,7 @@ export default function Contact() {
                   required
                   rows={8}
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all resize-none"
-                  placeholder="Votre message..."
+                  placeholder={t('contact.form.message.placeholder')}
                 />
               </div>
 
@@ -268,7 +269,7 @@ export default function Contact() {
                 showTermsError ? 'border-red-500 bg-red-500/10' : 'border-white/10'
               }`}>
                 <p className="text-white text-base font-bold leading-relaxed">
-                  En validant le formulaire, je transmets mon entier consentement pour le traitement de mes données *
+                  {t('contact.form.consent.title')} *
                 </p>
                 <div className="flex items-start gap-3">
                   <input
@@ -287,27 +288,27 @@ export default function Contact() {
                     }`}
                   />
                   <label htmlFor="acceptTerms" className="text-white text-base leading-relaxed cursor-pointer">
-                    J'ai lu et j'accepte les{' '}
+                    {t('contact.form.consent.text')}{' '}
                     <a href="/cgu" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
-                      Conditions Générales d'Utilisation du site
+                      {t('contact.form.consent.terms')}
                     </a>
-                    {' '}& la{' '}
+                    {' '}{t('contact.form.consent.and')}{' '}
                     <a href="/rgpd" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
-                      Politique de Confidentialité
+                      {t('contact.form.consent.privacy')}
                     </a>
                   </label>
                 </div>
                 {showTermsError && (
                   <p className="text-red-400 text-sm font-semibold flex items-start gap-2">
                     <span className="text-lg">⚠️</span>
-                    <span>Vous devez accepter les conditions pour envoyer votre message.</span>
+                    <span>{t('contact.form.consent.error')}</span>
                   </p>
                 )}
               </div>
 
               <div className="flex items-center justify-between">
                 <p className="text-sm text-white/60">
-                  * Champs obligatoires
+                  * {t('contact.form.required')}
                 </p>
 
                 <button
@@ -318,12 +319,12 @@ export default function Contact() {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                      <span>Envoi en cours...</span>
+                      <span>{t('contact.form.submitting')}</span>
                     </>
                   ) : (
                     <>
                       <Send size={20} />
-                      <span>Envoyer</span>
+                      <span>{t('contact.form.submit')}</span>
                     </>
                   )}
                 </button>
