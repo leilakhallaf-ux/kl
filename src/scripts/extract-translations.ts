@@ -25,6 +25,12 @@ interface TranslationEntry {
 }
 
 const translations: TranslationEntry[] = [
+  // Navigation
+  { key: 'nav.inspire', frenchText: 'S\'INSPIRER', context: 'Main navigation link' },
+  { key: 'nav.explore', frenchText: 'EXPLORER', context: 'Main navigation link' },
+  { key: 'nav.bestof', frenchText: 'BEST-OF', context: 'Main navigation link' },
+  { key: 'nav.submit', frenchText: 'SOUMETTRE', context: 'Main navigation link' },
+
   // About Page
   { key: 'about.page_title', frenchText: 'À PROPOS', context: 'Page title' },
   { key: 'about.hero_title', frenchText: 'Votre source de référence pour les e-cards publicitaires', context: 'Hero section subtitle' },
