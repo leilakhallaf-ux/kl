@@ -60,9 +60,9 @@ export default function Millesime({ year }: MillesimeProps) {
           </div>
         )}
       </section>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }

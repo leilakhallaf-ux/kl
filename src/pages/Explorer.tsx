@@ -182,9 +182,9 @@ export default function Explorer() {
           </div>
         )}
       </section>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }

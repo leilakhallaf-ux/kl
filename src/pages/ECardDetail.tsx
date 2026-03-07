@@ -406,9 +406,9 @@ export default function ECardDetail({ id }: ECardDetailProps) {
           </div>
         )}
       </section>
-
-        <Footer />
       </main>
+
+      <Footer />
     </div>
   );
 }
