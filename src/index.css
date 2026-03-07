@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-rich-black text-white font-sans font-light;
+    @apply bg-[#FAF8F3] text-gray-900 font-sans font-light;
     line-height: 1.6;
   }
 
@@ -38,7 +38,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-rich-black;
+  @apply bg-[#FAF8F3];
 }
 
 ::-webkit-scrollbar-thumb {
