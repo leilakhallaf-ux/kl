@@ -32,7 +32,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
     { name: "S'INSPIRER", path: "/s-inspirer" },
     { name: "EXPLORER", path: "/explorer" },
     { name: "BEST-OF", path: "/best-of" },
-    { name: "SOUMETTRE UNE E-CARD", path: "/soumettre" },
+    { name: "SOUMETTRE", path: "/soumettre" },
   ];
 
   return (
