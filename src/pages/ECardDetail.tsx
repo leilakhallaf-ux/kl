@@ -167,12 +167,17 @@ export default function ECardDetail({ id }: ECardDetailProps) {
       <section className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
-            <div className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800">
+            <a
+              href={ecard.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-gray-900 rounded-sm overflow-hidden border border-gray-800 hover:border-brand-gold/50 transition-all duration-300 cursor-pointer group"
+            >
               {ecard.thumbnail_url ? (
                 <img
                   src={ecard.thumbnail_url}
                   alt={ecard.advertiser_name}
-                  className="w-full aspect-video object-cover"
+                  className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
                 />
               ) : (
                 <div className="w-full aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center p-8">
@@ -189,7 +194,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   )}
                 </div>
               )}
-            </div>
+            </a>
 
             {ecard.url && (
               <div className="flex justify-center">
@@ -197,11 +202,9 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   href={ecard.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold hover:bg-yellow-400 text-rich-black font-bold text-xl rounded-sm transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-brand-gold/40 border-2 border-yellow-500"
+                  className="px-10 py-5 text-lg font-semibold bg-gradient-to-r from-gold via-gold-light to-gold text-rich-black hover:shadow-lg hover:shadow-gold/50 transform hover:scale-105 transition-all duration-300"
                 >
-                  <ExternalLink className="w-6 h-6" />
                   Voir la e-card originale
-                  <ExternalLink className="w-6 h-6" />
                 </a>
               </div>
             )}
