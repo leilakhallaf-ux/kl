@@ -52,11 +52,11 @@ export default function Home() {
               aux <span className="gold-text-gradient italic">e-cards</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-8 md:mb-12 leading-relaxed px-2">
+            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-6 md:mb-8 leading-relaxed px-2">
               Le <span className="italic">Pinterest</span> de la carte de vœux électronique
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 px-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-8 md:mb-12 px-2">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 text-gold" />
                 <span>Archives depuis 2007</span>
