@@ -10,15 +10,15 @@ export default function Footer() {
           <div className="flex justify-center md:justify-start">
             <div className="flex items-center gap-6 text-sm text-white">
               <a href="/a-propos" className="hover:text-gold transition-colors duration-300">
-                À propos de nous
+                À PROPOS
               </a>
               <span className="text-white/40">|</span>
               <a href="/soumettre" className="hover:text-gold transition-colors duration-300">
-                Soumettre une e-card
+                SOUMETTRE
               </a>
               <span className="text-white/40">|</span>
               <a href="/contact" className="hover:text-gold transition-colors duration-300">
-                Contact
+                CONTACT
               </a>
             </div>
           </div>
@@ -85,7 +85,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-end">
             <div className="flex items-center gap-6 text-sm text-white">
               <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300">
-                Mentions légales
+                MENTIONS LÉGALES
               </a>
               <span className="text-white/40">|</span>
               <a href="/cgu" className="hover:text-gold transition-colors duration-300">
