@@ -5,8 +5,14 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    @apply bg-rich-black;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
-    @apply bg-rich-black text-white font-sans font-light;
+    @apply text-white font-sans font-light;
     line-height: 1.6;
   }
 
