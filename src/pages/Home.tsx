@@ -47,7 +47,7 @@ export default function Home() {
             <h1 className="font-serif text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight px-2">
               La plateforme inspirationnelle
               <br />
-              qui donne une seconde vie
+              qui donne une <span className="gold-text-gradient italic">seconde vie</span>
               <br />
               aux <span className="gold-text-gradient italic">e-cards</span>
             </h1>
