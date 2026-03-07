@@ -66,6 +66,13 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               {link.name}
             </a>
           ))}
+          <span className="text-white/30">|</span>
+          <button
+            className="text-sm tracking-[0.2em] text-white/70 hover:text-gold transition-colors"
+            title="Switch to English"
+          >
+            EN
+          </button>
         </nav>
 
         <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -88,6 +95,13 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               {link.name}
             </a>
           ))}
+          <div className="h-px bg-white/10 my-2" />
+          <button
+            className="text-base tracking-widest text-white/70 hover:text-gold text-left"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            EN - English
+          </button>
         </div>
       )}
     </header>
