@@ -16,7 +16,7 @@ export default function ECardCard({ ecard }: ECardCardProps) {
       href={`/ecard/${ecard.id}`}
       className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
     >
-      <div className="relative aspect-[16/10] bg-black/50 overflow-hidden">
+      <div className="relative aspect-[16/11] bg-black/50 overflow-hidden">
         {ecard.thumbnail_url ? (
           <img
             src={ecard.thumbnail_url}
@@ -72,19 +72,15 @@ export default function ECardCard({ ecard }: ECardCardProps) {
         </div>
       </div>
 
-      <div className="p-3 bg-black/20">
-        <h3 className="font-serif text-base text-white mb-1.5 line-clamp-2 group-hover:text-gold transition-colors duration-300">
+      <div className="p-2 bg-black/20">
+        <h3 className="font-serif text-sm text-white mb-1 line-clamp-1 group-hover:text-gold transition-colors duration-300">
           {ecard.advertiser_name}
         </h3>
 
         <div className="flex items-center justify-between text-xs text-white/60">
-          <span className="capitalize font-light">{ecard.card_type}</span>
-          <span className="text-gold font-serif font-medium">{ecard.vintage}</span>
+          <span className="capitalize font-light text-[10px]">{ecard.card_type}</span>
+          <span className="text-gold font-serif font-medium text-[10px]">{ecard.vintage}</span>
         </div>
-
-        {ecard.topic && (
-          <p className="text-xs text-white/40 mt-1.5 line-clamp-1">{ecard.topic}</p>
-        )}
       </div>
     </a>
   );
