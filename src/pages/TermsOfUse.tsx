@@ -25,7 +25,7 @@ export default function TermsOfUse() {
             </p>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Objet du Site
               </h2>
               <p>
@@ -38,7 +38,7 @@ export default function TermsOfUse() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Accès au Site
               </h2>
               <p className="mb-4">
@@ -56,7 +56,7 @@ export default function TermsOfUse() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Utilisation du Contenu
               </h2>
               <p>
@@ -69,7 +69,7 @@ export default function TermsOfUse() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Soumission de Contenu
               </h2>
               <p>
@@ -83,7 +83,7 @@ export default function TermsOfUse() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Responsabilité
               </h2>
               <p>
