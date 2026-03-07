@@ -45,7 +45,7 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6 leading-tight">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 leading-tight">
               La plateforme inspirationnelle qui donne <span className="gold-text-gradient italic font-extrabold tracking-wide">une seconde vie aux e-cards</span>
             </h1>
 
