@@ -17,9 +17,9 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [latest, bestOf, vintage] = await Promise.all([
-          getECards({ limit: 6, orderBy: 'created_at', orderDirection: 'desc' }),
-          getECards({ is_featured: true, limit: 6 }),
-          getECards({ vintage: currentYear, limit: 6 }),
+          getECards({ limit: 9, orderBy: 'created_at', orderDirection: 'desc' }),
+          getECards({ is_featured: true, limit: 9 }),
+          getECards({ vintage: currentYear, limit: 9 }),
         ]);
 
         setLatestECards(latest);
