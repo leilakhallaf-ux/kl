@@ -24,9 +24,9 @@ export default function About() {
             </p>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
                 Notre Mission
-              </h2>
+              </h3>
               <p>
                 Nous avons créé cette plateforme pour archiver, cataloguer et mettre en valeur les e-cards publicitaires
                 qui ont façonné la communication digitale. Des premiers designs animés en Flash aux créations modernes
@@ -35,9 +35,9 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
                 Notre Collection
-              </h2>
+              </h3>
               <p>
                 Notre base de données comprend des milliers d'e-cards provenant de marques internationales,
                 d'agences créatives renommées et de designers indépendants. Chaque carte est soigneusement
@@ -48,9 +48,9 @@ export default function About() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
                 Rejoignez-Nous
-              </h2>
+              </h3>
               <p>
                 Que vous soyez designer, marketeur, historien du web ou simple amateur de créations numériques,
                 nous vous invitons à explorer notre collection et à contribuer en soumettant vos propres découvertes.
