@@ -623,7 +623,15 @@ export default function Admin() {
                           e.currentTarget.style.display = 'none';
                         }}
                       />
-                      <span className="text-sm text-gray-300">Logo chargé</span>
+                      <span className="text-sm text-gray-300 flex-1">Logo chargé</span>
+                      <button
+                        type="button"
+                        onClick={() => setFormData({ ...formData, advertiser_logo_url: '' })}
+                        className="flex items-center gap-1 px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-sm rounded-sm transition-all"
+                      >
+                        <X className="w-3 h-3" />
+                        Supprimer
+                      </button>
                     </div>
                   )}
                 </div>

@@ -199,6 +199,12 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   className="w-full aspect-video"
                   title={ecard.advertiser_name}
                 />
+              ) : ecard.thumbnail_url ? (
+                <img
+                  src={ecard.thumbnail_url}
+                  alt={ecard.advertiser_name}
+                  className="w-full aspect-video object-cover"
+                />
               ) : (
                 <div className="w-full aspect-video bg-gray-800 flex items-center justify-center p-8">
                   {ecard.advertiser_logo_url ? (
