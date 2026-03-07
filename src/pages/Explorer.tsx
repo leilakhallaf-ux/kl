@@ -68,8 +68,8 @@ export default function Explorer() {
     <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
       <Header currentPath="/explorer" />
 
-      <main className="flex-1 overflow-y-auto">
-        <section className="container mx-auto px-4 pt-24 pb-12">
+      <main className="flex-1 overflow-y-auto pt-20">
+        <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
             Explorer

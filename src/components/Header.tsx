@@ -14,9 +14,18 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const mainElement = document.querySelector('main');
+      if (mainElement) {
+        setIsScrolled(mainElement.scrollTop > 50);
+      }
+    };
+
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.addEventListener('scroll', handleScroll);
+      return () => mainElement.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const navLinks = [
