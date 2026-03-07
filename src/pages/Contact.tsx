@@ -17,6 +17,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
+  const [showTermsError, setShowTermsError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -27,9 +28,19 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Vérifier que les conditions sont acceptées
+    if (!acceptTerms) {
+      setShowTermsError(true);
+      setSubmitStatus('error');
+      setErrorMessage('Vous devez accepter les Conditions Générales d\'Utilisation et la Politique de Confidentialité pour envoyer votre message.');
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage('');
+    setShowTermsError(false);
 
     try {
       const { error: dbError } = await supabase
@@ -218,7 +229,9 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-lg p-6 my-6 space-y-4">
+              <div className={`bg-white/5 border rounded-lg p-6 my-6 space-y-4 transition-all ${
+                showTermsError ? 'border-red-500 bg-red-500/10' : 'border-white/10'
+              }`}>
                 <p className="text-white text-base font-bold leading-relaxed">
                   En validant le formulaire, je transmets mon consentement pour le traitement de mes données :
                 </p>
@@ -227,9 +240,16 @@ export default function Contact() {
                     type="checkbox"
                     id="acceptTerms"
                     checked={acceptTerms}
-                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    onChange={(e) => {
+                      setAcceptTerms(e.target.checked);
+                      if (e.target.checked) {
+                        setShowTermsError(false);
+                      }
+                    }}
                     required
-                    className="mt-1 w-5 h-5 rounded border-white/20 bg-white/10 text-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 cursor-pointer"
+                    className={`mt-1 w-5 h-5 rounded bg-white/10 text-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 cursor-pointer transition-all ${
+                      showTermsError ? 'border-2 border-red-500' : 'border border-white/20'
+                    }`}
                   />
                   <label htmlFor="acceptTerms" className="text-white text-base leading-relaxed cursor-pointer">
                     J'ai lu et j'accepte les{' '}
@@ -242,6 +262,12 @@ export default function Contact() {
                     </a>
                   </label>
                 </div>
+                {showTermsError && (
+                  <p className="text-red-400 text-sm font-semibold flex items-start gap-2">
+                    <span className="text-lg">⚠️</span>
+                    <span>Vous devez accepter les conditions pour envoyer votre message.</span>
+                  </p>
+                )}
               </div>
 
               <div className="flex items-center justify-between">
