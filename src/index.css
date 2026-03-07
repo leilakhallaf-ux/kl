@@ -48,10 +48,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gold/30 rounded-full;
-  transition: background-color 0.3s;
+  background: linear-gradient(135deg, #C9A96E 0%, #E8D4A2 50%, #C9A96E 100%);
+  border-radius: 9999px;
+  transition: opacity 0.3s;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gold/50;
+  opacity: 0.8;
 }
