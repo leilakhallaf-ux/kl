@@ -223,11 +223,11 @@ export default function Contact() {
                 <p className="text-white/90 text-sm leading-relaxed mt-2">
                   J'ai lu et j'accepte les{' '}
                   <a href="/terms-of-use" className="text-gold hover:underline font-medium">
-                    Conditions Générales d'Utilisation du site
+                    CGU
                   </a>
-                  {' '}& la{' '}
+                  {' '}& le{' '}
                   <a href="/gdpr" className="text-gold hover:underline font-medium">
-                    Politique de Confidentialité
+                    RGPD
                   </a>
                 </p>
               </div>
