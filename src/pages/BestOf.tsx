@@ -35,10 +35,10 @@ export default function BestOf() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-black">
+    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
       <Header currentPath="/best-of" />
 
-      <main className="flex-1 pt-20">
+      <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">

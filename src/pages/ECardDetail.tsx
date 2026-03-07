@@ -129,9 +129,9 @@ export default function ECardDetail({ id }: ECardDetailProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex flex-col bg-brand-black">
+      <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
         <Header />
-        <main className="flex-1 pt-20">
+        <main className="flex-1 overflow-y-auto pt-20">
           <div className="container mx-auto px-4 pt-4 text-center">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-800 rounded w-1/3 mx-auto mb-8"></div>
@@ -148,9 +148,9 @@ export default function ECardDetail({ id }: ECardDetailProps) {
 
   if (!ecard) {
     return (
-      <div className="min-h-screen flex flex-col bg-brand-black">
+      <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
         <Header />
-        <main className="flex-1 pt-20">
+        <main className="flex-1 overflow-y-auto pt-20">
           <div className="container mx-auto px-4 pt-4 text-center">
           <h1 className="font-display text-3xl text-white mb-4">E-card introuvable</h1>
           <a href="/s-inspirer" className="text-brand-gold hover:underline">
@@ -165,10 +165,10 @@ export default function ECardDetail({ id }: ECardDetailProps) {
   const isFlash = ecard.technology?.toLowerCase().includes('flash') || ecard.swf_url;
 
   return (
-    <div className="min-h-screen flex flex-col bg-brand-black">
+    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
       <Header />
 
-      <main className="flex-1 pt-20">
+      <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
