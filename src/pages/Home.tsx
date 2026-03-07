@@ -75,7 +75,7 @@ export default function Home() {
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
-              Dernières <span className="text-gold">pépites</span> ajoutées
+              Dernières <span className="text-gold italic">pépites</span> ajoutées
             </h2>
             <a
               href="/s-inspirer"
