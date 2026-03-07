@@ -16,7 +16,7 @@ export default function ECardCard({ ecard }: ECardCardProps) {
       href={`/ecard/${ecard.id}`}
       className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
     >
-      <div className="relative aspect-video bg-black/50 overflow-hidden">
+      <div className="relative aspect-[16/10] bg-black/50 overflow-hidden">
         {ecard.thumbnail_url ? (
           <img
             src={ecard.thumbnail_url}
