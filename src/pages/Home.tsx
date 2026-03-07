@@ -94,7 +94,7 @@ export default function Home() {
       </section>
 
       {vintageECards.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 py-2 md:py-4">
+        <section className="max-w-7xl mx-auto px-6 py-0 md:py-2">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
