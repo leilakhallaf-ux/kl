@@ -9,11 +9,11 @@ export default function GDPR() {
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
             POLITIQUE DE CONFIDENTIALITÉ
           </h1>
 
-          <h2 className="text-xl font-bold text-gold mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
             Protection de vos données personnelles (RGPD)
           </h2>
 
@@ -25,7 +25,7 @@ export default function GDPR() {
             </p>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Données Collectées
               </h2>
               <p className="mb-4">
@@ -39,7 +39,7 @@ export default function GDPR() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Utilisation des Données
               </h2>
               <p className="mb-4">
@@ -59,7 +59,7 @@ export default function GDPR() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Vos Droits
               </h2>
               <p className="mb-4">
@@ -79,7 +79,7 @@ export default function GDPR() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Sécurité et Conservation
               </h2>
               <p className="mb-4">
@@ -95,7 +95,7 @@ export default function GDPR() {
             </div>
 
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-4 mt-8">
+              <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
                 Cookies
               </h2>
               <p>
