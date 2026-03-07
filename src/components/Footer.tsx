@@ -9,12 +9,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="flex justify-center md:justify-start">
             <div className="flex items-center gap-6 text-sm text-white">
-              <a href="/a-propos" className="hover:text-gold transition-colors duration-300">
-                À PROPOS
-              </a>
-              <span className="text-white/40">|</span>
               <a href="/soumettre" className="hover:text-gold transition-colors duration-300">
                 SOUMETTRE
+              </a>
+              <span className="text-white/40">|</span>
+              <a href="/a-propos" className="hover:text-gold transition-colors duration-300">
+                À PROPOS
               </a>
               <span className="text-white/40">|</span>
               <a href="/contact" className="hover:text-gold transition-colors duration-300">
