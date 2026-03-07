@@ -89,11 +89,11 @@ export default function Footer() {
               </a>
               <span className="text-white/40">|</span>
               <a href="/cgu" className="hover:text-gold transition-colors duration-300">
-                CGU
+                CONDITIONS GÉNÉRALES D'UTILISATION
               </a>
               <span className="text-white/40">|</span>
               <a href="/rgpd" className="hover:text-gold transition-colors duration-300">
-                RGPD
+                POLITIQUE DE CONFIDENTIALITÉ
               </a>
             </div>
           </div>
