@@ -72,18 +72,18 @@ export default function ECardCard({ ecard }: ECardCardProps) {
         </div>
       </div>
 
-      <div className="p-4 bg-black/20">
-        <h3 className="font-serif text-lg text-white mb-2 line-clamp-2 group-hover:text-gold transition-colors duration-300">
+      <div className="p-3 bg-black/20">
+        <h3 className="font-serif text-base text-white mb-1.5 line-clamp-2 group-hover:text-gold transition-colors duration-300">
           {ecard.advertiser_name}
         </h3>
 
-        <div className="flex items-center justify-between text-sm text-white/60">
+        <div className="flex items-center justify-between text-xs text-white/60">
           <span className="capitalize font-light">{ecard.card_type}</span>
           <span className="text-gold font-serif font-medium">{ecard.vintage}</span>
         </div>
 
         {ecard.topic && (
-          <p className="text-xs text-white/40 mt-2 line-clamp-1">{ecard.topic}</p>
+          <p className="text-xs text-white/40 mt-1.5 line-clamp-1">{ecard.topic}</p>
         )}
       </div>
     </a>
