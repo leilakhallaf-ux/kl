@@ -58,13 +58,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
               <a
                 href="/s-inspirer"
-                className="px-8 py-4 text-lg border border-gold text-gold hover:bg-gold/10 transition-all duration-300"
+                className="px-10 py-5 text-lg font-semibold bg-gradient-to-r from-gold via-gold-light to-gold text-rich-black hover:shadow-lg hover:shadow-gold/50 transform hover:scale-105 transition-all duration-300"
               >
                 Explorer les archives
               </a>
               <a
                 href="/explorer"
-                className="px-8 py-4 bg-transparent border border-gold/50 text-white hover:border-gold hover:text-gold transition-all duration-300"
+                className="px-10 py-5 text-lg font-semibold bg-transparent border-2 border-gold/70 text-gold hover:bg-gold/10 hover:border-gold transition-all duration-300"
               >
                 Rechercher
               </a>
