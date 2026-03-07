@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Crown, LogOut, Plus, BarChart3, Edit2, Trash2, Save, X } from 'lucide-react';
+import { Crown, LogOut, Plus, BarChart3, CreditCard as Edit2, Trash2, Save, X } from 'lucide-react';
 import { signIn, signOut, getCurrentUser } from '../lib/auth';
 import { getAllECardsAdmin, createECard, updateECard, deleteECard } from '../lib/ecard-api';
 import type { ECard } from '../lib/database.types';
