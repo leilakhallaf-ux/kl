@@ -197,10 +197,11 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   href={ecard.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold/90 text-rich-black font-bold text-lg rounded-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-brand-gold/20"
+                  className="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold hover:bg-yellow-400 text-rich-black font-bold text-xl rounded-sm transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-brand-gold/40 border-2 border-yellow-500"
                 >
-                  Voir la e-card
-                  <ExternalLink className="w-5 h-5" />
+                  <ExternalLink className="w-6 h-6" />
+                  Voir la e-card originale
+                  <ExternalLink className="w-6 h-6" />
                 </a>
               </div>
             )}
