@@ -1,124 +1,83 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Menu, X, Star } from 'lucide-react';
 
 interface HeaderProps {
   currentPath?: string;
 }
 
-export default function Header({ currentPath = '/' }: HeaderProps) {
+const cn = (...classes: (string | boolean | undefined)[]) => {
+  return classes.filter(Boolean).join(' ');
+};
+
+const Header = ({ currentPath = '/' }: HeaderProps) => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
-    { label: 'Accueil', path: '/' },
-    { label: "S'inspirer", path: '/s-inspirer' },
-    { label: 'Explorer', path: '/explorer' },
-    { label: 'Best-of', path: '/best-of' },
-    { label: 'Awards', path: '/awards', comingSoon: true },
-    { label: 'Blog', path: '/blog', comingSoon: true },
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "S'INSPIRER", path: "/s-inspirer" },
+    { name: "EXPLORER", path: "/explorer" },
+    { name: "BEST-OF", path: "/best-of" },
+    { name: "ADMIN", path: "/admin" },
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-rich-black/95 backdrop-blur-sm border-b border-gold/20">
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-4 group mr-12">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full border border-gold bg-transparent group-hover:bg-gold/10 transition-all duration-300">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L14.5 9.5L22 9.5L16 14.5L18.5 22L12 17L5.5 22L8 14.5L2 9.5L9.5 9.5L12 2Z" fill="#C9A96E" />
-              </svg>
-            </div>
-            <div className="hidden md:block">
-              <div className="font-serif">
-                <div className="text-base leading-tight font-medium" style={{ color: '#C9A96E', letterSpacing: '0.2em' }}>E-CARDS</div>
-                <div className="text-sm leading-tight font-light" style={{ color: '#D1C9B8', letterSpacing: '0.3em' }}>CORPORATE</div>
-              </div>
-            </div>
-          </a>
+    <header className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4",
+      isScrolled ? "bg-rich-black/90 backdrop-blur-md border-b border-gold/20" : "bg-transparent"
+    )}>
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 flex items-center justify-center border border-gold rounded-full group-hover:bg-gold transition-colors duration-500">
+            <Star className="w-5 h-5 text-gold group-hover:text-rich-black" fill="currentColor" />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-serif text-xl tracking-widest text-gold leading-none">E-CARDS</span>
+            <span className="font-sans text-[10px] tracking-[0.3em] text-white/70 leading-none mt-1">CORPORATE</span>
+          </div>
+        </a>
 
-          <button
-            className="md:hidden text-gold"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.path}
+              href={link.path}
+              className={cn(
+                "text-xs tracking-[0.2em] transition-colors hover:text-gold",
+                currentPath === link.path ? "text-gold" : "text-white/70"
               )}
-            </svg>
-          </button>
-
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.path}
-                href={item.path}
-                className={`relative font-light text-sm transition-colors duration-300 ${
-                  currentPath === item.path
-                    ? 'text-gold'
-                    : 'text-white/70 hover:text-gold'
-                }`}
-              >
-                {item.label}
-                {item.comingSoon && (
-                  <span className="absolute -top-2 -right-10 text-[10px] text-gold/70 italic font-serif">
-                    soon
-                  </span>
-                )}
-              </a>
-            ))}
-            <a
-              href="/admin"
-              className="ml-4 px-4 py-2 border border-gold/50 text-gold rounded-none hover:bg-gold/10 transition-all duration-300 text-sm font-light"
             >
-              Admin
+              {link.name}
             </a>
-          </nav>
-        </div>
+          ))}
+        </nav>
 
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 flex flex-col gap-3">
-            {navItems.map((item) => (
-              <a
-                key={item.path}
-                href={item.path}
-                className={`font-light transition-colors duration-300 ${
-                  currentPath === item.path
-                    ? 'text-gold'
-                    : 'text-white/70 hover:text-gold'
-                }`}
-              >
-                {item.label}
-                {item.comingSoon && (
-                  <span className="ml-2 text-[10px] text-gold/70 italic font-serif">
-                    soon
-                  </span>
-                )}
-              </a>
-            ))}
-            <a
-              href="/admin"
-              className="mt-2 px-4 py-2 border border-gold/50 text-gold rounded-none hover:bg-gold/10 transition-all duration-300 text-sm text-center font-light"
-            >
-              Admin
-            </a>
-          </nav>
-        )}
+        <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-rich-black border-b border-gold/20 p-6 flex flex-col gap-4 md:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+          {navLinks.map((link) => (
+            <a
+              key={link.path}
+              href={link.path}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-sm tracking-widest text-white/70 hover:text-gold"
+            >
+              {link.name}
+            </a>
+          ))}
+        </div>
+      )}
     </header>
   );
-}
+};
+
+export default Header;
