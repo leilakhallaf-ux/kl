@@ -801,9 +801,9 @@ export default function Admin() {
           </div>
         </div>
         </div>
+      </main>
 
       <Footer />
-      </main>
     </div>
   );
 }
