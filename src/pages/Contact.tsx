@@ -29,7 +29,7 @@ export default function Contact() {
     setErrorMessage('');
 
     try {
-      const { error } = await supabase
+      const { error: dbError } = await supabase
         .from('contact_messages')
         .insert([{
           name: formData.name,
@@ -38,7 +38,23 @@ export default function Contact() {
           message: formData.message
         }]);
 
-      if (error) throw error;
+      if (dbError) throw dbError;
+
+      const emailResponse = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-contact-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!emailResponse.ok) {
+        console.error('Failed to send email notification');
+      }
 
       setSubmitStatus('success');
       setFormData({
