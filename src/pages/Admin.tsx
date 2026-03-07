@@ -4,6 +4,8 @@ import { signIn, signOut, getCurrentUser } from '../lib/auth';
 import { getAllECardsAdmin, createECard, updateECard, deleteECard } from '../lib/ecard-api';
 import { supabase } from '../lib/supabase';
 import type { ECard } from '../lib/database.types';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function Admin() {
   const [user, setUser] = useState<any>(null);
@@ -360,33 +362,31 @@ export default function Admin() {
 
   return (
     <div className="min-h-screen bg-brand-black">
-      <header className="border-b border-gray-800">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-gold rounded-sm flex items-center justify-center">
-                <Crown className="w-6 h-6 text-brand-black" />
-              </div>
-              <div>
-                <h1 className="text-xl font-display font-semibold text-brand-gold">
-                  Administration
-                </h1>
-                <p className="text-xs text-gray-400">{user.email}</p>
-              </div>
-            </div>
-
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 rounded-sm hover:border-brand-gold hover:text-brand-gold transition-all"
-            >
-              <LogOut className="w-4 h-4" />
-              Déconnexion
-            </button>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <div className="container mx-auto px-4 py-8">
+        <div className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-gold rounded-sm flex items-center justify-center">
+              <Crown className="w-6 h-6 text-brand-black" />
+            </div>
+            <div>
+              <h1 className="text-xl font-display font-semibold text-brand-gold">
+                Administration
+              </h1>
+              <p className="text-xs text-gray-400">{user.email}</p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 rounded-sm hover:border-brand-gold hover:text-brand-gold transition-all"
+          >
+            <LogOut className="w-4 h-4" />
+            Déconnexion
+          </button>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-gray-900 rounded-sm p-6 border border-gray-800">
             <div className="flex items-center justify-between mb-4">
@@ -780,6 +780,8 @@ export default function Admin() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
