@@ -313,11 +313,11 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !acceptTerms}
-                  className="flex items-center gap-2 px-8 py-3 bg-gold hover:bg-gold/90 text-slate-900 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-2 px-8 py-3 bg-gold hover:bg-gold/90 text-white font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-slate-900/20 border-t-slate-900 rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
                       <span>Envoi en cours...</span>
                     </>
                   ) : (
