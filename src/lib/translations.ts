@@ -52,7 +52,7 @@ export const translationsApi = {
   },
 
   async getTranslations(languageCode: string): Promise<Record<string, string>> {
-    console.log('🔍 Fetching translations from DB for:', languageCode);
+    console.log('🔍 [FRESH] Fetching translations from DB for:', languageCode, new Date().toISOString());
     const { data, error } = await supabase
       .from('translations')
       .select(`
@@ -79,6 +79,7 @@ export const translationsApi = {
     });
 
     console.log('✨ Processed translations:', Object.keys(translations).length, 'keys');
+    console.log('📋 Footer keys found:', Object.keys(translations).filter(k => k.startsWith('footer.')));
 
     return translations;
   },

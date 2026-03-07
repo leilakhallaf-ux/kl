@@ -67,6 +67,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   const setLanguage = (code: string) => {
     setCurrentLanguage(code);
     localStorage.setItem('language', code);
+    loadTranslations(code);
   };
 
   const t = (key: string, fallback?: string): string => {
