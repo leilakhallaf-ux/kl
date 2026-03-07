@@ -39,7 +39,7 @@ export default function Millesime({ year }: MillesimeProps) {
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-8">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
             Millésime <span className="text-brand-gold">{year}</span>
           </h1>
           <p className="text-gray-400 text-lg">

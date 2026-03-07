@@ -78,7 +78,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-2 md:py-4">
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
-            <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
+            <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
               Dernières pépites
             </h2>
             <a
@@ -97,7 +97,7 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-6 py-8 md:py-16">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
+              <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
                 Millésime <span className="text-gold italic">{currentYear}</span>
               </h2>
               <a
@@ -117,7 +117,7 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-6 py-8 md:py-16">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
+              <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
                 <span className="text-gold italic">Best-of</span> - Les plus appréciées
               </h2>
               <a
