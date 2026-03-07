@@ -63,7 +63,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-gold" />
-                <span>CAC40, ETI, Institutions</span>
+                <span>e-Voeux institutionnels</span>
               </div>
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-gold" />
