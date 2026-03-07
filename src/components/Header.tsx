@@ -36,7 +36,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
 
   return (
     <header className={cn(
-      "sticky top-0 z-50 transition-all duration-500 px-6 py-4",
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4",
       isScrolled ? "bg-[#2a2a2a]/90 backdrop-blur-md border-b border-gold/20" : "bg-[#2a2a2a]"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">

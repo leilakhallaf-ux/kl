@@ -105,12 +105,12 @@ export default function Catalogue() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-brand-black">
+    <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
       <Header currentPath="/s-inspirer" />
 
       <FilterBar onFilterChange={handleFilterChange} options={filterOptions} />
 
-      <main className="flex-1 overflow-y-auto">
+      <main className="flex-1 overflow-y-auto pt-[140px]">
         <section className="container mx-auto px-4 pb-12">
         <div className="mb-8">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
