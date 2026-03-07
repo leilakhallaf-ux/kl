@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Star } from 'lucide-react';
 import { useTranslations } from '../hooks/useTranslations';
-import LanguageSelector from './LanguageSelector';
 
 interface HeaderProps {
   currentPath?: string;
@@ -14,7 +13,7 @@ const cn = (...classes: (string | boolean | undefined)[]) => {
 const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { t } = useTranslations();
+  const { t, currentLanguage, setLanguage } = useTranslations();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,7 +69,12 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             </a>
           ))}
           <span className="text-white/30">|</span>
-          <LanguageSelector />
+          <button
+            onClick={() => setLanguage(currentLanguage === 'en' ? 'fr' : 'en')}
+            className="text-sm tracking-[0.2em] text-white/70 hover:text-gold transition-colors"
+          >
+            {currentLanguage === 'en' ? 'EN' : 'FR'}
+          </button>
         </nav>
 
         <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -94,9 +98,15 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             </a>
           ))}
           <div className="h-px bg-white/10 my-2" />
-          <div className="pl-0">
-            <LanguageSelector />
-          </div>
+          <button
+            onClick={() => {
+              setLanguage(currentLanguage === 'en' ? 'fr' : 'en');
+              setIsMenuOpen(false);
+            }}
+            className="text-base tracking-widest text-white/70 hover:text-gold text-left"
+          >
+            {currentLanguage === 'en' ? 'EN' : 'FR'}
+          </button>
         </div>
       )}
     </header>
