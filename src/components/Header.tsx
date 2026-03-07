@@ -73,7 +73,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             onClick={() => setLanguage(currentLanguage === 'en' ? 'fr' : 'en')}
             className="text-sm tracking-[0.2em] text-white/70 hover:text-gold transition-colors"
           >
-            {currentLanguage === 'en' ? 'EN' : 'FR'}
+            {currentLanguage === 'en' ? 'FR' : 'EN'}
           </button>
         </nav>
 
@@ -105,7 +105,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             }}
             className="text-base tracking-widest text-white/70 hover:text-gold text-left"
           >
-            {currentLanguage === 'en' ? 'EN' : 'FR'}
+            {currentLanguage === 'en' ? 'FR' : 'EN'}
           </button>
         </div>
       )}
