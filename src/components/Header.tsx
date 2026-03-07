@@ -20,7 +20,7 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
     <header className="sticky top-0 z-50 bg-rich-black/95 backdrop-blur-sm border-b border-gold/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-4 group">
+          <a href="/" className="flex items-center gap-4 group mr-12">
             <div className="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gold bg-transparent group-hover:bg-gold/10 transition-all duration-300">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L14.5 9.5L22 9.5L16 14.5L18.5 22L12 17L5.5 22L8 14.5L2 9.5L9.5 9.5L12 2Z" stroke="#C9A96E" strokeWidth="1.5" strokeLinejoin="miter" />
