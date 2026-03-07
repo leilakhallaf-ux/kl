@@ -24,7 +24,16 @@ export const getCurrentUser = async () => {
 export const isAdmin = async () => {
   try {
     const user = await getCurrentUser();
-    return !!user;
+    if (!user) return false;
+
+    const { data, error } = await supabase
+      .from('admin_users')
+      .select('email')
+      .eq('email', user.email)
+      .maybeSingle();
+
+    if (error) throw error;
+    return !!data;
   } catch {
     return false;
   }
