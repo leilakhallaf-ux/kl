@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Save, Plus, Trash2, Languages, Crown, LogOut, Sparkles } from 'lucide-react';
+import { Save, Plus, Trash2, Languages, Crown, LogOut, Sparkles, Eye, EyeOff } from 'lucide-react';
 import { translationsApi, TranslationKey, Language } from '../lib/translations';
 import { getCurrentUser, signOut } from '../lib/auth';
 import { supabase } from '../lib/supabase';
@@ -10,6 +10,7 @@ export default function AdminTranslations() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [languages, setLanguages] = useState<Language[]>([]);
+  const [allLanguages, setAllLanguages] = useState<Language[]>([]);
   const [keys, setKeys] = useState<TranslationKey[]>([]);
   const [translations, setTranslations] = useState<Record<string, Record<string, string>>>({});
   const [editedValues, setEditedValues] = useState<Record<string, Record<string, string>>>({});
@@ -46,12 +47,14 @@ export default function AdminTranslations() {
 
   const loadData = async () => {
     try {
-      const [langs, data] = await Promise.all([
+      const [langs, allLangs, data] = await Promise.all([
         translationsApi.getLanguages(),
+        translationsApi.getAllLanguagesForAdmin(),
         translationsApi.getAllTranslationsForAdmin(),
       ]);
 
       setLanguages(langs);
+      setAllLanguages(allLangs);
       setKeys(data.keys);
       setTranslations(data.translations);
       setEditedValues({});
@@ -178,8 +181,8 @@ export default function AdminTranslations() {
     setSuccess('');
 
     try {
-      const frLang = languages.find(l => l.code === 'fr');
-      const enLang = languages.find(l => l.code === 'en');
+      const frLang = allLanguages.find(l => l.code === 'fr');
+      const enLang = allLanguages.find(l => l.code === 'en');
 
       if (!frLang || !enLang) {
         throw new Error('Langues française et anglaise requises');
@@ -241,6 +244,24 @@ export default function AdminTranslations() {
       setError(err instanceof Error ? err.message : 'Échec de la traduction automatique');
     } finally {
       setTranslating(false);
+    }
+  };
+
+  const handleToggleLanguage = async (languageCode: string, currentStatus: boolean) => {
+    setSaving(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      await translationsApi.toggleLanguageActive(languageCode, !currentStatus);
+      await loadData();
+      setSuccess(`Langue ${!currentStatus ? 'publiée' : 'dépubliée'} avec succès`);
+      setTimeout(() => setSuccess(''), 3000);
+    } catch (err) {
+      console.error('Failed to toggle language:', err);
+      setError('Échec de la modification du statut de la langue');
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -306,6 +327,56 @@ export default function AdminTranslations() {
               {success}
             </div>
           )}
+
+          <div className="mb-6 bg-white/5 border border-white/10 rounded-lg p-4">
+            <h2 className="text-white text-lg mb-4 flex items-center gap-2">
+              <Languages className="w-5 h-5" />
+              Langues disponibles
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {allLanguages.map((lang) => (
+                <div
+                  key={lang.code}
+                  className="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className={`w-2 h-2 rounded-full ${lang.is_active ? 'bg-green-500' : 'bg-red-500'}`} />
+                    <div>
+                      <div className="text-white font-medium">
+                        {lang.name} ({lang.code.toUpperCase()})
+                      </div>
+                      <div className="text-white/50 text-sm">
+                        {lang.is_default && 'Langue par défaut • '}
+                        {lang.is_active ? 'Publiée' : 'Non publiée'}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleToggleLanguage(lang.code, lang.is_active)}
+                    disabled={saving || lang.is_default}
+                    className={`flex items-center gap-2 px-3 py-2 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+                      lang.is_active
+                        ? 'bg-red-500/20 hover:bg-red-500/30 text-red-300'
+                        : 'bg-green-500/20 hover:bg-green-500/30 text-green-300'
+                    }`}
+                    title={lang.is_default ? 'La langue par défaut ne peut pas être dépubliée' : ''}
+                  >
+                    {lang.is_active ? (
+                      <>
+                        <EyeOff className="w-4 h-4" />
+                        Dépublier
+                      </>
+                    ) : (
+                      <>
+                        <Eye className="w-4 h-4" />
+                        Publier
+                      </>
+                    )}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <div className="mb-6 flex gap-4">
             {!showNewKeyForm ? (
@@ -407,12 +478,15 @@ export default function AdminTranslations() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {languages.map((lang) => (
+                  {allLanguages.map((lang) => (
                     <div key={lang.code}>
-                      <label className="block text-white/70 text-sm mb-2">
+                      <label className="block text-white/70 text-sm mb-2 flex items-center gap-2">
                         {lang.name} ({lang.code.toUpperCase()})
                         {lang.is_default && (
-                          <span className="ml-2 text-gold text-xs">(par défaut)</span>
+                          <span className="text-gold text-xs">(par défaut)</span>
+                        )}
+                        {!lang.is_active && (
+                          <span className="text-red-400 text-xs">(non publiée)</span>
                         )}
                       </label>
                       <textarea

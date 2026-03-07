@@ -164,4 +164,23 @@ export const translationsApi = {
 
     if (error) throw error;
   },
+
+  async getAllLanguagesForAdmin(): Promise<Language[]> {
+    const { data, error } = await supabase
+      .from('languages')
+      .select('*')
+      .order('is_default', { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  },
+
+  async toggleLanguageActive(languageCode: string, isActive: boolean): Promise<void> {
+    const { error } = await supabase
+      .from('languages')
+      .update({ is_active: isActive, updated_at: new Date().toISOString() })
+      .eq('code', languageCode);
+
+    if (error) throw error;
+  },
 };
