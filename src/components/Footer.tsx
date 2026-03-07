@@ -46,6 +46,11 @@ export default function Footer() {
                   Best-of
                 </a>
               </li>
+              <li>
+                <a href="/admin" className="text-white/60 hover:text-gold transition-colors duration-300">
+                  Admin
+                </a>
+              </li>
             </ul>
           </div>
 
