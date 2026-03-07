@@ -1,4 +1,4 @@
-import { Crown } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { useState } from 'react';
 
 interface HeaderProps {
@@ -21,17 +21,15 @@ export default function Header({ currentPath = '/' }: HeaderProps) {
     <header className="sticky top-0 z-50 bg-rich-black/95 backdrop-blur-sm border-b border-gold/20">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 flex items-center justify-center rounded-full border border-gold bg-transparent group-hover:bg-gold/10 transition-all duration-300">
-              <Crown className="w-5 h-5 text-gold" />
+          <a href="/" className="flex items-center gap-4 group">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full border-2 border-gold bg-transparent group-hover:bg-gold/10 transition-all duration-300">
+              <Star className="w-6 h-6 text-gold fill-gold" />
             </div>
             <div className="hidden md:block">
-              <h1 className="text-xl font-serif font-semibold text-gold tracking-wider">
-                E-CARDS CORPORATE
-              </h1>
-              <p className="text-xs text-white/60 font-light">
-                Le Pinterest de la carte de vœux électronique
-              </p>
+              <div className="font-serif font-semibold text-gold" style={{ letterSpacing: '0.15em' }}>
+                <div className="text-base leading-tight">E-CARDS</div>
+                <div className="text-base leading-tight">CORPORATE</div>
+              </div>
             </div>
           </a>
 

@@ -1,4 +1,4 @@
-import { Crown, Mail, Linkedin } from 'lucide-react';
+import { Star, Mail, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,11 +10,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-8 flex items-center justify-center rounded-full border border-gold">
-                <Crown className="w-4 h-4 text-gold" />
+                <Star className="w-4 h-4 text-gold fill-gold" />
               </div>
-              <h3 className="text-lg font-serif font-semibold text-gold">
-                E-CARDS CORPORATE
-              </h3>
+              <div className="font-serif font-semibold text-gold text-sm" style={{ letterSpacing: '0.12em' }}>
+                <div className="leading-tight">E-CARDS</div>
+                <div className="leading-tight">CORPORATE</div>
+              </div>
             </div>
             <p className="text-sm text-white/60 leading-relaxed">
               La plateforme inspirationnelle qui donne une seconde vie aux e-cards.
