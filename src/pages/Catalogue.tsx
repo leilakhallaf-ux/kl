@@ -134,9 +134,9 @@ export default function Catalogue() {
           </div>
         )}
       </section>
-      </main>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 }
