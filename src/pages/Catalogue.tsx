@@ -119,7 +119,10 @@ export default function Catalogue() {
             {t('catalogue.title')}
           </h1>
           <p className="text-gray-400 text-lg">
-            {t('catalogue.count', { count: filteredEcards.length })}
+            {t('catalogue.count', {
+              count: filteredEcards.length,
+              s: filteredEcards.length > 1 ? 's' : ''
+            })}
           </p>
         </div>
 

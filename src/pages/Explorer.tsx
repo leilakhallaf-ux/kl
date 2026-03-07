@@ -170,7 +170,10 @@ export default function Explorer() {
         {ecards.length > 0 && (
           <div className="mt-12">
             <h3 className="font-display text-2xl font-semibold text-white mb-6">
-              {t('explorer.results', { count: ecards.length })}
+              {t('explorer.results', {
+                count: ecards.length,
+                s: ecards.length > 1 ? 's' : ''
+              })}
             </h3>
             <ECardGrid ecards={ecards} loading={loading} />
           </div>
@@ -179,7 +182,7 @@ export default function Explorer() {
         {!loading && ecards.length === 0 && searchTerm && (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">
-              {t('explorer.noResultsFor', { term: searchTerm })}
+              {t('explorer.noResultsFor', { term: searchTerm }, `Aucun résultat pour "${searchTerm}"`)}
             </p>
           </div>
         )}

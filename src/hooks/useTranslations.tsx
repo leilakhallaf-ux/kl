@@ -6,7 +6,7 @@ interface TranslationContextType {
   currentLanguage: string;
   languages: Language[];
   translations: Record<string, string>;
-  t: (key: string, fallback?: string) => string;
+  t: (key: string, params?: Record<string, any>, fallback?: string) => string;
   setLanguage: (code: string) => void;
   isLoading: boolean;
 }
@@ -70,8 +70,27 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     loadTranslations(code);
   };
 
-  const t = (key: string, fallback?: string): string => {
-    return translations[key] || fallback || key;
+  const t = (key: string, params?: Record<string, any>, fallback?: string): string => {
+    let value = translations[key] || fallback || key;
+
+    if (params) {
+      Object.keys(params).forEach((paramKey) => {
+        const regex = new RegExp(`{{\\s*${paramKey}\\s*}}`, 'g');
+        value = value.replace(regex, String(params[paramKey]));
+      });
+
+      value = value.replace(/{{[^}]+}}/g, (match) => {
+        try {
+          const expression = match.slice(2, -2).trim();
+          const func = new Function(...Object.keys(params), `return ${expression}`);
+          return String(func(...Object.values(params)));
+        } catch {
+          return match;
+        }
+      });
+    }
+
+    return value;
   };
 
   return (
