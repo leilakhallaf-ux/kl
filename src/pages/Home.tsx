@@ -85,7 +85,7 @@ export default function Home() {
               href="/s-inspirer"
               className="text-gold hover:text-gold-light text-xs md:text-sm flex items-center gap-1 md:gap-2 transition-colors duration-300 whitespace-nowrap"
             >
-              Voir tout
+              Tout
               <span>→</span>
             </a>
           </div>
