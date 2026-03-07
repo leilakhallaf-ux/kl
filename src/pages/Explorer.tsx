@@ -5,8 +5,10 @@ import Footer from '../components/Footer';
 import ECardGrid from '../components/ECardGrid';
 import { searchECards, getECardsByTag, getAllTags } from '../lib/ecard-api';
 import type { ECard } from '../lib/database.types';
+import { useTranslations } from '../hooks/useTranslations';
 
 export default function Explorer() {
+  const { t } = useTranslations();
   const [ecards, setEcards] = useState<ECard[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -72,10 +74,10 @@ export default function Explorer() {
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Explorer
+            {t('explorer.title')}
           </h1>
           <p className="text-gray-400 text-lg">
-            Recherchez par mot-clé ou explorez par tags
+            {t('explorer.subtitle')}
           </p>
         </div>
 
@@ -87,7 +89,7 @@ export default function Explorer() {
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Rechercher par annonceur, agence, thème..."
+                placeholder={t('explorer.searchPlaceholder')}
                 className="w-full pl-12 pr-4 py-4 bg-gray-900 border border-gray-700 rounded-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold transition-colors"
               />
             </div>
@@ -95,7 +97,7 @@ export default function Explorer() {
               type="submit"
               className="btn-gold px-8"
             >
-              Rechercher
+              {t('explorer.searchButton')}
             </button>
           </form>
         </div>
@@ -104,7 +106,7 @@ export default function Explorer() {
           <div className="flex items-center gap-3 mb-6">
             <Tag className="w-6 h-6 text-brand-gold" />
             <h2 className="font-display text-2xl font-semibold text-white">
-              Explorer par tags
+              {t('explorer.browseByTags')}
             </h2>
           </div>
 
@@ -118,7 +120,7 @@ export default function Explorer() {
                     : 'bg-gray-900 text-gray-400 hover:bg-gray-800 hover:text-brand-gold'
                 }`}
               >
-                Tous
+                {t('explorer.all')}
               </button>
               <button
                 onClick={() => setSelectedLetter('0-9')}
@@ -160,7 +162,7 @@ export default function Explorer() {
 
           {filteredTags.length === 0 && (
             <p className="text-gray-500 text-center py-8">
-              Aucun tag ne commence par cette lettre
+              {t('explorer.noTagsForLetter')}
             </p>
           )}
         </div>
@@ -168,7 +170,7 @@ export default function Explorer() {
         {ecards.length > 0 && (
           <div className="mt-12">
             <h3 className="font-display text-2xl font-semibold text-white mb-6">
-              Résultats ({ecards.length})
+              {t('explorer.results', { count: ecards.length })}
             </h3>
             <ECardGrid ecards={ecards} loading={loading} />
           </div>
@@ -177,7 +179,7 @@ export default function Explorer() {
         {!loading && ecards.length === 0 && searchTerm && (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">
-              Aucun résultat pour "{searchTerm}"
+              {t('explorer.noResultsFor', { term: searchTerm })}
             </p>
           </div>
         )}

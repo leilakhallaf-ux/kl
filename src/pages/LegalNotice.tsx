@@ -22,60 +22,48 @@ export default function LegalNotice() {
 
           <div className="text-white/80 space-y-8 leading-relaxed">
             <p className="text-lg">
-              Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance
-              en l'économie numérique, il est précisé aux utilisateurs du site l'identité des différents
-              intervenants dans le cadre de sa réalisation et de son suivi.
+              {t('legal.intro')}
             </p>
 
             <div>
               <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
-                Éditeur du Site
+                {t('legal.editor.title')}
               </h2>
               <p className="mb-3">
-                Le site est édité par [Nom de l'organisation ou de la personne responsable],
-                enregistré sous le numéro [SIRET/SIREN].
+                {t('legal.editor.text')}
               </p>
-              <p className="mb-2"><strong className="text-white">Siège social :</strong> [Adresse complète]</p>
-              <p className="mb-2"><strong className="text-white">Email :</strong> contact@ecards-archive.com</p>
-              <p className="mb-2"><strong className="text-white">Téléphone :</strong> [Numéro de téléphone]</p>
-              <p><strong className="text-white">Directeur de la publication :</strong> [Nom du responsable]</p>
+              <p className="mb-2"><strong className="text-white">{t('legal.editor.address')}</strong> [Adresse complète]</p>
+              <p className="mb-2"><strong className="text-white">{t('legal.editor.email')}</strong> contact@ecards-archive.com</p>
+              <p className="mb-2"><strong className="text-white">{t('legal.editor.phone')}</strong> [Numéro de téléphone]</p>
+              <p><strong className="text-white">{t('legal.editor.director')}</strong> [Nom du responsable]</p>
             </div>
 
             <div>
               <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
-                Hébergement
+                {t('legal.hosting.title')}
               </h2>
               <p className="mb-2">
-                Le site est hébergé par Supabase Inc.
+                {t('legal.hosting.text')}
               </p>
-              <p className="mb-2"><strong className="text-white">Adresse :</strong> 970 Toa Payoh North, #07-04, Singapore 318992</p>
-              <p><strong className="text-white">Site web :</strong> https://supabase.com</p>
+              <p className="mb-2"><strong className="text-white">{t('legal.hosting.address')}</strong> 970 Toa Payoh North, #07-04, Singapore 318992</p>
+              <p><strong className="text-white">{t('legal.hosting.website')}</strong> https://supabase.com</p>
             </div>
 
             <div>
               <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
-                Propriété Intellectuelle
+                {t('legal.intellectual.title')}
               </h2>
               <p>
-                L'ensemble du contenu présent sur ce site, incluant mais ne se limitant pas aux textes,
-                images, graphismes, logo, icônes, sons, logiciels, est la propriété exclusive de leurs auteurs
-                respectifs ou fait l'objet d'une autorisation d'utilisation. Toute reproduction, représentation,
-                modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen
-                ou le procédé utilisé, est interdite, sauf autorisation écrite préalable. Les e-cards présentées
-                restent la propriété de leurs créateurs et annonceurs respectifs et sont présentées à des fins
-                d'archivage culturel et éducatif.
+                {t('legal.intellectual.text')}
               </p>
             </div>
 
             <div>
               <h2 className="text-2xl font-semibold text-gold mb-4 mt-8">
-                Limitation de Responsabilité
+                {t('legal.liability.title')}
               </h2>
               <p>
-                Les informations contenues sur ce site sont aussi précises que possible et le site est mis à jour
-                régulièrement. Toutefois, l'éditeur ne peut garantir l'exactitude, la précision ou l'exhaustivité
-                des informations mises à disposition sur ce site. En conséquence, l'éditeur décline toute responsabilité
-                pour toute imprécision, inexactitude ou omission portant sur des informations disponibles sur le site.
+                {t('legal.liability.text')}
               </p>
             </div>
           </div>

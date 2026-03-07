@@ -5,8 +5,10 @@ import Footer from '../components/Footer';
 import ECardGrid from '../components/ECardGrid';
 import { getECards } from '../lib/ecard-api';
 import type { ECard } from '../lib/database.types';
+import { useTranslations } from '../hooks/useTranslations';
 
 export default function BestOf() {
+  const { t } = useTranslations();
   const [featuredEcards, setFeaturedEcards] = useState<ECard[]>([]);
   const [topLiked, setTopLiked] = useState<ECard[]>([]);
   const [topRated, setTopRated] = useState<ECard[]>([]);
@@ -44,11 +46,11 @@ export default function BestOf() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Award className="w-10 h-10 text-brand-gold" />
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white">
-              <span className="italic">Best-of</span>
+              <span className="italic">{t('bestof.title')}</span>
             </h1>
           </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Sélection premium des e-cards les plus remarquables. Une curation éditoriale des meilleures créations de la plateforme.
+            {t('bestof.subtitle')}
           </p>
         </div>
 
@@ -57,11 +59,11 @@ export default function BestOf() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-gradient-gold"></div>
               <h2 className="font-display text-2xl font-semibold text-white">
-                Sélection éditoriale
+                {t('bestof.editorial.title')}
               </h2>
             </div>
             <p className="text-gray-400 mb-6">
-              Nos coups de cœur, choisis pour leur créativité, innovation et impact
+              {t('bestof.editorial.subtitle')}
             </p>
             <ECardGrid ecards={featuredEcards} loading={loading} />
           </div>
@@ -72,11 +74,11 @@ export default function BestOf() {
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-gradient-gold"></div>
               <h2 className="font-display text-2xl font-semibold text-white">
-                Les plus appréciées
+                {t('bestof.mostLiked.title')}
               </h2>
             </div>
             <p className="text-gray-400 mb-6">
-              Les e-cards qui ont reçu le plus de likes de la communauté
+              {t('bestof.mostLiked.subtitle')}
             </p>
             <ECardGrid ecards={topLiked} loading={loading} />
           </div>
@@ -87,11 +89,11 @@ export default function BestOf() {
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-8 h-8 text-brand-gold" />
               <h2 className="font-display text-2xl font-semibold text-white">
-                Les mieux notées
+                {t('bestof.topRated.title')}
               </h2>
             </div>
             <p className="text-gray-400 mb-6">
-              Les e-cards ayant obtenu les meilleures notes moyennes
+              {t('bestof.topRated.subtitle')}
             </p>
             <ECardGrid ecards={topRated} loading={loading} />
           </div>
@@ -100,7 +102,7 @@ export default function BestOf() {
         {!loading && featuredEcards.length === 0 && topLiked.length === 0 && topRated.length === 0 && (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">
-              Aucune e-card dans le Best-of pour le moment
+              {t('bestof.empty')}
             </p>
           </div>
         )}

@@ -5,8 +5,10 @@ import FilterBar, { type Filters } from '../components/FilterBar';
 import ECardGrid from '../components/ECardGrid';
 import { getECards, getFilterOptions, getVintages } from '../lib/ecard-api';
 import type { ECard } from '../lib/database.types';
+import { useTranslations } from '../hooks/useTranslations';
 
 export default function Catalogue() {
+  const { t } = useTranslations();
   const [ecards, setEcards] = useState<ECard[]>([]);
   const [filteredEcards, setFilteredEcards] = useState<ECard[]>([]);
   const [loading, setLoading] = useState(true);
@@ -114,10 +116,10 @@ export default function Catalogue() {
         <section className="container mx-auto px-4 pb-12">
         <div className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            S'inspirer
+            {t('catalogue.title')}
           </h1>
           <p className="text-gray-400 text-lg">
-            Explorez {filteredEcards.length} e-card{filteredEcards.length > 1 ? 's' : ''} dans notre collection
+            {t('catalogue.count', { count: filteredEcards.length })}
           </p>
         </div>
 
@@ -126,10 +128,10 @@ export default function Catalogue() {
         {!loading && filteredEcards.length === 0 && (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg mb-4">
-              Aucune e-card ne correspond à vos critères de recherche
+              {t('catalogue.noResults')}
             </p>
             <p className="text-gray-500">
-              Essayez de modifier ou supprimer certains filtres
+              {t('catalogue.tryModifyFilters')}
             </p>
           </div>
         )}
