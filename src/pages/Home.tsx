@@ -45,14 +45,14 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-serif text-5xl md:text-7xl font-bold text-white mb-6">
-              Le Pinterest de la{' '}
+              La plateforme inspirationnelle qui donne une seconde vie aux{' '}
               <span className="gold-text-gradient italic">
-                carte de vœux électronique
+                e-cards
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-white/70 font-light mb-8 leading-relaxed">
-              La plateforme inspirationnelle qui donne une seconde vie aux e-cards
+              Le Pinterest de la carte de vœux électronique
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
