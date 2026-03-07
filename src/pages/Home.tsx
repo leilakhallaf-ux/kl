@@ -120,7 +120,7 @@ export default function Home() {
                 href="/best-of"
                 className="text-gold hover:text-gold-light text-xs md:text-sm flex items-center gap-1 md:gap-2 transition-colors duration-300 whitespace-nowrap"
               >
-                Voir tout
+                Tout le classement
                 <span>→</span>
               </a>
             </div>
