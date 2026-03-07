@@ -477,13 +477,21 @@ export default function Admin() {
             </div>
           </div>
 
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 rounded-sm hover:border-brand-gold hover:text-brand-gold transition-all"
-          >
-            <LogOut className="w-4 h-4" />
-            Déconnexion
-          </button>
+          <div className="flex items-center gap-4">
+            <a
+              href="/admin/translations"
+              className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 rounded-sm hover:border-brand-gold hover:text-brand-gold transition-all"
+            >
+              Traductions
+            </a>
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 text-gray-300 rounded-sm hover:border-brand-gold hover:text-brand-gold transition-all"
+            >
+              <LogOut className="w-4 h-4" />
+              Déconnexion
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

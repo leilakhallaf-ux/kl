@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X, Star } from 'lucide-react';
+import { useTranslations } from '../hooks/useTranslations';
+import LanguageSelector from './LanguageSelector';
 
 interface HeaderProps {
   currentPath?: string;
@@ -12,6 +14,7 @@ const cn = (...classes: (string | boolean | undefined)[]) => {
 const Header = ({ currentPath = '/' }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslations();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,10 +32,10 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   }, []);
 
   const navLinks = [
-    { name: "S'INSPIRER", path: "/s-inspirer" },
-    { name: "EXPLORER", path: "/explorer" },
-    { name: "BEST-OF", path: "/best-of" },
-    { name: "SOUMETTRE", path: "/soumettre" },
+    { name: t('nav.inspire', "S'INSPIRER"), path: "/s-inspirer" },
+    { name: t('nav.explore', "EXPLORER"), path: "/explorer" },
+    { name: t('nav.bestof', "BEST-OF"), path: "/best-of" },
+    { name: t('nav.submit', "SOUMETTRE"), path: "/soumettre" },
   ];
 
   return (
@@ -67,12 +70,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             </a>
           ))}
           <span className="text-white/30">|</span>
-          <button
-            className="text-sm tracking-[0.2em] text-white/70 hover:text-gold transition-colors"
-            title="Switch to English"
-          >
-            EN
-          </button>
+          <LanguageSelector />
         </nav>
 
         <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -96,12 +94,9 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
             </a>
           ))}
           <div className="h-px bg-white/10 my-2" />
-          <button
-            className="text-base tracking-widest text-white/70 hover:text-gold text-left"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            EN - English
-          </button>
+          <div className="pl-0">
+            <LanguageSelector />
+          </div>
         </div>
       )}
     </header>

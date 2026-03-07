@@ -6,6 +6,7 @@ import ECardDetail from './pages/ECardDetail';
 import Millesime from './pages/Millesime';
 import BestOf from './pages/BestOf';
 import Admin from './pages/Admin';
+import AdminTranslations from './pages/AdminTranslations';
 import GridTest from './pages/GridTest';
 import About from './pages/About';
 import LegalNotice from './pages/LegalNotice';
@@ -72,6 +73,10 @@ function App() {
 
     if (currentPath === '/admin') {
       return <Admin />;
+    }
+
+    if (currentPath === '/admin/translations') {
+      return <AdminTranslations />;
     }
 
     if (currentPath === '/a-propos') {
