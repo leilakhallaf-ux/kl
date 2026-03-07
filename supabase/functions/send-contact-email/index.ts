@@ -52,7 +52,7 @@ Ce message a été envoyé via le formulaire de contact d'Ecarte.fr
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Ecarte.fr <contact@ecarte.fr>",
+        from: "Ecarte.fr <onboarding@resend.dev>",
         to: ["lk@manufactur-e.com"],
         reply_to: email,
         subject: `[Ecarte.fr] ${subject}`,
