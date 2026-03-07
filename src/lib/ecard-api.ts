@@ -260,3 +260,45 @@ export const getFilterOptions = async () => {
     sectors: Array.from(sectors).sort(),
   };
 };
+
+export const createECard = async (ecard: Omit<ECard, 'id' | 'created_at' | 'updated_at' | 'views' | 'likes' | 'score_avg' | 'score_count'>) => {
+  const { data, error } = await supabase
+    .from('e_cards')
+    .insert(ecard)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as ECard;
+};
+
+export const updateECard = async (id: string, updates: Partial<ECard>) => {
+  const { data, error } = await supabase
+    .from('e_cards')
+    .update(updates)
+    .eq('id', id)
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data as ECard;
+};
+
+export const deleteECard = async (id: string) => {
+  const { error } = await supabase
+    .from('e_cards')
+    .delete()
+    .eq('id', id);
+
+  if (error) throw error;
+};
+
+export const getAllECardsAdmin = async () => {
+  const { data, error } = await supabase
+    .from('e_cards')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  if (error) throw error;
+  return data as ECard[];
+};
