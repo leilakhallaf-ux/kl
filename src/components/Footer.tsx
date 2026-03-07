@@ -93,7 +93,7 @@ export default function Footer() {
               </a>
               <span className="text-white/40">|</span>
               <a href="/rgpd" className="hover:text-gold transition-colors duration-300">
-                RGPD
+                CONFIDENTIALITÉ
               </a>
             </div>
           </div>
