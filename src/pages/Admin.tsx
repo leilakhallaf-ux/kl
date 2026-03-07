@@ -37,6 +37,9 @@ export default function Admin() {
   const [useUrlInput, setUseUrlInput] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
+  const [useLogoUrlInput, setUseLogoUrlInput] = useState(false);
+  const [logoUploadProgress, setLogoUploadProgress] = useState(0);
+  const [isUploadingLogo, setIsUploadingLogo] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -164,6 +167,9 @@ export default function Admin() {
     setUseUrlInput(false);
     setUploadProgress(0);
     setIsUploading(false);
+    setUseLogoUrlInput(false);
+    setLogoUploadProgress(0);
+    setIsUploadingLogo(false);
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -210,6 +216,53 @@ export default function Admin() {
       alert('Erreur lors de l\'upload : ' + error.message);
     } finally {
       setIsUploading(false);
+    }
+  };
+
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Veuillez sélectionner une image valide');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('L\'image ne doit pas dépasser 5 MB');
+      return;
+    }
+
+    try {
+      setIsUploadingLogo(true);
+      setLogoUploadProgress(0);
+
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = fileName;
+
+      const { data, error } = await supabase.storage
+        .from('logos')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false,
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      const { data: urlData } = supabase.storage
+        .from('logos')
+        .getPublicUrl(data.path);
+
+      setFormData({ ...formData, advertiser_logo_url: urlData.publicUrl });
+      setLogoUploadProgress(100);
+    } catch (error: any) {
+      console.error('Error uploading logo:', error);
+      alert('Erreur lors de l\'upload : ' + error.message);
+    } finally {
+      setIsUploadingLogo(false);
     }
   };
 
@@ -490,15 +543,90 @@ export default function Admin() {
                     required
                   />
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-2">Logo URL *</label>
-                  <input
-                    type="url"
-                    value={formData.advertiser_logo_url}
-                    onChange={(e) => setFormData({ ...formData, advertiser_logo_url: e.target.value })}
-                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-sm text-white"
-                    required
-                  />
+                <div className="md:col-span-2">
+                  <div className="flex items-center justify-between mb-3">
+                    <label className="block text-sm text-gray-400">Logo de l'annonceur *</label>
+                    <div className="flex items-center gap-2 text-xs">
+                      <button
+                        type="button"
+                        onClick={() => setUseLogoUrlInput(false)}
+                        className={`px-3 py-1 rounded-sm transition-all ${
+                          !useLogoUrlInput
+                            ? 'bg-brand-gold text-brand-black'
+                            : 'bg-gray-700 text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <Upload className="w-3 h-3 inline mr-1" />
+                        Upload
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setUseLogoUrlInput(true)}
+                        className={`px-3 py-1 rounded-sm transition-all ${
+                          useLogoUrlInput
+                            ? 'bg-brand-gold text-brand-black'
+                            : 'bg-gray-700 text-gray-400 hover:text-white'
+                        }`}
+                      >
+                        <LinkIcon className="w-3 h-3 inline mr-1" />
+                        URL externe
+                      </button>
+                    </div>
+                  </div>
+
+                  {useLogoUrlInput ? (
+                    <input
+                      type="url"
+                      value={formData.advertiser_logo_url}
+                      onChange={(e) => setFormData({ ...formData, advertiser_logo_url: e.target.value })}
+                      className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-sm text-white"
+                      placeholder="https://example.com/logo.png"
+                      required
+                    />
+                  ) : (
+                    <div>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleLogoUpload}
+                        disabled={isUploadingLogo}
+                        className="hidden"
+                        id="logo-upload"
+                      />
+                      <label
+                        htmlFor="logo-upload"
+                        className={`flex items-center justify-center gap-2 w-full px-4 py-3 bg-gray-700 border-2 border-dashed border-gray-600 rounded-sm text-gray-300 cursor-pointer hover:border-brand-gold hover:text-brand-gold transition-all ${
+                          isUploadingLogo ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                      >
+                        <Upload className="w-5 h-5" />
+                        {isUploadingLogo ? 'Upload en cours...' : 'Choisir un logo'}
+                      </label>
+
+                      {isUploadingLogo && logoUploadProgress > 0 && (
+                        <div className="mt-2 bg-gray-700 rounded-sm overflow-hidden">
+                          <div
+                            className="h-2 bg-brand-gold transition-all duration-300"
+                            style={{ width: `${logoUploadProgress}%` }}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {formData.advertiser_logo_url && (
+                    <div className="mt-3 flex items-center gap-3 p-3 bg-gray-700 rounded-sm border border-gray-600">
+                      <img
+                        src={formData.advertiser_logo_url}
+                        alt="Logo preview"
+                        className="w-16 h-16 object-contain bg-white rounded-sm"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                      <span className="text-sm text-gray-300">Logo chargé</span>
+                    </div>
+                  )}
                 </div>
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">Secteur d'activité</label>
