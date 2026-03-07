@@ -140,7 +140,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
   const hasActiveFilters = Object.values(filters).some((f) => f.length > 0);
 
   return (
-    <div className="fixed top-[73px] left-0 right-0 z-40 bg-brand-black/95 backdrop-blur-sm border-b border-brand-gold/20 py-4">
+    <div className="sticky top-0 z-40 bg-brand-black/95 backdrop-blur-sm border-b border-brand-gold/20 py-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className="text-sm text-gray-400 font-light">Filtres :</span>
