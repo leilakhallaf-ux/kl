@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            <div className="flex items-center gap-6 text-sm text-white">
+            <div className="flex items-center gap-6 text-sm text-white whitespace-nowrap">
               <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300">
                 MENTIONS LÉGALES
               </a>
