@@ -33,12 +33,12 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 flex items-center justify-center border border-gold rounded-full group-hover:bg-gold transition-colors duration-500">
-            <Star className="w-5 h-5 text-gold group-hover:text-rich-black" fill="currentColor" />
+          <div className="w-12 h-12 flex items-center justify-center border border-gold rounded-full group-hover:bg-gold transition-colors duration-500">
+            <Star className="w-6 h-6 text-gold group-hover:text-rich-black" fill="currentColor" />
           </div>
           <div className="flex flex-col">
-            <span className="font-serif text-xl tracking-widest text-gold leading-none">E-CARDS</span>
-            <span className="font-sans text-[10px] tracking-[0.3em] text-white/70 leading-none mt-1">CORPORATE</span>
+            <span className="font-serif text-2xl tracking-widest text-gold leading-none">E-CARDS</span>
+            <span className="font-sans text-xs tracking-[0.3em] text-white/70 leading-none mt-1">CORPORATE</span>
           </div>
         </a>
 
