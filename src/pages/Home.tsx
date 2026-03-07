@@ -13,7 +13,13 @@ export default function Home() {
   const [vintageECards, setVintageECards] = useState<ECard[]>([]);
   const [loading, setLoading] = useState(true);
   const currentYear = new Date().getFullYear();
-  const { t } = useTranslations();
+  const { t, currentLanguage, translations } = useTranslations();
+
+  useEffect(() => {
+    console.log('🔥 Home - Current Language:', currentLanguage);
+    console.log('🔥 Home - Translations loaded:', Object.keys(translations).length);
+    console.log('🔥 Home - Sample translation:', t('home.hero.title', 'FALLBACK'));
+  }, [currentLanguage, translations, t]);
 
   useEffect(() => {
     const fetchData = async () => {
