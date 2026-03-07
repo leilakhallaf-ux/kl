@@ -52,24 +52,9 @@ export default function Home() {
               aux <span className="gold-text-gradient italic">e-cards</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-6 md:mb-8 leading-relaxed px-2">
+            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-8 md:mb-12 leading-relaxed px-2">
               Le <span className="italic">Pinterest</span> de la carte de vœux électronique
             </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 px-4">
-              <a
-                href="/s-inspirer"
-                className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold bg-gradient-to-r from-gold via-gold-light to-gold text-rich-black hover:shadow-lg hover:shadow-gold/50 transform hover:scale-105 transition-all duration-300"
-              >
-                Explorer les archives
-              </a>
-              <a
-                href="/explorer"
-                className="w-full sm:w-auto px-8 md:px-10 py-4 md:py-5 text-base md:text-lg font-semibold bg-transparent border-2 border-gold/70 text-gold hover:bg-gold/10 hover:border-gold transition-all duration-300"
-              >
-                Rechercher
-              </a>
-            </div>
 
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 px-2">
               <div className="flex items-center gap-2">
