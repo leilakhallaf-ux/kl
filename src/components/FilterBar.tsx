@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { ChevronDown, X } from 'lucide-react';
+import { useTranslations } from '../hooks/useTranslations';
 
 interface FilterBarProps {
   onFilterChange: (filters: Filters) => void;
@@ -74,7 +75,7 @@ function FilterDropdown({ label, options, selected, onToggle, onClear }: Dropdow
               className="w-full px-4 py-2 text-left text-sm text-brand-gold hover:bg-brand-gold/10 flex items-center gap-2 border-b border-gray-800"
             >
               <X className="w-3 h-3" />
-              Tout effacer
+              {t('catalogue.clearAll')}
             </button>
           )}
           {options.map((option) => (
@@ -98,6 +99,7 @@ function FilterDropdown({ label, options, selected, onToggle, onClear }: Dropdow
 }
 
 export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
+  const { t } = useTranslations();
   const [filters, setFilters] = useState<Filters>({
     advertisers: [],
     vintages: [],
@@ -143,10 +145,10 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
     <div className="sticky top-0 z-40 bg-brand-black/95 backdrop-blur-sm border-b border-brand-gold/20 py-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm text-gray-400 font-light">Filtres :</span>
+          <span className="text-sm text-gray-400 font-light">{t('catalogue.filters')}</span>
 
           <FilterDropdown
-            label="Annonceur"
+            label={t('catalogue.advertiser')}
             options={options.advertisers}
             selected={filters.advertisers}
             onToggle={(value) => handleToggle('advertisers', value)}
@@ -154,7 +156,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
           />
 
           <FilterDropdown
-            label="Millésime"
+            label={t('catalogue.millesime')}
             options={options.vintages}
             selected={filters.vintages}
             onToggle={(value) => handleToggle('vintages', value)}
@@ -162,7 +164,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
           />
 
           <FilterDropdown
-            label="Agence"
+            label={t('catalogue.agency')}
             options={options.agencies}
             selected={filters.agencies}
             onToggle={(value) => handleToggle('agencies', value)}
@@ -170,7 +172,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
           />
 
           <FilterDropdown
-            label="Diffuseur"
+            label={t('catalogue.broadcaster')}
             options={options.distributors}
             selected={filters.distributors}
             onToggle={(value) => handleToggle('distributors', value)}
@@ -178,7 +180,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
           />
 
           <FilterDropdown
-            label="Techno"
+            label={t('catalogue.technology')}
             options={options.technologies}
             selected={filters.technologies}
             onToggle={(value) => handleToggle('technologies', value)}
@@ -186,7 +188,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
           />
 
           <FilterDropdown
-            label="Thème"
+            label={t('catalogue.theme')}
             options={options.topics}
             selected={filters.topics}
             onToggle={(value) => handleToggle('topics', value)}
@@ -199,7 +201,7 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
               className="ml-auto px-4 py-2 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold rounded-sm hover:bg-brand-gold/20 transition-colors duration-300 text-sm flex items-center gap-2"
             >
               <X className="w-4 h-4" />
-              Tout effacer
+              {t('catalogue.clearAll')}
             </button>
           )}
         </div>
