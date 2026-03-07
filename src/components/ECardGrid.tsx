@@ -12,7 +12,9 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
+      if (window.innerWidth < 768) {
+        setColumns(1);
+      } else if (window.innerWidth < 1024) {
         setColumns(2);
       } else {
         setColumns(3);
@@ -30,7 +32,7 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="animate-pulse">
             <div className="bg-gray-800 aspect-[16/11] rounded-sm mb-2"></div>
@@ -51,7 +53,7 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {[...Array(columns)].map((_, columnIndex) => (
         <div key={columnIndex} className="flex flex-col gap-4">
           {getColumnEcards(columnIndex).map((ecard) => (
