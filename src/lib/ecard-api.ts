@@ -302,3 +302,32 @@ export const getAllECardsAdmin = async () => {
   if (error) throw error;
   return data as ECard[];
 };
+
+export const getBestOfECards = async (limit: number = 3) => {
+  // First, try to get cards ordered by likes
+  const { data: byLikes, error: likesError } = await supabase
+    .from('e_cards')
+    .select('*')
+    .eq('is_published', true)
+    .gt('likes', 0)
+    .order('likes', { ascending: false })
+    .limit(limit);
+
+  if (likesError) throw likesError;
+
+  // If we have enough cards with likes, return them
+  if (byLikes && byLikes.length >= limit) {
+    return byLikes as ECard[];
+  }
+
+  // Otherwise, fallback to views
+  const { data: byViews, error: viewsError } = await supabase
+    .from('e_cards')
+    .select('*')
+    .eq('is_published', true)
+    .order('views', { ascending: false })
+    .limit(limit);
+
+  if (viewsError) throw viewsError;
+  return byViews as ECard[];
+};

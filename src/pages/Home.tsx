@@ -3,7 +3,7 @@ import { Sparkles, TrendingUp, Calendar } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ECardGrid from '../components/ECardGrid';
-import { getECards } from '../lib/ecard-api';
+import { getECards, getBestOfECards } from '../lib/ecard-api';
 import type { ECard } from '../lib/database.types';
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
       try {
         const [latest, bestOf, vintage] = await Promise.all([
           getECards({ limit: 9, orderBy: 'created_at', orderDirection: 'desc' }),
-          getECards({ is_featured: true, limit: 9 }),
+          getBestOfECards(3),
           getECards({ vintage: currentYear, limit: 9 }),
         ]);
 
