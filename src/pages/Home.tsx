@@ -110,7 +110,7 @@ export default function Home() {
       )}
 
       {bestOfECards.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 py-8 md:py-16">
+        <section className="max-w-7xl mx-auto px-6 py-0 md:py-2">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
