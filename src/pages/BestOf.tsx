@@ -44,7 +44,7 @@ export default function BestOf() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <Award className="w-10 h-10 text-brand-gold" />
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white">
-              Best-of
+              <span className="italic">Best-of</span>
             </h1>
           </div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">

@@ -40,7 +40,7 @@ export default function Millesime({ year }: MillesimeProps) {
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-8">
           <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Millésime <span className="text-brand-gold">{year}</span>
+            Millésime <span className="text-brand-gold font-bold italic">{year}</span>
           </h1>
           <p className="text-gray-400 text-lg">
             {ecards.length} e-card{ecards.length > 1 ? 's' : ''} de l'année {year}

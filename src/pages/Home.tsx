@@ -75,7 +75,7 @@ export default function Home() {
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
-              Dernières <span className="text-gold italic">pépites</span> ajoutées
+              Dernières <span className="text-gold italic font-bold">pépites</span> ajoutées
             </h2>
             <a
               href="/s-inspirer"
@@ -94,7 +94,7 @@ export default function Home() {
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
-                Millésime <span className="text-gold italic">{currentYear}</span>
+                Millésime <span className="text-gold italic font-bold">{currentYear}</span>
               </h2>
               <a
                 href={`/millesime/${currentYear}`}
@@ -114,7 +114,7 @@ export default function Home() {
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
-                <span className="text-gold italic">Best-of</span> - Les 3 plus appréciées
+                <span className="text-gold italic font-bold">Best-of</span> - Les 3 plus appréciées
               </h2>
               <a
                 href="/best-of"
