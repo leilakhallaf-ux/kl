@@ -52,6 +52,7 @@ export const translationsApi = {
   },
 
   async getTranslations(languageCode: string): Promise<Record<string, string>> {
+    console.log('🔍 Fetching translations from DB for:', languageCode);
     const { data, error } = await supabase
       .from('translations')
       .select(`
@@ -62,7 +63,13 @@ export const translationsApi = {
       `)
       .eq('language_code', languageCode);
 
-    if (error) throw error;
+    if (error) {
+      console.error('❌ Database error:', error);
+      throw error;
+    }
+
+    console.log('📦 Raw data from DB:', data?.length, 'items');
+    console.log('🔍 First item structure:', data?.[0]);
 
     const translations: Record<string, string> = {};
     (data as TranslationWithKey[])?.forEach((item) => {
@@ -70,6 +77,8 @@ export const translationsApi = {
         translations[item.translation_keys.key] = item.value;
       }
     });
+
+    console.log('✨ Processed translations:', Object.keys(translations).length, 'keys');
 
     return translations;
   },

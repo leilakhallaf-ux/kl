@@ -51,13 +51,14 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   const loadTranslations = async (languageCode: string) => {
     try {
       setIsLoading(true);
-      console.log('Loading translations for language:', languageCode);
+      console.log('🌍 Loading translations for language:', languageCode);
       const trans = await translationsApi.getTranslations(languageCode);
-      console.log('Loaded translations count:', Object.keys(trans).length);
-      console.log('Sample translations:', Object.entries(trans).slice(0, 3));
+      console.log('✅ Loaded translations count:', Object.keys(trans).length);
+      console.log('📝 First 5 translations:', Object.entries(trans).slice(0, 5));
+      console.log('🔑 All keys:', Object.keys(trans));
       setTranslations(trans);
     } catch (error) {
-      console.error('Failed to load translations:', error);
+      console.error('❌ Failed to load translations:', error);
     } finally {
       setIsLoading(false);
     }
