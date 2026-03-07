@@ -39,7 +39,7 @@ export default function Home() {
     <div className="min-h-screen bg-rich-black">
       <Header currentPath="/" />
 
-      <section className="relative overflow-hidden pt-40 pb-12 md:py-32">
+      <section className="relative overflow-hidden pt-44 pb-16 md:py-40">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
 
         <div className="container mx-auto px-4 relative z-10">
