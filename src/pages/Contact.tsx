@@ -16,6 +16,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [acceptTerms, setAcceptTerms] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -67,6 +68,7 @@ export default function Contact() {
         subject: '',
         message: ''
       });
+      setAcceptTerms(false);
     } catch (error) {
       console.error('Error submitting contact form:', error);
       setSubmitStatus('error');
@@ -216,20 +218,30 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="bg-white/5 border border-white/10 rounded-lg p-6 my-6">
-                <p className="text-white/90 text-sm leading-relaxed">
+              <div className="bg-white/5 border border-white/10 rounded-lg p-6 my-6 space-y-4">
+                <p className="text-white text-base font-bold leading-relaxed">
                   En validant le formulaire, je transmets mon consentement pour le traitement de mes données :
                 </p>
-                <p className="text-white/90 text-sm leading-relaxed mt-2">
-                  J'ai lu et j'accepte les{' '}
-                  <a href="/cgu" className="text-gold hover:underline font-medium">
-                    Conditions Générales d'Utilisation du site
-                  </a>
-                  {' '}& la{' '}
-                  <a href="/rgpd" className="text-gold hover:underline font-medium">
-                    Politique de Confidentialité
-                  </a>
-                </p>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="acceptTerms"
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    required
+                    className="mt-1 w-5 h-5 rounded border-white/20 bg-white/10 text-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 cursor-pointer"
+                  />
+                  <label htmlFor="acceptTerms" className="text-white text-base leading-relaxed cursor-pointer">
+                    J'ai lu et j'accepte les{' '}
+                    <a href="/cgu" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
+                      Conditions Générales d'Utilisation du site
+                    </a>
+                    {' '}& la{' '}
+                    <a href="/rgpd" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
+                      Politique de Confidentialité
+                    </a>
+                  </label>
+                </div>
               </div>
 
               <div className="flex items-center justify-between">
@@ -239,7 +251,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !acceptTerms}
                   className="flex items-center gap-2 px-8 py-3 bg-gold hover:bg-gold/90 text-slate-900 font-semibold rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
