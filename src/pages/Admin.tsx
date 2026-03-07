@@ -13,6 +13,9 @@ export default function Admin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [honeypot, setHoneypot] = useState('');
+  const [isRateLimited, setIsRateLimited] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
   const [stats, setStats] = useState({
     totalEcards: 0,
     totalViews: 0,
@@ -282,14 +285,75 @@ export default function Admin() {
     }
   };
 
+  const checkRateLimit = async (userEmail: string): Promise<boolean> => {
+    try {
+      const fifteenMinutesAgo = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+
+      const { data, error } = await supabase
+        .from('admin_login_attempts')
+        .select('id, created_at')
+        .eq('email', userEmail)
+        .eq('success', false)
+        .gte('created_at', fifteenMinutesAgo);
+
+      if (error) {
+        console.error('Rate limit check error:', error);
+        return false;
+      }
+
+      if (data && data.length >= 5) {
+        const oldestAttempt = new Date(data[data.length - 1].created_at);
+        const timeUntilReset = Math.ceil((oldestAttempt.getTime() + 15 * 60 * 1000 - Date.now()) / 1000);
+        setRemainingTime(timeUntilReset);
+        return true;
+      }
+
+      return false;
+    } catch (err) {
+      console.error('Rate limit check failed:', err);
+      return false;
+    }
+  };
+
+  const logLoginAttempt = async (userEmail: string, success: boolean, honeypotTriggered: boolean) => {
+    try {
+      await supabase
+        .from('admin_login_attempts')
+        .insert({
+          email: userEmail,
+          ip_address: 'unknown',
+          user_agent: navigator.userAgent,
+          success,
+          honeypot_triggered: honeypotTriggered,
+        });
+    } catch (err) {
+      console.error('Failed to log attempt:', err);
+    }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
 
+    if (honeypot) {
+      await logLoginAttempt(email, false, true);
+      setError('Erreur de connexion');
+      return;
+    }
+
+    const rateLimited = await checkRateLimit(email);
+    if (rateLimited) {
+      setIsRateLimited(true);
+      setError(`Trop de tentatives. Réessayez dans ${Math.ceil(remainingTime / 60)} minutes.`);
+      return;
+    }
+
     try {
       await signIn(email, password);
+      await logLoginAttempt(email, true, false);
       await checkUser();
     } catch (err: any) {
+      await logLoginAttempt(email, false, false);
       setError(err.message || 'Erreur de connexion');
     }
   };
@@ -341,6 +405,7 @@ export default function Admin() {
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
                     required
+                    disabled={isRateLimited}
                   />
                 </div>
 
@@ -355,6 +420,18 @@ export default function Admin() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
                     required
+                    disabled={isRateLimited}
+                  />
+                </div>
+
+                <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
                   />
                 </div>
 
@@ -367,6 +444,7 @@ export default function Admin() {
                 <button
                   type="submit"
                   className="w-full btn-gold py-3"
+                  disabled={isRateLimited}
                 >
                   Se connecter
                 </button>
