@@ -35,10 +35,11 @@ export default function BestOf() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-brand-black">
+    <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
       <Header currentPath="/best-of" />
 
-      <section className="container mx-auto px-4 pt-24 pb-12">
+      <main className="flex-1 overflow-y-auto">
+        <section className="container mx-auto px-4 pt-24 pb-12">
         <div className="mb-12 text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Award className="w-10 h-10 text-brand-gold" />
@@ -105,7 +106,8 @@ export default function BestOf() {
         )}
       </section>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 }

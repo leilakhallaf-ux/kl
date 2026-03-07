@@ -129,9 +129,10 @@ export default function ECardDetail({ id }: ECardDetailProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-brand-black">
+      <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
         <Header />
-        <div className="container mx-auto px-4 py-20 text-center">
+        <main className="flex-1 overflow-y-auto">
+          <div className="container mx-auto px-4 py-20 text-center">
           <div className="animate-pulse">
             <div className="h-8 bg-gray-800 rounded w-1/3 mx-auto mb-8"></div>
             <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -140,20 +141,23 @@ export default function ECardDetail({ id }: ECardDetailProps) {
             </div>
           </div>
         </div>
+        </main>
       </div>
     );
   }
 
   if (!ecard) {
     return (
-      <div className="min-h-screen bg-brand-black">
+      <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
         <Header />
-        <div className="container mx-auto px-4 py-20 text-center">
+        <main className="flex-1 overflow-y-auto">
+          <div className="container mx-auto px-4 py-20 text-center">
           <h1 className="font-display text-3xl text-white mb-4">E-card introuvable</h1>
           <a href="/s-inspirer" className="text-brand-gold hover:underline">
             Retour au catalogue
           </a>
         </div>
+        </main>
       </div>
     );
   }
@@ -161,10 +165,11 @@ export default function ECardDetail({ id }: ECardDetailProps) {
   const isFlash = ecard.technology?.toLowerCase().includes('flash') || ecard.swf_url;
 
   return (
-    <div className="min-h-screen bg-brand-black">
+    <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
       <Header />
 
-      <section className="container mx-auto px-4 pt-24 pb-8">
+      <main className="flex-1 overflow-y-auto">
+        <section className="container mx-auto px-4 pt-24 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
             <a
@@ -402,7 +407,8 @@ export default function ECardDetail({ id }: ECardDetailProps) {
         )}
       </section>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 }

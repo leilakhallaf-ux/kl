@@ -361,10 +361,11 @@ export default function Admin() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-black">
+    <div className="h-screen flex flex-col bg-brand-black overflow-hidden">
       <Header />
 
-      <div className="container mx-auto px-4 pt-24 pb-8">
+      <main className="flex-1 overflow-y-auto">
+        <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-gold rounded-sm flex items-center justify-center">
@@ -779,9 +780,10 @@ export default function Admin() {
             )}
           </div>
         </div>
-      </div>
+        </div>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 }

@@ -36,10 +36,11 @@ export default function Home() {
   }, [currentYear]);
 
   return (
-    <div className="min-h-screen bg-rich-black">
+    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
       <Header currentPath="/" />
 
-      <section className="relative overflow-hidden pt-24 pb-2 md:pt-32 md:pb-3">
+      <main className="flex-1 overflow-y-auto">
+        <section className="relative overflow-hidden pt-24 pb-2 md:pt-32 md:pb-3">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -148,7 +149,8 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+        <Footer />
+      </main>
     </div>
   );
 }
