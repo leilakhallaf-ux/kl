@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Save, Plus, Trash2, Languages, Crown, LogOut } from 'lucide-react';
+import { Save, Plus, Trash2, Languages, Crown, LogOut, Sparkles } from 'lucide-react';
 import { translationsApi, TranslationKey, Language } from '../lib/translations';
 import { getCurrentUser, signOut } from '../lib/auth';
+import { supabase } from '../lib/supabase';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -18,6 +19,7 @@ export default function AdminTranslations() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [translating, setTranslating] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -166,6 +168,82 @@ export default function AdminTranslations() {
     return !!editedValues[keyStr] && Object.keys(editedValues[keyStr]).length > 0;
   };
 
+  const handleAutoTranslate = async () => {
+    if (!confirm('Voulez-vous lancer la traduction automatique pour toutes les clés manquantes en anglais ?')) {
+      return;
+    }
+
+    setTranslating(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      const frLang = languages.find(l => l.code === 'fr');
+      const enLang = languages.find(l => l.code === 'en');
+
+      if (!frLang || !enLang) {
+        throw new Error('Langues française et anglaise requises');
+      }
+
+      const missingTranslations: { key: TranslationKey; frText: string }[] = [];
+
+      for (const key of keys) {
+        const frText = translations[key.key]?.['fr'];
+        const enText = translations[key.key]?.['en'];
+
+        if (frText && !enText) {
+          missingTranslations.push({ key, frText });
+        }
+      }
+
+      if (missingTranslations.length === 0) {
+        setSuccess('Toutes les traductions sont déjà présentes');
+        setTimeout(() => setSuccess(''), 3000);
+        return;
+      }
+
+      const textsToTranslate = missingTranslations.map(m => m.frText);
+      const batchSize = 20;
+      let translatedCount = 0;
+
+      for (let i = 0; i < textsToTranslate.length; i += batchSize) {
+        const batch = textsToTranslate.slice(i, i + batchSize);
+        const batchKeys = missingTranslations.slice(i, i + batchSize);
+
+        const { data, error: functionError } = await supabase.functions.invoke('auto-translate', {
+          body: {
+            sourceLang: 'fr',
+            targetLang: 'en',
+            texts: batch,
+          },
+        });
+
+        if (functionError) {
+          throw functionError;
+        }
+
+        if (data?.translations) {
+          for (let j = 0; j < data.translations.length; j++) {
+            const translation = data.translations[j];
+            const keyObj = batchKeys[j].key;
+
+            await translationsApi.updateTranslation(keyObj.id, 'en', translation.translated);
+            translatedCount++;
+          }
+        }
+      }
+
+      await loadData();
+      setSuccess(`${translatedCount} traduction(s) générée(s) avec succès`);
+      setTimeout(() => setSuccess(''), 5000);
+    } catch (err) {
+      console.error('Auto-translation failed:', err);
+      setError(err instanceof Error ? err.message : 'Échec de la traduction automatique');
+    } finally {
+      setTranslating(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-rich-black flex items-center justify-center">
@@ -229,15 +307,25 @@ export default function AdminTranslations() {
             </div>
           )}
 
-          <div className="mb-6">
+          <div className="mb-6 flex gap-4">
             {!showNewKeyForm ? (
-              <button
-                onClick={() => setShowNewKeyForm(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-gold hover:bg-gold-light text-rich-black rounded-lg transition-colors"
-              >
-                <Plus className="w-4 h-4" />
-                Ajouter une clé de traduction
-              </button>
+              <>
+                <button
+                  onClick={() => setShowNewKeyForm(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-gold hover:bg-gold-light text-rich-black rounded-lg transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                  Ajouter une clé de traduction
+                </button>
+                <button
+                  onClick={handleAutoTranslate}
+                  disabled={translating}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  {translating ? 'Traduction en cours...' : 'Auto-traduire FR → EN'}
+                </button>
+              </>
             ) : (
               <div className="bg-white/5 border border-white/10 rounded-lg p-4">
                 <h3 className="text-white text-lg mb-4">Nouvelle clé de traduction</h3>
