@@ -44,11 +44,11 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <p className="text-xl md:text-2xl text-white/70 mb-6 leading-relaxed">
+            <p className="font-serif text-5xl md:text-7xl font-bold text-white mb-6">
               La plateforme inspirationnelle qui donne une seconde vie aux e-cards
             </p>
 
-            <h1 className="font-serif text-5xl md:text-7xl font-bold text-white font-light mb-8">
+            <h1 className="text-xl md:text-2xl text-white/70 font-light mb-8 leading-relaxed">
               Le Pinterest de la{' '}
               <span className="gold-text-gradient italic">
                 carte de vœux électronique
