@@ -9,7 +9,7 @@ export default function LegalNotice() {
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
             MENTIONS LÉGALES
           </h1>
 
