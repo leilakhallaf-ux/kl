@@ -12,7 +12,7 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 1024) {
         setColumns(2);
       } else {
         setColumns(3);
