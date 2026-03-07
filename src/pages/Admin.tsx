@@ -313,63 +313,69 @@ export default function Admin() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-brand-black flex items-center justify-center px-4">
-        <div className="max-w-md w-full">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-gold rounded-sm mb-4">
-              <Crown className="w-10 h-10 text-brand-black" />
+      <div className="min-h-screen bg-brand-black flex flex-col">
+        <Header />
+
+        <div className="flex-1 flex items-center justify-center px-4 pt-20">
+          <div className="max-w-md w-full">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-gold rounded-sm mb-4">
+                <Crown className="w-10 h-10 text-brand-black" />
+              </div>
+              <h1 className="font-display text-3xl font-bold text-white mb-2">
+                Administration
+              </h1>
+              <p className="text-gray-400">E-Cards Corporate</p>
             </div>
-            <h1 className="font-display text-3xl font-bold text-white mb-2">
-              Administration
-            </h1>
-            <p className="text-gray-400">E-Cards Corporate</p>
-          </div>
 
-          <div className="bg-gray-900 rounded-sm p-8 border border-gray-800">
-            <form onSubmit={handleLogin} className="space-y-6">
-              <div>
-                <label htmlFor="email" className="block text-sm text-gray-400 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="password" className="block text-sm text-gray-400 mb-2">
-                  Mot de passe
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
-                  required
-                />
-              </div>
-
-              {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/50 rounded-sm text-red-400 text-sm">
-                  {error}
+            <div className="bg-gray-900 rounded-sm p-8 border border-gray-800">
+              <form onSubmit={handleLogin} className="space-y-6">
+                <div>
+                  <label htmlFor="email" className="block text-sm text-gray-400 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
+                    required
+                  />
                 </div>
-              )}
 
-              <button
-                type="submit"
-                className="w-full btn-gold py-3"
-              >
-                Se connecter
-              </button>
-            </form>
+                <div>
+                  <label htmlFor="password" className="block text-sm text-gray-400 mb-2">
+                    Mot de passe
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-sm text-white focus:outline-none focus:border-brand-gold transition-colors"
+                    required
+                  />
+                </div>
+
+                {error && (
+                  <div className="p-3 bg-red-500/10 border border-red-500/50 rounded-sm text-red-400 text-sm">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full btn-gold py-3"
+                >
+                  Se connecter
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     );
   }
