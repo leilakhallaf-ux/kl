@@ -8,16 +8,16 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="flex justify-center md:justify-start">
-            <div className="flex items-center gap-6 text-sm text-white">
-              <a href="/soumettre" className="hover:text-gold transition-colors duration-300">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 md:gap-6 text-sm text-white">
+              <a href="/soumettre" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 SOUMETTRE E-CARD
               </a>
-              <span className="text-white/40">|</span>
-              <a href="/a-propos" className="hover:text-gold transition-colors duration-300">
+              <span className="text-white/40 hidden md:inline">|</span>
+              <a href="/a-propos" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 À PROPOS
               </a>
-              <span className="text-white/40">|</span>
-              <a href="/contact" className="hover:text-gold transition-colors duration-300">
+              <span className="text-white/40 hidden md:inline">|</span>
+              <a href="/contact" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 CONTACT
               </a>
             </div>
@@ -83,16 +83,16 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            <div className="flex items-center gap-6 text-sm text-white whitespace-nowrap">
-              <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300">
+            <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 md:gap-6 text-sm text-white">
+              <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 MENTIONS LÉGALES
               </a>
-              <span className="text-white/40">|</span>
-              <a href="/cgu" className="hover:text-gold transition-colors duration-300">
+              <span className="text-white/40 hidden md:inline">|</span>
+              <a href="/cgu" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 CGU
               </a>
-              <span className="text-white/40">|</span>
-              <a href="/rgpd" className="hover:text-gold transition-colors duration-300">
+              <span className="text-white/40 hidden md:inline">|</span>
+              <a href="/rgpd" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 CONFIDENTIALITÉ
               </a>
             </div>
