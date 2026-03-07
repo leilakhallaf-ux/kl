@@ -7,6 +7,10 @@ import Millesime from './pages/Millesime';
 import BestOf from './pages/BestOf';
 import Admin from './pages/Admin';
 import GridTest from './pages/GridTest';
+import About from './pages/About';
+import LegalNotice from './pages/LegalNotice';
+import TermsOfUse from './pages/TermsOfUse';
+import GDPR from './pages/GDPR';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -67,6 +71,22 @@ function App() {
 
     if (currentPath === '/admin') {
       return <Admin />;
+    }
+
+    if (currentPath === '/a-propos') {
+      return <About />;
+    }
+
+    if (currentPath === '/mentions-legales') {
+      return <LegalNotice />;
+    }
+
+    if (currentPath === '/cgu') {
+      return <TermsOfUse />;
+    }
+
+    if (currentPath === '/rgpd') {
+      return <GDPR />;
     }
 
     if (currentPath.startsWith('/ecard/')) {
