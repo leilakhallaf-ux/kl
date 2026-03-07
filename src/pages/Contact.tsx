@@ -11,13 +11,15 @@ export default function Contact() {
     userType: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [showTermsError, setShowTermsError] = useState(false);
+  const [formStartTime] = useState(Date.now());
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -28,6 +30,21 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Honeypot check - if filled, it's a bot
+    if (formData.website) {
+      console.log('Bot detected via honeypot');
+      return;
+    }
+
+    // Time-based check - form filled too quickly (less than 3 seconds)
+    const formFillTime = Date.now() - formStartTime;
+    if (formFillTime < 3000) {
+      console.log('Bot detected via timing check');
+      setSubmitStatus('error');
+      setErrorMessage('Veuillez prendre le temps de remplir le formulaire correctement.');
+      return;
+    }
 
     // Vérifier que les conditions sont acceptées
     if (!acceptTerms) {
@@ -62,7 +79,10 @@ export default function Contact() {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...formData,
+            formFillTime
+          }),
         }
       );
 
@@ -77,7 +97,8 @@ export default function Contact() {
         userType: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        website: ''
       });
       setAcceptTerms(false);
     } catch (error) {
@@ -226,6 +247,20 @@ export default function Contact() {
                   rows={8}
                   className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all resize-none"
                   placeholder="Votre message..."
+                />
+              </div>
+
+              {/* Honeypot field - hidden from users, visible to bots */}
+              <div className="absolute opacity-0 pointer-events-none" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
 

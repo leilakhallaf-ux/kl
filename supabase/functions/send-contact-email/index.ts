@@ -7,10 +7,14 @@ const corsHeaders = {
 };
 
 interface ContactEmailRequest {
-  name: string;
+  name?: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   subject: string;
   message: string;
+  website?: string;
+  formFillTime?: number;
 }
 
 Deno.serve(async (req: Request) => {
@@ -22,7 +26,32 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const { name, email, subject, message }: ContactEmailRequest = await req.json();
+    const { name, firstName, lastName, email, subject, message, website, formFillTime }: ContactEmailRequest = await req.json();
+
+    // Anti-spam checks
+    // 1. Honeypot check
+    if (website) {
+      console.log('Spam detected via honeypot');
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid submission" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
+    }
+
+    // 2. Time-based check (form filled too quickly - less than 3 seconds)
+    if (formFillTime && formFillTime < 3000) {
+      console.log('Spam detected via timing check');
+      return new Response(
+        JSON.stringify({ success: false, error: "Invalid submission" }),
+        {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        }
+      );
+    }
 
     // Use Resend API to send email
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
@@ -31,10 +60,12 @@ Deno.serve(async (req: Request) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
+    const fullName = name || `${firstName} ${lastName}`;
+
     const emailBody = `
 Nouveau message de contact depuis Ecarte.fr
 
-Nom: ${name}
+Nom: ${fullName}
 Email: ${email}
 Sujet: ${subject}
 
@@ -43,6 +74,7 @@ ${message}
 
 ---
 Ce message a été envoyé via le formulaire de contact d'Ecarte.fr
+Temps de remplissage: ${formFillTime ? Math.round(formFillTime / 1000) + 's' : 'N/A'}
     `.trim();
 
     const res = await fetch("https://api.resend.com/emails", {
