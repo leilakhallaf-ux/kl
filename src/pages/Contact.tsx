@@ -268,7 +268,7 @@ export default function Contact() {
                 showTermsError ? 'border-red-500 bg-red-500/10' : 'border-white/10'
               }`}>
                 <p className="text-white text-base font-bold leading-relaxed">
-                  En validant le formulaire, je transmets mon entier consentement pour le traitement de mes données * :
+                  En validant le formulaire, je transmets mon entier consentement pour le traitement de mes données *
                 </p>
                 <div className="flex items-start gap-3">
                   <input
