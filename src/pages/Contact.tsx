@@ -216,6 +216,22 @@ export default function Contact() {
                 />
               </div>
 
+              <div className="bg-white/5 border border-white/10 rounded-lg p-6 my-6">
+                <p className="text-white/90 text-sm leading-relaxed">
+                  En validant le formulaire, je transmets mon consentement pour le traitement de mes données :
+                </p>
+                <p className="text-white/90 text-sm leading-relaxed mt-2">
+                  J'ai lu et j'accepte les{' '}
+                  <a href="/terms-of-use" className="text-gold hover:underline font-medium">
+                    Conditions Générales d'Utilisation du site
+                  </a>
+                  {' '}& la{' '}
+                  <a href="/gdpr" className="text-gold hover:underline font-medium">
+                    Politique de Confidentialité
+                  </a>
+                </p>
+              </div>
+
               <div className="flex items-center justify-between">
                 <p className="text-sm text-white/60">
                   * Champs obligatoires
