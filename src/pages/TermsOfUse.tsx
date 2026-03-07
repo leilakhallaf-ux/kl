@@ -9,11 +9,11 @@ export default function TermsOfUse() {
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             CONDITIONS GÉNÉRALES D'UTILISATION
           </h1>
 
-          <h2 className="text-xl font-bold text-gold mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-gold mb-8">
             Règles d'utilisation du site
           </h2>
 
