@@ -48,7 +48,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               key={link.path}
               href={link.path}
               className={cn(
-                "text-sm tracking-[0.2em] transition-colors hover:text-gold",
+                "text-sm font-bold tracking-[0.2em] transition-colors hover:text-gold",
                 currentPath === link.path ? "text-gold" : "text-white/70"
               )}
             >
@@ -69,7 +69,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               key={link.path}
               href={link.path}
               onClick={() => setIsMenuOpen(false)}
-              className="text-base tracking-widest text-white/70 hover:text-gold"
+              className="text-base font-bold tracking-widest text-white/70 hover:text-gold"
             >
               {link.name}
             </a>
