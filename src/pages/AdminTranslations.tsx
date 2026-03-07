@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Save, Plus, Trash2, Languages, Crown, LogOut, Sparkles, Eye, EyeOff } from 'lucide-react';
+import { Save, Plus, Trash2, Languages, Crown, LogOut, Sparkles, Eye, EyeOff, Bug } from 'lucide-react';
 import { translationsApi, TranslationKey, Language } from '../lib/translations';
 import { getCurrentUser, signOut } from '../lib/auth';
 import { supabase } from '../lib/supabase';
@@ -21,6 +21,13 @@ export default function AdminTranslations() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [translating, setTranslating] = useState(false);
+  const [debugLogs, setDebugLogs] = useState<string[]>([]);
+  const [showDebug, setShowDebug] = useState(false);
+
+  const addDebugLog = (message: string) => {
+    const timestamp = new Date().toLocaleTimeString();
+    setDebugLogs(prev => [...prev, `[${timestamp}] ${message}`]);
+  };
 
   useEffect(() => {
     checkUser();
@@ -179,14 +186,20 @@ export default function AdminTranslations() {
     setTranslating(true);
     setError('');
     setSuccess('');
+    setDebugLogs([]);
+    setShowDebug(true);
 
     try {
+      addDebugLog('Début de la traduction automatique');
+
       const frLang = allLanguages.find(l => l.code === 'fr');
       const enLang = allLanguages.find(l => l.code === 'en');
 
       if (!frLang || !enLang) {
         throw new Error('Langues française et anglaise requises');
       }
+
+      addDebugLog(`Langues trouvées: FR (${frLang.name}), EN (${enLang.name})`);
 
       const missingTranslations: { key: TranslationKey; frText: string }[] = [];
 
@@ -199,6 +212,8 @@ export default function AdminTranslations() {
         }
       }
 
+      addDebugLog(`${missingTranslations.length} traduction(s) manquante(s) détectée(s)`);
+
       if (missingTranslations.length === 0) {
         setSuccess('Toutes les traductions sont déjà présentes');
         setTimeout(() => setSuccess(''), 3000);
@@ -209,9 +224,14 @@ export default function AdminTranslations() {
       const batchSize = 20;
       let translatedCount = 0;
 
+      addDebugLog(`Traitement par lots de ${batchSize} textes`);
+
       for (let i = 0; i < textsToTranslate.length; i += batchSize) {
         const batch = textsToTranslate.slice(i, i + batchSize);
         const batchKeys = missingTranslations.slice(i, i + batchSize);
+
+        addDebugLog(`Lot ${Math.floor(i / batchSize) + 1}: ${batch.length} texte(s)`);
+        addDebugLog(`Appel de la fonction Edge 'auto-translate'...`);
 
         const { data, error: functionError } = await supabase.functions.invoke('auto-translate', {
           body: {
@@ -221,26 +241,36 @@ export default function AdminTranslations() {
           },
         });
 
+        addDebugLog(`Réponse reçue: ${JSON.stringify({ data, error: functionError }, null, 2)}`);
+
         if (functionError) {
+          addDebugLog(`ERREUR: ${JSON.stringify(functionError, null, 2)}`);
           throw functionError;
         }
 
         if (data?.translations) {
+          addDebugLog(`${data.translations.length} traduction(s) reçue(s)`);
+
           for (let j = 0; j < data.translations.length; j++) {
             const translation = data.translations[j];
             const keyObj = batchKeys[j].key;
 
+            addDebugLog(`Sauvegarde: ${keyObj.key} = "${translation.translated}"`);
             await translationsApi.updateTranslation(keyObj.id, 'en', translation.translated);
             translatedCount++;
           }
+        } else {
+          addDebugLog('ATTENTION: Aucune traduction dans la réponse');
         }
       }
 
+      addDebugLog(`Rechargement des données...`);
       await loadData();
+      addDebugLog(`Terminé! ${translatedCount} traduction(s) générée(s)`);
       setSuccess(`${translatedCount} traduction(s) générée(s) avec succès`);
       setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
-      console.error('Auto-translation failed:', err);
+      addDebugLog(`ERREUR FATALE: ${err instanceof Error ? err.message : JSON.stringify(err)}`);
       setError(err instanceof Error ? err.message : 'Échec de la traduction automatique');
     } finally {
       setTranslating(false);
@@ -377,6 +407,30 @@ export default function AdminTranslations() {
               ))}
             </div>
           </div>
+
+          {showDebug && debugLogs.length > 0 && (
+            <div className="mb-6 bg-gray-900 border border-gray-700 rounded-lg p-4">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2 text-green-400">
+                  <Bug className="w-5 h-5" />
+                  <h3 className="font-mono font-semibold">Console de debug</h3>
+                </div>
+                <button
+                  onClick={() => setShowDebug(false)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  Fermer
+                </button>
+              </div>
+              <div className="bg-black/50 rounded p-3 max-h-96 overflow-y-auto">
+                {debugLogs.map((log, index) => (
+                  <div key={index} className="text-sm text-green-300 font-mono mb-1">
+                    {log}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mb-6 flex gap-4">
             {!showNewKeyForm ? (
