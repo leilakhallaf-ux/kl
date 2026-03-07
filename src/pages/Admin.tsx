@@ -581,7 +581,6 @@ export default function Admin() {
                       onChange={(e) => setFormData({ ...formData, advertiser_logo_url: e.target.value })}
                       className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-sm text-white"
                       placeholder="https://example.com/logo.png"
-                      required
                     />
                   ) : (
                     <div>

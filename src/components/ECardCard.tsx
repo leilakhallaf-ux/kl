@@ -11,10 +11,19 @@ export default function ECardCard({ ecard }: ECardCardProps) {
                      ecard.technology?.toLowerCase().includes('video') ||
                      isFlash;
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (ecard.url) {
+      e.preventDefault();
+      window.open(ecard.url, '_blank', 'noopener,noreferrer');
+    } else {
+      window.location.href = `/ecard/${ecard.id}`;
+    }
+  };
+
   return (
-    <a
-      href={`/ecard/${ecard.id}`}
-      className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
+    <div
+      onClick={handleClick}
+      className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500 cursor-pointer"
     >
       <div className="relative aspect-video bg-black/50 overflow-hidden">
         {ecard.thumbnail_url ? (
@@ -31,7 +40,13 @@ export default function ECardCard({ ecard }: ECardCardProps) {
             className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
           />
-        ) : null}
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-8">
+            <h3 className="font-serif text-xl text-white/80 text-center">
+              {ecard.advertiser_name}
+            </h3>
+          </div>
+        )}
 
         {isAnimated && (
           <div className="absolute top-3 left-3 w-10 h-10 rounded-full bg-rich-black/80 border border-gold/50 flex items-center justify-center">
@@ -80,6 +95,6 @@ export default function ECardCard({ ecard }: ECardCardProps) {
           <p className="text-xs text-white/40 mt-2 line-clamp-1">{ecard.topic}</p>
         )}
       </div>
-    </a>
+    </div>
   );
 }

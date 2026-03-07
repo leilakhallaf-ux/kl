@@ -3,6 +3,7 @@ import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating } from '../lib/ecard-api';
+import { getLanguageName } from '../lib/utils';
 import type { ECard } from '../lib/database.types';
 
 declare global {
@@ -25,7 +26,6 @@ export default function ECardDetail({ id }: ECardDetailProps) {
   const [liked, setLiked] = useState(false);
   const [userRating, setUserRating] = useState<number | null>(null);
   const [showCredits, setShowCredits] = useState(false);
-  const [showDescription, setShowDescription] = useState(false);
   const [ruffleError, setRuffleError] = useState(false);
   const ruffleContainerRef = useRef<HTMLDivElement>(null);
 
@@ -186,13 +186,17 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   title={ecard.advertiser_name}
                 />
               ) : (
-                <div className="w-full aspect-video bg-gray-800 flex items-center justify-center">
-                  {ecard.advertiser_logo_url && (
+                <div className="w-full aspect-video bg-gray-800 flex items-center justify-center p-8">
+                  {ecard.advertiser_logo_url ? (
                     <img
                       src={ecard.advertiser_logo_url}
                       alt={ecard.advertiser_name}
-                      className="max-w-sm p-8"
+                      className="max-w-sm"
                     />
+                  ) : (
+                    <h2 className="font-display text-3xl font-bold text-white/60 text-center">
+                      {ecard.advertiser_name}
+                    </h2>
                   )}
                 </div>
               )}
@@ -200,20 +204,26 @@ export default function ECardDetail({ id }: ECardDetailProps) {
           </div>
 
           <div className="lg:col-span-2 space-y-6">
-            {ecard.advertiser_logo_url && (
-              <div className="bg-gray-900 rounded-sm p-6 border border-gray-800">
+            <div className="bg-gray-900 rounded-sm p-6 border border-gray-800">
+              {ecard.advertiser_logo_url ? (
                 <img
                   src={ecard.advertiser_logo_url}
                   alt={ecard.advertiser_name}
                   className="max-h-20 mx-auto"
                 />
-              </div>
-            )}
+              ) : (
+                <h2 className="font-display text-2xl font-bold text-white text-center">
+                  {ecard.advertiser_name}
+                </h2>
+              )}
+            </div>
 
             <div className="bg-gray-900 rounded-sm p-6 border border-gray-800">
-              <h1 className="font-display text-3xl font-bold text-white mb-4">
-                {ecard.advertiser_name}
-              </h1>
+              {ecard.advertiser_logo_url && (
+                <h1 className="font-display text-3xl font-bold text-white mb-4">
+                  {ecard.advertiser_name}
+                </h1>
+              )}
 
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
@@ -222,7 +232,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Langue</span>
-                  <span className="text-white">{ecard.language}</span>
+                  <span className="text-white">{getLanguageName(ecard.language)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-400">Type</span>
@@ -354,23 +364,9 @@ export default function ECardDetail({ id }: ECardDetailProps) {
         )}
 
         {ecard.description && (
-          <div className="mt-4 bg-gray-900 rounded-sm border border-gray-800">
-            <button
-              onClick={() => setShowDescription(!showDescription)}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-800/50 transition-colors"
-            >
-              <h3 className="text-lg font-display text-white">Description</h3>
-              {showDescription ? (
-                <ChevronUp className="w-5 h-5 text-brand-gold" />
-              ) : (
-                <ChevronDown className="w-5 h-5 text-brand-gold" />
-              )}
-            </button>
-            {showDescription && (
-              <div className="px-6 pb-6">
-                <p className="text-gray-300 leading-relaxed">{ecard.description}</p>
-              </div>
-            )}
+          <div className="mt-4 bg-gray-900 rounded-sm p-6 border border-gray-800">
+            <h3 className="text-lg font-display text-white mb-4">Description</h3>
+            <p className="text-gray-300 leading-relaxed">{ecard.description}</p>
           </div>
         )}
       </section>
