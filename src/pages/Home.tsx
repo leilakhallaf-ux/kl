@@ -114,7 +114,7 @@ export default function Home() {
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
-                <span className="text-gold italic">Best-of</span> - Les plus appréciées
+                <span className="text-gold italic">Best-of</span> - Les 3 plus appréciées
               </h2>
               <a
                 href="/best-of"
