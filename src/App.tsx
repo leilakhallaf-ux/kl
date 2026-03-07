@@ -11,6 +11,7 @@ import About from './pages/About';
 import LegalNotice from './pages/LegalNotice';
 import TermsOfUse from './pages/TermsOfUse';
 import GDPR from './pages/GDPR';
+import Contact from './pages/Contact';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -87,6 +88,10 @@ function App() {
 
     if (currentPath === '/rgpd') {
       return <GDPR />;
+    }
+
+    if (currentPath === '/contact') {
+      return <Contact />;
     }
 
     if (currentPath.startsWith('/ecard/')) {
