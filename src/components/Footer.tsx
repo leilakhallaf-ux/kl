@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-start">
             <div className="flex items-center gap-6 text-sm text-white">
               <a href="/soumettre" className="hover:text-gold transition-colors duration-300">
-                SOUMETTRE
+                SOUMETTRE E-CARD
               </a>
               <span className="text-white/40">|</span>
               <a href="/a-propos" className="hover:text-gold transition-colors duration-300">
