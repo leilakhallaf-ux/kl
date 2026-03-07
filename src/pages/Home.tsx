@@ -50,7 +50,7 @@ export default function Home() {
               <br />
               <span className="gold-text-gradient italic font-extrabold text-3xl sm:text-4xl md:text-6xl tracking-wide">seconde vie</span>
               <br />
-              <span className="text-white/80 text-xl sm:text-2xl md:text-4xl">aux</span> <span className="gold-text-gradient italic font-bold">e-cards</span>
+              <span className="gold-text-gradient italic font-extrabold text-3xl sm:text-4xl md:text-6xl tracking-wide">aux e-cards</span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed px-2">
