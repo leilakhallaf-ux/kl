@@ -6,6 +6,7 @@ import ECardDetail from './pages/ECardDetail';
 import Millesime from './pages/Millesime';
 import BestOf from './pages/BestOf';
 import Admin from './pages/Admin';
+import GridTest from './pages/GridTest';
 
 function App() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -46,6 +47,10 @@ function App() {
   const renderPage = () => {
     if (currentPath === '/') {
       return <Home />;
+    }
+
+    if (currentPath === '/grid-test') {
+      return <GridTest />;
     }
 
     if (currentPath === '/s-inspirer') {
