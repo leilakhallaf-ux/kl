@@ -198,19 +198,6 @@ export default function Contact() {
               </div>
             </form>
 
-            <div className="mt-12 pt-8 border-t border-white/10">
-              <h3 className="text-2xl font-semibold text-gold mb-4">
-                Autres moyens de contact
-              </h3>
-              <div className="space-y-2 text-white/80">
-                <p>
-                  <strong className="text-white">Email :</strong> contact@ecards-archive.com
-                </p>
-                <p>
-                  <strong className="text-white">Pour les questions relatives à vos données personnelles :</strong> privacy@ecards-archive.com
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </main>
