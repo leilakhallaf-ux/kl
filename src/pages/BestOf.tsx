@@ -105,9 +105,9 @@ export default function BestOf() {
           </div>
         )}
       </section>
-      </main>
 
       <Footer />
+      </main>
     </div>
   );
 }
