@@ -67,7 +67,7 @@ export default function Home() {
               </div>
               <div className="flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-gold" />
-                <span>18 ans d'expertise</span>
+                <span>Suivre les évolutions</span>
               </div>
             </div>
           </div>
