@@ -74,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-8 md:py-16">
+      <section className="container mx-auto px-4 py-4 md:py-8">
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
