@@ -7,15 +7,15 @@ export default function TermsOfUse() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
       <Header />
 
-      <main className="flex-1 container mx-auto px-4 py-16 max-w-4xl">
+      <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
         <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
             CONDITIONS GÉNÉRALES D'UTILISATION
           </h1>
 
-          <p className="text-xl text-gold mb-8">
+          <h2 className="text-xl font-bold text-gold mb-8">
             Règles d'utilisation du site
-          </p>
+          </h2>
 
           <div className="text-white/80 space-y-8 leading-relaxed">
             <p className="text-lg">
