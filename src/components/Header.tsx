@@ -57,10 +57,10 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               key={link.path}
               href={link.path}
               className={cn(
-                "text-sm tracking-[0.2em] transition-colors hover:text-gold",
+                "text-sm tracking-[0.2em] transition-colors",
                 link.path === "/soumettre"
-                  ? "text-gold font-medium"
-                  : currentPath === link.path ? "text-gold" : "text-white/70"
+                  ? "text-gold font-medium hover:text-white"
+                  : currentPath === link.path ? "text-gold" : "text-white/70 hover:text-gold"
               )}
             >
               {link.name}
@@ -81,8 +81,8 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
               href={link.path}
               onClick={() => setIsMenuOpen(false)}
               className={cn(
-                "text-base tracking-widest hover:text-gold",
-                link.path === "/soumettre" ? "text-gold font-medium" : "text-white/70"
+                "text-base tracking-widest",
+                link.path === "/soumettre" ? "text-gold font-medium hover:text-white" : "text-white/70 hover:text-gold"
               )}
             >
               {link.name}
