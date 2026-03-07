@@ -53,7 +53,7 @@ export default function Home() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-6 md:mb-8 leading-relaxed px-2">
-              <span className="text-5xl md:text-6xl text-white/30 font-black leading-none align-middle">«</span> Le <span className="italic">Pinterest</span> de la carte de vœux électronique <span className="text-5xl md:text-6xl text-white/30 font-black leading-none align-middle">»</span>
+              <span className="text-5xl md:text-6xl text-white/30 font-black leading-none align-middle">"</span> Le <span className="italic">Pinterest</span> de la carte de vœux électronique <span className="text-5xl md:text-6xl text-white/30 font-black leading-none align-middle">"</span>
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-12 px-4">
