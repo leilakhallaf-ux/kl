@@ -20,6 +20,10 @@ export default function Footer() {
               <a href="/contact" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
                 CONTACT
               </a>
+              <span className="text-white/40">|</span>
+              <a href="/admin" className="hover:text-gold transition-colors duration-300 whitespace-nowrap text-white/50">
+                ADMIN
+              </a>
             </div>
           </div>
 
