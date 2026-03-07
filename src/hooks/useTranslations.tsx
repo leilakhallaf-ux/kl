@@ -51,7 +51,10 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   const loadTranslations = async (languageCode: string) => {
     try {
       setIsLoading(true);
+      console.log('Loading translations for language:', languageCode);
       const trans = await translationsApi.getTranslations(languageCode);
+      console.log('Loaded translations count:', Object.keys(trans).length);
+      console.log('Sample translations:', Object.entries(trans).slice(0, 3));
       setTranslations(trans);
     } catch (error) {
       console.error('Failed to load translations:', error);
