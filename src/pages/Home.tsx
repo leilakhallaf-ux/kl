@@ -129,7 +129,7 @@ export default function Home() {
         </section>
       )}
 
-      <section className="max-w-7xl mx-auto px-6 py-2 md:py-3">
+      <section className="max-w-7xl mx-auto px-6 py-2 md:py-3 mb-4 md:mb-6">
         <div className="text-center bg-gradient-to-br from-gold/5 to-transparent border border-gold/30 p-6 md:p-12">
           <h3 className="font-serif text-xl md:text-3xl font-semibold text-white mb-3 md:mb-4">
             Fondé par <span className="text-gold italic">Leïla Khallaf</span>
