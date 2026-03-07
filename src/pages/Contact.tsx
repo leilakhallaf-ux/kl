@@ -6,7 +6,9 @@ import { Send } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
+    lastName: '',
+    firstName: '',
+    userType: '',
     email: '',
     subject: '',
     message: ''
@@ -15,7 +17,7 @@ export default function Contact() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -32,7 +34,7 @@ export default function Contact() {
       const { error: dbError } = await supabase
         .from('contact_messages')
         .insert([{
-          name: formData.name,
+          name: `${formData.firstName} ${formData.lastName}`,
           email: formData.email,
           subject: formData.subject,
           message: formData.message
@@ -58,7 +60,9 @@ export default function Contact() {
 
       setSubmitStatus('success');
       setFormData({
-        name: '',
+        lastName: '',
+        firstName: '',
+        userType: '',
         email: '',
         subject: '',
         message: ''
@@ -109,19 +113,58 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-white font-semibold mb-2">
-                    Nom complet *
+                  <label htmlFor="lastName" className="block text-white font-semibold mb-2">
+                    Votre nom *
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="lastName"
+                    name="lastName"
+                    value={formData.lastName}
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                     placeholder="Votre nom"
                   />
+                </div>
+
+                <div>
+                  <label htmlFor="firstName" className="block text-white font-semibold mb-2">
+                    Votre prénom *
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    placeholder="Votre prénom"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label htmlFor="userType" className="block text-white font-semibold mb-2">
+                    Vous êtes *
+                  </label>
+                  <select
+                    id="userType"
+                    name="userType"
+                    value={formData.userType}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                  >
+                    <option value="" className="bg-slate-800">Sélectionnez...</option>
+                    <option value="particulier" className="bg-slate-800">Particulier</option>
+                    <option value="professionnel" className="bg-slate-800">Professionnel</option>
+                    <option value="journaliste" className="bg-slate-800">Journaliste</option>
+                    <option value="chercheur" className="bg-slate-800">Chercheur</option>
+                    <option value="autre" className="bg-slate-800">Autre</option>
+                  </select>
                 </div>
 
                 <div>
