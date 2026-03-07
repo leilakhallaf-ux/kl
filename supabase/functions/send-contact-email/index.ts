@@ -1,4 +1,5 @@
 import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { createClient } from "npm:@supabase/supabase-js@2.57.4";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -28,10 +29,26 @@ Deno.serve(async (req: Request) => {
   try {
     const { name, firstName, lastName, email, subject, message, website, formFillTime }: ContactEmailRequest = await req.json();
 
+    const fullName = name || `${firstName} ${lastName}`;
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
     // Anti-spam checks
     // 1. Honeypot check
     if (website) {
       console.log('Spam detected via honeypot');
+
+      await supabase.from('spam_attempts').insert({
+        email,
+        name: fullName,
+        message,
+        honeypot_filled: true,
+        submission_time_ms: formFillTime || 0,
+        user_agent: req.headers.get('user-agent'),
+        attempted_at: new Date().toISOString(),
+      });
+
       return new Response(
         JSON.stringify({ success: false, error: "Invalid submission" }),
         {
@@ -44,6 +61,17 @@ Deno.serve(async (req: Request) => {
     // 2. Time-based check (form filled too quickly - less than 3 seconds)
     if (formFillTime && formFillTime < 3000) {
       console.log('Spam detected via timing check');
+
+      await supabase.from('spam_attempts').insert({
+        email,
+        name: fullName,
+        message,
+        honeypot_filled: false,
+        submission_time_ms: formFillTime,
+        user_agent: req.headers.get('user-agent'),
+        attempted_at: new Date().toISOString(),
+      });
+
       return new Response(
         JSON.stringify({ success: false, error: "Invalid submission" }),
         {
@@ -99,6 +127,14 @@ Temps de remplissage: ${formFillTime ? Math.round(formFillTime / 1000) + 's' : '
     }
 
     const data = await res.json();
+
+    await supabase.from('contact_messages').insert({
+      name: fullName,
+      email,
+      subject,
+      message,
+      submitted_at: new Date().toISOString(),
+    });
 
     return new Response(
       JSON.stringify({ success: true, data }),
