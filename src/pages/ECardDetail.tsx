@@ -165,62 +165,69 @@ export default function ECardDetail({ id }: ECardDetailProps) {
       <Header />
 
       <section className="container mx-auto px-4 py-8">
-        {ecard.url && (
-          <div className="mb-6 flex justify-center">
-            <a
-              href={ecard.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-gold hover:bg-brand-gold/90 text-rich-black font-semibold rounded-sm transition-all duration-300 transform hover:scale-105"
-            >
-              <ExternalLink className="w-5 h-5" />
-              Voir la e-card
-            </a>
-          </div>
-        )}
-
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 space-y-6">
             <div className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800">
-              {isFlash && ecard.swf_url && !ruffleError ? (
-                <div
-                  ref={ruffleContainerRef}
-                  className="w-full aspect-video bg-black"
-                />
-              ) : ecard.fallback_url && (isFlash && ruffleError || !ecard.swf_url) ? (
-                <iframe
-                  src={ecard.fallback_url}
-                  className="w-full aspect-video"
-                  title={ecard.advertiser_name}
-                />
-              ) : ecard.url ? (
-                <iframe
-                  src={ecard.url}
-                  className="w-full aspect-video"
-                  title={ecard.advertiser_name}
-                />
-              ) : ecard.thumbnail_url ? (
+              {ecard.thumbnail_url ? (
                 <img
                   src={ecard.thumbnail_url}
                   alt={ecard.advertiser_name}
                   className="w-full aspect-video object-cover"
                 />
               ) : (
-                <div className="w-full aspect-video bg-gray-800 flex items-center justify-center p-8">
+                <div className="w-full aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center p-8">
                   {ecard.advertiser_logo_url ? (
                     <img
                       src={ecard.advertiser_logo_url}
                       alt={ecard.advertiser_name}
-                      className="max-w-sm"
+                      className="max-w-sm opacity-50"
                     />
                   ) : (
-                    <h2 className="font-display text-3xl font-bold text-white/60 text-center">
+                    <h2 className="font-display text-3xl font-bold text-white/30 text-center">
                       {ecard.advertiser_name}
                     </h2>
                   )}
                 </div>
               )}
             </div>
+
+            {ecard.url && (
+              <div className="flex justify-center">
+                <a
+                  href={ecard.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold/90 text-rich-black font-bold text-lg rounded-sm transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-brand-gold/20"
+                >
+                  Voir la e-card
+                  <ExternalLink className="w-5 h-5" />
+                </a>
+              </div>
+            )}
+
+            {isFlash && ecard.swf_url && (
+              <div className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800">
+                <div className="px-4 py-2 bg-gray-800 border-b border-gray-700">
+                  <p className="text-xs text-gray-400">Aperçu Flash (Ruffle)</p>
+                </div>
+                {!ruffleError ? (
+                  <div
+                    ref={ruffleContainerRef}
+                    className="w-full aspect-video bg-black"
+                  />
+                ) : ecard.fallback_url ? (
+                  <iframe
+                    src={ecard.fallback_url}
+                    className="w-full aspect-video"
+                    title={ecard.advertiser_name}
+                  />
+                ) : (
+                  <div className="w-full aspect-video bg-gray-800 flex items-center justify-center p-8">
+                    <p className="text-gray-500 text-sm">Aperçu Flash non disponible</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="lg:col-span-2 space-y-6">
