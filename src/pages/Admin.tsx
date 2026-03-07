@@ -31,7 +31,7 @@ export default function Admin() {
     advertiser_logo_url: '',
     business_sector: '',
     vintage: new Date().getFullYear(),
-    language: 'FR',
+    language: 'EN',
     card_type: '',
     topic: '',
     technology: '',
@@ -175,7 +175,7 @@ export default function Admin() {
       advertiser_logo_url: '',
       business_sector: '',
       vintage: new Date().getFullYear(),
-      language: 'FR',
+      language: 'EN',
       card_type: '',
       topic: '',
       technology: '',
@@ -779,8 +779,8 @@ export default function Admin() {
                     onChange={(e) => setFormData({ ...formData, language: e.target.value })}
                     className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-sm text-white"
                   >
-                    <option value="FR">Français</option>
-                    <option value="EN">Anglais</option>
+                    <option value="EN">Français</option>
+                    <option value="FR">Anglais</option>
                     <option value="ES">Espagnol</option>
                     <option value="DE">Allemand</option>
                   </select>
