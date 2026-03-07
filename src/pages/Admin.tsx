@@ -50,9 +50,23 @@ export default function Admin() {
   const checkUser = async () => {
     try {
       const currentUser = await getCurrentUser();
-      setUser(currentUser);
 
       if (currentUser) {
+        const { data: adminCheck } = await supabase
+          .from('admin_users')
+          .select('email')
+          .eq('email', currentUser.email)
+          .maybeSingle();
+
+        if (!adminCheck) {
+          await signOut();
+          setUser(null);
+          setError('Accès non autorisé');
+          setLoading(false);
+          return;
+        }
+
+        setUser(currentUser);
         await fetchStats();
       }
     } catch {
