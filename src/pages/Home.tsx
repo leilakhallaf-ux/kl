@@ -44,11 +44,12 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6">
-              La plateforme inspirationnelle&nbsp;qui donne une seconde vie&nbsp;aux{' '}
-              <span className="gold-text-gradient italic">
-                e-cards
-              </span>
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              La plateforme inspirationnelle
+              <br />
+              qui donne une seconde vie
+              <br />
+              aux <span className="gold-text-gradient italic">e-cards</span>
             </h1>
 
             <p className="text-xl md:text-2xl text-white/70 font-light mb-8 leading-relaxed">
