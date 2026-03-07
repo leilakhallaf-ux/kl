@@ -43,17 +43,17 @@ export default function Home() {
         <section className="relative overflow-hidden pt-4 pb-2 md:pt-12 md:pb-3">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight px-2">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="text-center">
+            <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 leading-tight">
               La plateforme inspirationnelle qui donne <span className="gold-text-gradient italic font-extrabold tracking-wide">une seconde vie aux e-cards</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed px-2">
+            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed">
               Le <span className="italic">Pinterest</span> de la carte de vœux électronique
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-4 md:mb-6 px-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-4 md:mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 text-gold" />
                 <span>Archives depuis 2008</span>
