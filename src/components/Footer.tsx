@@ -4,7 +4,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#0a0a4d] border-t border-gold/20">
+    <footer className="bg-[#2a2a2a] border-t border-gold/20">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="flex justify-center md:justify-start">
@@ -24,15 +24,15 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center justify-center">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 flex items-center justify-center rounded-full border border-gold">
-                <Star className="w-5 h-5 text-gold fill-gold" />
+            <a href="/" className="flex items-center gap-3 mb-4 group">
+              <div className="w-12 h-12 flex items-center justify-center border border-gold rounded-full group-hover:bg-gold transition-colors duration-500">
+                <Star className="w-6 h-6 text-gold group-hover:text-rich-black" fill="currentColor" />
               </div>
-              <div className="font-serif font-semibold text-gold" style={{ letterSpacing: '0.12em' }}>
-                <div className="leading-tight">E-CARDS</div>
-                <div className="leading-tight">CORPORATE</div>
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl tracking-widest text-gold leading-none">E-CARDS</span>
+                <span className="font-sans text-xs tracking-[0.3em] text-white/70 leading-none mt-1">CORPORATE</span>
               </div>
-            </div>
+            </a>
             <div className="flex gap-3">
               <a
                 href="https://youtube.com"
@@ -41,7 +41,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="YouTube"
               >
-                <Youtube className="w-4 h-4 text-[#0a0a4d]" />
+                <Youtube className="w-4 h-4 text-[#2a2a2a]" />
               </a>
               <a
                 href="https://twitter.com"
@@ -50,7 +50,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Twitter"
               >
-                <Twitter className="w-4 h-4 text-[#0a0a4d]" />
+                <Twitter className="w-4 h-4 text-[#2a2a2a]" />
               </a>
               <a
                 href="https://facebook.com"
@@ -59,7 +59,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4 text-[#0a0a4d]" />
+                <Facebook className="w-4 h-4 text-[#2a2a2a]" />
               </a>
               <a
                 href="https://instagram.com"
@@ -68,7 +68,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4 text-[#0a0a4d]" />
+                <Instagram className="w-4 h-4 text-[#2a2a2a]" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -77,7 +77,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-4 h-4 text-[#0a0a4d]" />
+                <Linkedin className="w-4 h-4 text-[#2a2a2a]" />
               </a>
             </div>
           </div>
