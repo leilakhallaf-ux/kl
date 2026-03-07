@@ -56,7 +56,7 @@ export default function Home() {
               Le <span className="italic">Pinterest</span> de la carte de vœux électronique
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-8 md:mb-12 px-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-4 md:mb-6 px-2">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 text-gold" />
                 <span>Archives depuis 2008</span>
