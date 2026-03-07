@@ -74,7 +74,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-2 md:py-4">
+      <section className="max-w-7xl mx-auto px-6 py-2 md:py-4">
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
@@ -93,7 +93,7 @@ export default function Home() {
       </section>
 
       {vintageECards.length > 0 && (
-        <section className="container mx-auto px-4 py-8 md:py-16">
+        <section className="max-w-7xl mx-auto px-6 py-8 md:py-16">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
@@ -113,7 +113,7 @@ export default function Home() {
       )}
 
       {bestOfECards.length > 0 && (
-        <section className="container mx-auto px-4 py-8 md:py-16">
+        <section className="max-w-7xl mx-auto px-6 py-8 md:py-16">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
               <h2 className="font-serif text-2xl md:text-4xl font-semibold text-white">
