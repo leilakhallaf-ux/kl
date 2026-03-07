@@ -17,14 +17,21 @@ export default function ECardCard({ ecard }: ECardCardProps) {
       className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
     >
       <div className="relative aspect-video bg-black/50 overflow-hidden">
-        {ecard.advertiser_logo_url && (
+        {ecard.thumbnail_url ? (
+          <img
+            src={ecard.thumbnail_url}
+            alt={ecard.advertiser_name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+        ) : ecard.advertiser_logo_url ? (
           <img
             src={ecard.advertiser_logo_url}
             alt={ecard.advertiser_name}
             className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700"
             loading="lazy"
           />
-        )}
+        ) : null}
 
         {isAnimated && (
           <div className="absolute top-3 left-3 w-10 h-10 rounded-full bg-rich-black/80 border border-gold/50 flex items-center justify-center">

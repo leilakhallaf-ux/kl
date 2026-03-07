@@ -22,6 +22,7 @@ export interface Database {
 
 export interface ECard {
   id: string;
+  thumbnail_url: string | null;
   advertiser_name: string;
   advertiser_logo_url: string;
   business_sector: string | null;

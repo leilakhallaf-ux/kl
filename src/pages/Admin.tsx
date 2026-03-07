@@ -20,6 +20,7 @@ export default function Admin() {
   const [showForm, setShowForm] = useState(false);
   const [editingEcard, setEditingEcard] = useState<ECard | null>(null);
   const [formData, setFormData] = useState({
+    thumbnail_url: '',
     advertiser_name: '',
     advertiser_logo_url: '',
     business_sector: '',
@@ -78,6 +79,7 @@ export default function Admin() {
       const tags = formData.tags.split(',').map(t => t.trim()).filter(Boolean);
 
       const ecardData = {
+        thumbnail_url: formData.thumbnail_url || null,
         advertiser_name: formData.advertiser_name,
         advertiser_logo_url: formData.advertiser_logo_url,
         business_sector: formData.business_sector || null,
@@ -112,6 +114,7 @@ export default function Admin() {
   const handleEdit = (ecard: ECard) => {
     setEditingEcard(ecard);
     setFormData({
+      thumbnail_url: ecard.thumbnail_url || '',
       advertiser_name: ecard.advertiser_name,
       advertiser_logo_url: ecard.advertiser_logo_url,
       business_sector: ecard.business_sector || '',
@@ -141,6 +144,7 @@ export default function Admin() {
 
   const resetForm = () => {
     setFormData({
+      thumbnail_url: '',
       advertiser_name: '',
       advertiser_logo_url: '',
       business_sector: '',
@@ -339,6 +343,28 @@ export default function Admin() {
           {showForm && (
             <form onSubmit={handleCreateOrUpdate} className="bg-gray-800 p-6 rounded-sm mb-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <label className="block text-sm text-gray-400 mb-2">Image de preview (URL)</label>
+                  <input
+                    type="url"
+                    value={formData.thumbnail_url}
+                    onChange={(e) => setFormData({ ...formData, thumbnail_url: e.target.value })}
+                    className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-sm text-white"
+                    placeholder="https://example.com/image.jpg"
+                  />
+                  {formData.thumbnail_url && (
+                    <div className="mt-3">
+                      <img
+                        src={formData.thumbnail_url}
+                        alt="Preview"
+                        className="w-full max-w-md h-auto rounded-sm border border-gray-600"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
                 <div>
                   <label className="block text-sm text-gray-400 mb-2">Annonceur *</label>
                   <input
