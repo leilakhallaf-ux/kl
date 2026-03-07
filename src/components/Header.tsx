@@ -68,9 +68,14 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
           ))}
         </nav>
 
-        <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-4">
+          <a href="/admin" className="hidden md:block text-xs tracking-wider text-white/30 hover:text-gold transition-colors">
+            ADMIN
+          </a>
+          <button className="md:hidden text-gold" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {isMenuOpen && (
