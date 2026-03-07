@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp } from 'lucide-react';
+import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating } from '../lib/ecard-api';
@@ -165,6 +165,20 @@ export default function ECardDetail({ id }: ECardDetailProps) {
       <Header />
 
       <section className="container mx-auto px-4 py-8">
+        {ecard.url && (
+          <div className="mb-6 flex justify-center">
+            <a
+              href={ecard.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-brand-gold hover:bg-brand-gold/90 text-rich-black font-semibold rounded-sm transition-all duration-300 transform hover:scale-105"
+            >
+              <ExternalLink className="w-5 h-5" />
+              Voir la e-card
+            </a>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3">
             <div className="bg-gray-900 rounded-sm overflow-hidden border border-gray-800">
