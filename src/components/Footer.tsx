@@ -1,7 +1,9 @@
 import { Star, Mail, Linkedin, Twitter, Facebook, Instagram, Youtube } from 'lucide-react';
+import { useTranslations } from '../hooks/useTranslations';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslations();
 
   return (
     <footer className="bg-[#2a2a2a] border-t border-gold/20">
@@ -10,15 +12,15 @@ export default function Footer() {
           <div className="flex justify-center md:justify-start">
             <div className="flex items-center justify-center md:justify-start gap-2 md:gap-4 text-xs md:text-sm text-white">
               <a href="/soumettre" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                SOUMETTRE E-CARD
+                {t('footer.submit', 'SOUMETTRE E-CARD')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/a-propos" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                À PROPOS
+                {t('footer.about', 'À PROPOS')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/contact" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                CONTACT
+                {t('footer.contact', 'CONTACT')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/admin" className="hover:text-gold transition-colors duration-300 whitespace-nowrap text-white/50">
@@ -89,15 +91,15 @@ export default function Footer() {
           <div className="flex justify-center md:justify-end">
             <div className="flex items-center justify-center md:justify-end gap-2 md:gap-4 text-xs md:text-sm text-white">
               <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                MENTIONS LÉGALES
+                {t('footer.legal', 'MENTIONS LÉGALES')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/cgu" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                CGU
+                {t('footer.terms', 'CGU')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/rgpd" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                CONFIDENTIALITÉ
+                {t('footer.privacy', 'CONFIDENTIALITÉ')}
               </a>
             </div>
           </div>
