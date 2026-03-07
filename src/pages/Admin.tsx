@@ -364,7 +364,7 @@ export default function Admin() {
     <div className="min-h-screen bg-brand-black">
       <Header />
 
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-gold rounded-sm flex items-center justify-center">

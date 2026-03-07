@@ -164,7 +164,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
     <div className="min-h-screen bg-brand-black">
       <Header />
 
-      <section className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 pt-24 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3 space-y-6">
             <a

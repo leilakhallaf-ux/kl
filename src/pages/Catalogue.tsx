@@ -110,7 +110,7 @@ export default function Catalogue() {
 
       <FilterBar onFilterChange={handleFilterChange} options={filterOptions} />
 
-      <section className="container mx-auto px-4 py-12">
+      <section className="container mx-auto px-4 pt-24 pb-12">
         <div className="mb-8">
           <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">
             S'inspirer
