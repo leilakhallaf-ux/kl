@@ -24,7 +24,7 @@ export default function About() {
             </p>
 
             <div>
-              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
+              <h3 className="text-2xl font-semibold mb-4 mt-8" style={{ color: '#D4AF37' }}>
                 Notre Mission
               </h3>
               <p>
@@ -35,7 +35,7 @@ export default function About() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
+              <h3 className="text-2xl font-semibold mb-4 mt-8" style={{ color: '#D4AF37' }}>
                 Notre Collection
               </h3>
               <p>
@@ -48,7 +48,7 @@ export default function About() {
             </div>
 
             <div>
-              <h3 className="text-2xl font-semibold text-yellow-500 mb-4 mt-8">
+              <h3 className="text-2xl font-semibold mb-4 mt-8" style={{ color: '#D4AF37' }}>
                 Rejoignez-Nous
               </h3>
               <p>
