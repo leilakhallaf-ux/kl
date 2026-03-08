@@ -15,6 +15,7 @@ interface TranslationContextType {
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
+  console.log('🎬 [DEBUG] TranslationProvider mounted!');
   const [currentLanguage, setCurrentLanguage] = useState<string>('fr');
   const [languages, setLanguages] = useState<Language[]>([]);
   const [translations, setTranslations] = useState<Record<string, string>>({});
@@ -44,20 +45,26 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
 
   const loadLanguages = async () => {
     try {
+      console.log('🚀 [DEBUG] Starting to load languages...');
       const langs = await translationsApi.getLanguages();
+      console.log('✅ [DEBUG] Languages loaded:', langs);
       setLanguages(langs);
 
       const savedLang = localStorage.getItem('language');
+      console.log('💾 [DEBUG] Saved language from localStorage:', savedLang);
+
       if (savedLang && langs.some(l => l.code === savedLang)) {
+        console.log('✅ [DEBUG] Using saved language:', savedLang);
         setCurrentLanguage(savedLang);
       } else {
         const defaultLang = langs.find(l => l.is_default);
+        console.log('🌍 [DEBUG] Using default language:', defaultLang);
         if (defaultLang) {
           setCurrentLanguage(defaultLang.code);
         }
       }
     } catch (error) {
-      console.error('Failed to load languages:', error);
+      console.error('❌ [DEBUG] Failed to load languages:', error);
     }
   };
 
