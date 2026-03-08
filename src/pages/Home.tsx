@@ -15,11 +15,6 @@ export default function Home() {
   const currentYear = new Date().getFullYear();
   const { t, currentLanguage, translations } = useTranslations();
 
-  useEffect(() => {
-    console.log('🔥 Home - Current Language:', currentLanguage);
-    console.log('🔥 Home - Translations loaded:', Object.keys(translations).length);
-    console.log('🔥 Home - Sample translation:', t('home.hero.title', 'FALLBACK'));
-  }, [currentLanguage, translations, t]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,16 +133,6 @@ export default function Home() {
       )}
 
       <section className="max-w-7xl mx-auto px-6 py-2 md:py-3 mb-4 md:mb-6">
-        {/* DEBUG PANEL */}
-        <div className="mb-4 p-4 bg-red-900/20 border border-red-500 rounded text-white text-xs">
-          <div className="font-bold mb-2">🔍 DEBUG HOME - Langue: {currentLanguage}</div>
-          <div className="space-y-1">
-            <div>home.founder.bio = <strong className="text-gold break-all">{t('home.founder.bio', 'FALLBACK_BIO')}</strong></div>
-            <div>home.founder.mission = <strong className="text-gold break-all">{t('home.founder.mission', 'FALLBACK_MISSION')}</strong></div>
-          </div>
-          <div className="mt-2 text-white/50">Total traductions chargées: {Object.keys(translations).length}</div>
-        </div>
-
         <div className="text-center bg-gradient-to-br from-gold/5 to-transparent border border-gold/30 p-4 md:p-6">
           <h3 className="font-serif text-xl md:text-3xl font-semibold text-white mb-3 md:mb-4">
             {t('home.founder.title', 'Créé par')} <a href="https://wishesfactor-e.com" target="_blank" rel="noopener noreferrer" className="gold-text-gradient italic font-extrabold tracking-wide hover:opacity-80 transition-opacity duration-300">WishesFactor-e</a> by Manufactur-e
