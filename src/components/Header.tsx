@@ -31,12 +31,10 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   }, []);
 
   const navLinks = [
-    { type: 'separator', label: t('nav.section.browse', 'PARCOURIR') },
-    { type: 'link', name: t('nav.inspire', "S'INSPIRER"), path: "/s-inspirer" },
-    { type: 'link', name: t('nav.explore', "EXPLORER"), path: "/explorer" },
-    { type: 'link', name: t('nav.bestof', "BEST-OF"), path: "/best-of" },
-    { type: 'separator', label: t('nav.section.contribute', 'CONTRIBUER') },
-    { type: 'link', name: t('nav.submit', "SOUMETTRE"), path: "/soumettre" },
+    { name: t('nav.inspire', "S'INSPIRER"), path: "/s-inspirer" },
+    { name: t('nav.explore', "EXPLORER"), path: "/explorer" },
+    { name: t('nav.bestof', "BEST-OF"), path: "/best-of" },
+    { name: t('nav.submit', "SOUMETTRE"), path: "/soumettre" },
   ];
 
   return (
@@ -55,27 +53,21 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
           </div>
         </a>
 
-        <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map((item, index) =>
-            item.type === 'separator' ? (
-              <span key={`separator-${index}`} className="text-xs tracking-[0.3em] text-white/40 font-light px-2">
-                {item.label}
-              </span>
-            ) : (
-              <a
-                key={item.path}
-                href={item.path}
-                className={cn(
-                  "text-sm tracking-[0.2em] transition-colors",
-                  item.path === "/soumettre"
-                    ? "text-gold font-medium hover:text-white"
-                    : currentPath === item.path ? "text-gold" : "text-white/70 hover:text-gold"
-                )}
-              >
-                {item.name}
-              </a>
-            )
-          )}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.path}
+              href={link.path}
+              className={cn(
+                "text-sm tracking-[0.2em] transition-colors",
+                link.path === "/soumettre"
+                  ? "text-gold font-medium hover:text-white"
+                  : currentPath === link.path ? "text-gold" : "text-white/70 hover:text-gold"
+              )}
+            >
+              {link.name}
+            </a>
+          ))}
           <span className="text-white/30">|</span>
           <button
             onClick={() => setLanguage(currentLanguage === 'en' ? 'fr' : 'en')}
@@ -91,26 +83,20 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
       </div>
 
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-rich-black border-b border-gold/20 p-6 flex flex-col gap-3 md:hidden animate-in fade-in slide-in-from-top-4 duration-300">
-          {navLinks.map((item, index) =>
-            item.type === 'separator' ? (
-              <div key={`separator-${index}`} className="text-xs tracking-[0.3em] text-white/40 font-light pt-2 pb-1">
-                {item.label}
-              </div>
-            ) : (
-              <a
-                key={item.path}
-                href={item.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={cn(
-                  "text-base tracking-widest pl-2",
-                  item.path === "/soumettre" ? "text-gold font-medium hover:text-white" : "text-white/70 hover:text-gold"
-                )}
-              >
-                {item.name}
-              </a>
-            )
-          )}
+        <div className="absolute top-full left-0 right-0 bg-rich-black border-b border-gold/20 p-6 flex flex-col gap-4 md:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+          {navLinks.map((link) => (
+            <a
+              key={link.path}
+              href={link.path}
+              onClick={() => setIsMenuOpen(false)}
+              className={cn(
+                "text-base tracking-widest",
+                link.path === "/soumettre" ? "text-gold font-medium hover:text-white" : "text-white/70 hover:text-gold"
+              )}
+            >
+              {link.name}
+            </a>
+          ))}
           <div className="h-px bg-white/10 my-2" />
           <button
             onClick={() => {
