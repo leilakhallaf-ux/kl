@@ -143,7 +143,7 @@ export default function Home() {
             {t('home.founder.title', 'Créé par')} <span className="gold-text-gradient italic font-extrabold tracking-wide">WishesFactor-e</span> by Manufactur-e
           </h3>
           <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4 md:mb-6">
-            {t('home.founder.bio', 'Avec 18 ans d\'expérience dans la création et la diffusion d\'e-cards corporate, Leïla Khallaf a construit les plateformes Manufactur-e et WishesFactor-e, référence pour les annonceurs majeurs.')}
+            {t('home.founder.bio', 'Notre solution WishesFactor-e oeuvre, depuis 2008, dans l\'eco-système des e-cards corporate..')}
           </p>
           <p className="text-white/50 text-xs md:text-sm">
             {t('home.founder.mission', 'Cette archive valorise l\'histoire et l\'évolution des e-cards depuis 2008')}
