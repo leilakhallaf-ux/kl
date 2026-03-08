@@ -140,7 +140,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-2 md:py-3 mb-4 md:mb-6">
         <div className="text-center bg-gradient-to-br from-gold/5 to-transparent border border-gold/30 p-4 md:p-6">
           <h3 className="font-serif text-xl md:text-3xl font-semibold text-white mb-3 md:mb-4">
-            {t('home.founder.title', 'Créé par')} <span className="gold-text-gradient italic font-extrabold tracking-wide">WishesFactor-e</span> <span className="text-white/60 font-light">by Manufactur-e</span>
+            {t('home.founder.title', 'Créé par')} <span className="gold-text-gradient italic font-extrabold tracking-wide">WishesFactor-e</span> by Manufactur-e
           </h3>
           <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4 md:mb-6">
             {t('home.founder.bio', 'Avec 18 ans d\'expérience dans la création et la diffusion d\'e-cards corporate, Leïla Khallaf a construit les plateformes Manufactur-e et WishesFactor-e, référence pour les annonceurs majeurs.')}
