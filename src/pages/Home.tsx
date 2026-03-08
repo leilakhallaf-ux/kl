@@ -140,7 +140,7 @@ export default function Home() {
           <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4 md:mb-6">
             {t('home.founder.bio', 'Notre solution WishesFactor-e oeuvre, depuis 2008, dans l\'eco-système des e-cards corporate..')}
           </p>
-          <p className="text-white/50 text-xs md:text-sm">
+          <p className="text-sm md:text-base text-white/70 leading-relaxed">
             {t('home.founder.mission', 'Cette archive valorise l\'histoire et l\'évolution des e-cards depuis 2008')}
           </p>
         </div>
