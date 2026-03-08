@@ -8,6 +8,7 @@ interface TranslationContextType {
   translations: Record<string, string>;
   t: (key: string, params?: Record<string, any>, fallback?: string) => string;
   setLanguage: (code: string) => void;
+  refreshTranslations: () => Promise<void>;
   isLoading: boolean;
 }
 
@@ -29,6 +30,18 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   }, [currentLanguage]);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible' && currentLanguage) {
+        console.log('🔄 Page became visible, refreshing translations...');
+        loadTranslations(currentLanguage, true);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, [currentLanguage]);
+
   const loadLanguages = async () => {
     try {
       const langs = await translationsApi.getLanguages();
@@ -48,11 +61,11 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loadTranslations = async (languageCode: string) => {
+  const loadTranslations = async (languageCode: string, skipCache: boolean = false) => {
     try {
       setIsLoading(true);
-      console.log('🌍 Loading translations for language:', languageCode);
-      const trans = await translationsApi.getTranslations(languageCode);
+      console.log('🌍 Loading translations for language:', languageCode, skipCache ? '(FORCE REFRESH)' : '');
+      const trans = await translationsApi.getTranslations(languageCode, skipCache);
       console.log('✅ Loaded translations count:', Object.keys(trans).length);
       console.log('📝 First 5 translations:', Object.entries(trans).slice(0, 5));
       console.log('🔑 All keys:', Object.keys(trans));
@@ -64,10 +77,15 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const refreshTranslations = async () => {
+    console.log('🔄 Force refreshing translations...');
+    await loadTranslations(currentLanguage, true);
+  };
+
   const setLanguage = (code: string) => {
     setCurrentLanguage(code);
     localStorage.setItem('language', code);
-    loadTranslations(code);
+    loadTranslations(code, true);
   };
 
   const t = (key: string, params?: Record<string, any>, fallback?: string): string => {
@@ -101,6 +119,7 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
         translations,
         t,
         setLanguage,
+        refreshTranslations,
         isLoading,
       }}
     >

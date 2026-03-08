@@ -51,9 +51,10 @@ export const translationsApi = {
     return data;
   },
 
-  async getTranslations(languageCode: string): Promise<Record<string, string>> {
+  async getTranslations(languageCode: string, skipCache: boolean = false): Promise<Record<string, string>> {
     console.log('🔍 [FRESH] Fetching translations from DB for:', languageCode, new Date().toISOString());
-    const { data, error } = await supabase
+
+    const query = supabase
       .from('translations')
       .select(`
         *,
@@ -62,6 +63,8 @@ export const translationsApi = {
         )
       `)
       .eq('language_code', languageCode);
+
+    const { data, error } = await query;
 
     if (error) {
       console.error('❌ Database error:', error);
