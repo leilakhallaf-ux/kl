@@ -12,7 +12,7 @@
   - `advertiser_name` (text) - Company/brand name
   - `advertiser_logo_url` (text) - URL to advertiser logo
   - `business_sector` (text) - Industry sector
-  - `vintage` (integer) - Year of creation (2007-2025+)
+  - `vintage` (integer) - Year of creation (2008-2026+)
   - `language` (text) - FR, EN, etc.
   - `card_type` (text) - Type of card (voeux, anniversaire, etc.)
   - `version` (text) - Version identifier if applicable
