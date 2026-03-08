@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-start">
             <div className="flex items-center justify-center md:justify-start gap-2 md:gap-4 text-xs md:text-sm text-white">
               <a href="/soumettre" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                {t('footer.submit', 'SOUMETTRE E-CARD')}
+                {t('footer.submit_ecard', 'SOUMETTRE E-CARD')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/a-propos" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
@@ -91,7 +91,7 @@ export default function Footer() {
           <div className="flex justify-center md:justify-end">
             <div className="flex items-center justify-center md:justify-end gap-2 md:gap-4 text-xs md:text-sm text-white">
               <a href="/mentions-legales" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">
-                {t('footer.legal', 'MENTIONS LÉGALES')}
+                {t('footer.legal_notice', 'MENTIONS LÉGALES')}
               </a>
               <span className="text-white/40">|</span>
               <a href="/cgu" className="hover:text-gold transition-colors duration-300 whitespace-nowrap">

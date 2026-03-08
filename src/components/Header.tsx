@@ -34,7 +34,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
     { name: t('nav.inspire', "S'INSPIRER"), path: "/s-inspirer" },
     { name: t('nav.explore', "EXPLORER"), path: "/explorer" },
     { name: t('nav.bestof', "BEST-OF"), path: "/best-of" },
-    { name: t('nav.submit', "SOUMETTRE"), path: "/soumettre" },
+    { name: t('nav.submit_ecard', "SOUMETTRE"), path: "/soumettre" },
   ];
 
   return (
