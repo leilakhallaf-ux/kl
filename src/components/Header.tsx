@@ -40,7 +40,7 @@ const Header = ({ currentPath = '/' }: HeaderProps) => {
   return (
     <header className={cn(
       "sticky top-0 z-50 transition-all duration-500 px-6 py-4",
-      isScrolled ? "bg-gradient-to-r from-[#1a1a1a]/95 via-[#2a2a2a]/95 to-[#1a1a1a]/95 backdrop-blur-md border-b border-gold/20" : "bg-gradient-to-r from-[#1a1a1a] via-[#2a2a2a] to-[#1a1a1a]"
+      isScrolled ? "bg-gradient-to-b from-[#3a3a3a]/85 to-[#1a1a1a]/85 backdrop-blur-lg border-b border-gold/30 shadow-lg shadow-black/20" : "bg-gradient-to-b from-[#3a3a3a] to-[#1a1a1a]"
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <a href="/" className="flex items-center gap-3 group">
