@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useTranslations();
 
   return (
-    <footer className="bg-[#2a2a2a] border-t border-gold/20">
+    <footer className="bg-[#1f1f1f] border-t border-gold/20">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="flex justify-center md:justify-start">
@@ -47,7 +47,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="YouTube"
               >
-                <Youtube className="w-4 h-4 text-[#2a2a2a]" />
+                <Youtube className="w-4 h-4 text-[#1f1f1f]" />
               </a>
               <a
                 href="https://twitter.com"
@@ -56,7 +56,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Twitter"
               >
-                <Twitter className="w-4 h-4 text-[#2a2a2a]" />
+                <Twitter className="w-4 h-4 text-[#1f1f1f]" />
               </a>
               <a
                 href="https://facebook.com"
@@ -65,7 +65,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Facebook"
               >
-                <Facebook className="w-4 h-4 text-[#2a2a2a]" />
+                <Facebook className="w-4 h-4 text-[#1f1f1f]" />
               </a>
               <a
                 href="https://instagram.com"
@@ -74,7 +74,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="Instagram"
               >
-                <Instagram className="w-4 h-4 text-[#2a2a2a]" />
+                <Instagram className="w-4 h-4 text-[#1f1f1f]" />
               </a>
               <a
                 href="https://linkedin.com"
@@ -83,7 +83,7 @@ export default function Footer() {
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-gold hover:bg-gold/80 transition-colors duration-300"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-4 h-4 text-[#2a2a2a]" />
+                <Linkedin className="w-4 h-4 text-[#1f1f1f]" />
               </a>
             </div>
           </div>
