@@ -55,7 +55,9 @@ export default function Home() {
             </h1>
 
             <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed">
-              {t('home.hero.tagline', 'Le Pinterest de la carte de vœux électronique')}
+              {t('home.hero.tagline', 'Le "Pinterest" de la carte de vœux électronique').split('"Pinterest"').map((part, i, arr) =>
+                i < arr.length - 1 ? <>{part}<span className="italic">"Pinterest"</span></> : part
+              )}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-4 md:mb-6">
