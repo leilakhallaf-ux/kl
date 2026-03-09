@@ -1,4 +1,4 @@
-import { Heart, Play, Zap, Eye, Star } from 'lucide-react';
+import { Heart, Zap, Eye, Star } from 'lucide-react';
 import type { ECard } from '../lib/database.types';
 
 interface ECardCardProps {
@@ -7,9 +7,6 @@ interface ECardCardProps {
 
 export default function ECardCard({ ecard }: ECardCardProps) {
   const isFlash = ecard.technology?.toLowerCase().includes('flash') || ecard.swf_url;
-  const isAnimated = ecard.technology?.toLowerCase().includes('html5') ||
-                     ecard.technology?.toLowerCase().includes('video') ||
-                     isFlash;
 
   return (
     <a
@@ -36,12 +33,6 @@ export default function ECardCard({ ecard }: ECardCardProps) {
             <h3 className="font-serif text-xl text-white/80 text-center">
               {ecard.advertiser_name}
             </h3>
-          </div>
-        )}
-
-        {isAnimated && (
-          <div className="absolute top-3 left-3 w-10 h-10 rounded-full bg-rich-black/80 border border-gold/50 flex items-center justify-center">
-            <Play className="w-5 h-5 text-gold" fill="currentColor" />
           </div>
         )}
 
