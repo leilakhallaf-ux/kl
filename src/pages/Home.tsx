@@ -136,20 +136,6 @@ export default function Home() {
         </section>
       )}
 
-      <section className="max-w-7xl mx-auto px-6 py-2 md:py-3 mb-4 md:mb-6">
-        <div className="text-center bg-gradient-to-br from-gold/5 to-transparent border border-gold/30 p-4 md:p-6">
-          <h3 className="font-serif text-xl md:text-3xl font-semibold text-white mb-3 md:mb-4">
-            {t('home.founder.title', 'Créé par')} <a href="https://wishesfactor-e.com" target="_blank" rel="noopener noreferrer" className="gold-text-gradient italic font-extrabold tracking-wide hover:opacity-80 transition-opacity duration-300">WishesFactor-e</a> by Manufactur-e
-          </h3>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed mb-4 md:mb-6">
-            {t('home.founder.bio', 'Notre solution WishesFactor-e oeuvre, depuis 2008, dans l\'eco-système des e-cards corporate..')}
-          </p>
-          <p className="text-sm md:text-base text-white/70 leading-relaxed">
-            {t('home.founder.mission', 'Cette archive valorise l\'histoire et l\'évolution des e-cards depuis 2008')}
-          </p>
-        </div>
-      </section>
-
       <Footer />
       </main>
     </div>

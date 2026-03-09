@@ -86,6 +86,18 @@ export default function Footer() {
                 <Linkedin className="w-4 h-4 text-[#1f1f1f]" />
               </a>
             </div>
+
+            <div className="mt-6 text-center">
+              <h3 className="font-serif text-base md:text-xl font-semibold text-white mb-2">
+                {t('home.founder.title', 'Créé par')} <a href="https://wishesfactor-e.com" target="_blank" rel="noopener noreferrer" className="gold-text-gradient italic font-extrabold tracking-wide hover:opacity-80 transition-opacity duration-300">WishesFactor-e</a> by Manufactur-e
+              </h3>
+              <p className="text-xs md:text-sm text-white/70 leading-relaxed mb-2">
+                {t('home.founder.bio', 'Notre solution WishesFactor-e oeuvre, depuis 2008, dans l\'eco-système des e-cards corporate..')}
+              </p>
+              <p className="text-xs md:text-sm text-white/70 leading-relaxed">
+                {t('home.founder.mission', 'Cette archive valorise l\'histoire et l\'évolution des e-cards depuis 2008')}
+              </p>
+            </div>
           </div>
 
           <div className="flex justify-center md:justify-end">
