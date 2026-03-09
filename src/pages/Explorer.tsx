@@ -73,12 +73,13 @@ export default function Explorer() {
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12">
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
             {t('explorer.title')}
           </h1>
-          <p className="text-gray-400 text-lg">
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
             {t('explorer.subtitle')}
-          </p>
+          </h2>
         </div>
 
         <div className="mb-12">

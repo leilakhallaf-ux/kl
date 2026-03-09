@@ -43,15 +43,13 @@ export default function BestOf() {
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12 text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Award className="w-10 h-10 text-brand-gold" />
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-white">
-              <span className="italic">{t('bestof.title')}</span>
-            </h1>
-          </div>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+            {t('bestof.title')}
+          </h1>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
             {t('bestof.subtitle')}
-          </p>
+          </h2>
         </div>
 
         {featuredEcards.length > 0 && (
