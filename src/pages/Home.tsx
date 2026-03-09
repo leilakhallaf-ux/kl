@@ -48,13 +48,11 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center">
-            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
-              {t('home.hero.title', 'La plateforme inspirationnelle qui donne')}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
+              <span className="text-white">{t('home.hero.title', 'La plateforme inspirationnelle qui donne')}</span>
+              <br />
+              <span className="text-gold">{t('home.hero.subtitle', 'une seconde vie aux e-cards')}</span>
             </h1>
-
-            <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
-              {t('home.hero.subtitle', 'une seconde vie aux e-cards')}
-            </h2>
 
             <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed">
               {t('home.hero.tagline', 'Le Pinterest de la carte de vœux électronique')}
