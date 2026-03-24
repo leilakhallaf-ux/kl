@@ -6,7 +6,7 @@ export default function Footer() {
   const { t } = useTranslations();
 
   return (
-    <footer className="bg-gradient-to-t from-[#2a2a2a] to-[#4a4a4a] border-t border-gold/20">
+    <footer className="bg-gradient-to-t from-[#2a2a2a] to-[#4a4a4a] border-t border-gold/20 shadow-[0_-4px_20px_rgba(0,0,0,0.5),0_-1px_3px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08),inset_0_-1px_0_rgba(0,0,0,0.2)]">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
           <div className="flex justify-center md:justify-start">

@@ -11,9 +11,9 @@ export default function ECardCard({ ecard }: ECardCardProps) {
   return (
     <a
       href={`/ecard/${ecard.id}`}
-      className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
+      className="group block bg-white overflow-hidden border border-[#3D2B1F]/10 hover:border-gold/50 transition-all duration-500 shadow-sm"
     >
-      <div className="relative aspect-[16/11] bg-black/50 overflow-hidden">
+      <div className="relative aspect-[16/11] bg-gray-100 overflow-hidden">
         {ecard.thumbnail_url ? (
           <img
             src={ecard.thumbnail_url}
@@ -29,8 +29,8 @@ export default function ECardCard({ ecard }: ECardCardProps) {
             loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-8">
-            <h3 className="font-serif text-xl text-white/80 text-center">
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-200 to-gray-100 p-8">
+            <h3 className="font-serif text-xl text-[#3D2B1F]/80 text-center">
               {ecard.advertiser_name}
             </h3>
           </div>
@@ -63,12 +63,12 @@ export default function ECardCard({ ecard }: ECardCardProps) {
         </div>
       </div>
 
-      <div className="p-2 bg-black/20">
-        <h3 className="font-serif text-sm text-white mb-1 line-clamp-1 group-hover:text-gold transition-colors duration-300">
+      <div className="p-2 bg-white">
+        <h3 className="font-serif text-sm text-[#3D2B1F] mb-1 line-clamp-1 group-hover:text-gold transition-colors duration-300">
           {ecard.advertiser_name}
         </h3>
 
-        <div className="flex items-center justify-between text-xs text-white/60">
+        <div className="flex items-center justify-between text-xs text-[#3D2B1F]/60">
           <span className="capitalize font-light text-[10px]">{ecard.card_type}</span>
           <span className="text-gold font-serif font-medium text-[10px]">{ecard.vintage}</span>
         </div>

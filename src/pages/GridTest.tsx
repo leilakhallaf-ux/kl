@@ -45,7 +45,7 @@ export default function GridTest() {
   ];
 
   return (
-    <div className="min-h-screen bg-rich-black">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
         <h1 className="font-serif text-3xl text-gold mb-8">Test Grid - 3 Colonnes</h1>
         <ECardGrid ecards={mockECards} />

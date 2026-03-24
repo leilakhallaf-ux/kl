@@ -8,6 +8,8 @@ export default {
         'gold': '#C9A96E',
         'gold-light': '#E8D4A2',
         'gold-dark': '#A68B58',
+        'blanc-chaud': '#FDFBF7',
+        'gold-strong': '#B8943F',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'serif'],

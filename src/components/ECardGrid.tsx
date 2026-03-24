@@ -35,9 +35,9 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[...Array(6)].map((_, i) => (
           <div key={i} className="animate-pulse">
-            <div className="bg-gray-800 aspect-[16/11] rounded-sm mb-2"></div>
-            <div className="h-3 bg-gray-800 rounded w-3/4 mb-1"></div>
-            <div className="h-2 bg-gray-800 rounded w-1/2"></div>
+            <div className="bg-gray-200 aspect-[16/11] rounded-sm mb-2"></div>
+            <div className="h-3 bg-gray-200 rounded w-3/4 mb-1"></div>
+            <div className="h-2 bg-gray-200 rounded w-1/2"></div>
           </div>
         ))}
       </div>
@@ -47,7 +47,7 @@ export default function ECardGrid({ ecards, loading = false }: ECardGridProps) {
   if (ecards.length === 0) {
     return (
       <div className="text-center py-20">
-        <p className="text-gray-400 text-lg">Aucune e-card trouvée</p>
+        <p className="text-[#3D2B1F]/60 text-lg">Aucune e-card trouvée</p>
       </div>
     );
   }

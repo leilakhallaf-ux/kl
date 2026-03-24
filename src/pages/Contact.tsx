@@ -113,12 +113,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
+    <div className="site-wrapper min-h-screen bg-white flex flex-col">
       <Header />
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <div className="bg-[#3D2B1F]/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-[#3D2B1F]/10">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#3D2B1F] mb-2">
             {t('contact.title')}
           </h1>
 
@@ -126,7 +126,7 @@ export default function Contact() {
             {t('contact.hero.title')}
           </h2>
 
-          <div className="text-white/80 space-y-8 leading-relaxed">
+          <div className="text-[#3D2B1F]/80 space-y-8 leading-relaxed">
             <p className="text-lg">
               {t('contact.intro')}
             </p>
@@ -148,7 +148,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="lastName" className="block text-white font-semibold mb-2">
+                  <label htmlFor="lastName" className="block text-[#3D2B1F] font-semibold mb-2">
                     {t('contact.form.lastName')} *
                   </label>
                   <input
@@ -158,13 +158,13 @@ export default function Contact() {
                     value={formData.lastName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-[#3D2B1F]/10 border border-[#3D2B1F]/20 rounded-lg text-[#3D2B1F] placeholder-[#3D2B1F]/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                     placeholder={t('contact.form.lastName')}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="firstName" className="block text-white font-semibold mb-2">
+                  <label htmlFor="firstName" className="block text-[#3D2B1F] font-semibold mb-2">
                     {t('contact.form.firstName')} *
                   </label>
                   <input
@@ -174,7 +174,7 @@ export default function Contact() {
                     value={formData.firstName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-[#3D2B1F]/10 border border-[#3D2B1F]/20 rounded-lg text-[#3D2B1F] placeholder-[#3D2B1F]/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                     placeholder={t('contact.form.firstName')}
                   />
                 </div>
@@ -182,7 +182,7 @@ export default function Contact() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="userType" className="block text-white font-semibold mb-2">
+                  <label htmlFor="userType" className="block text-[#3D2B1F] font-semibold mb-2">
                     {t('contact.form.userType')} *
                   </label>
                   <select
@@ -191,19 +191,19 @@ export default function Contact() {
                     value={formData.userType}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-[#3D2B1F]/10 border border-[#3D2B1F]/20 rounded-lg text-[#3D2B1F] focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                   >
-                    <option value="" className="bg-slate-800">{t('contact.form.userType.select')}</option>
-                    <option value="particulier" className="bg-slate-800">{t('contact.form.userType.individual')}</option>
-                    <option value="professionnel" className="bg-slate-800">{t('contact.form.userType.professional')}</option>
-                    <option value="journaliste" className="bg-slate-800">{t('contact.form.userType.journalist')}</option>
-                    <option value="chercheur" className="bg-slate-800">{t('contact.form.userType.researcher')}</option>
-                    <option value="autre" className="bg-slate-800">{t('contact.form.userType.other')}</option>
+                    <option value="" className="bg-slate-100">{t('contact.form.userType.select')}</option>
+                    <option value="particulier" className="bg-slate-100">{t('contact.form.userType.individual')}</option>
+                    <option value="professionnel" className="bg-slate-100">{t('contact.form.userType.professional')}</option>
+                    <option value="journaliste" className="bg-slate-100">{t('contact.form.userType.journalist')}</option>
+                    <option value="chercheur" className="bg-slate-100">{t('contact.form.userType.researcher')}</option>
+                    <option value="autre" className="bg-slate-100">{t('contact.form.userType.other')}</option>
                   </select>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-white font-semibold mb-2">
+                  <label htmlFor="email" className="block text-[#3D2B1F] font-semibold mb-2">
                     {t('contact.form.email')} *
                   </label>
                   <input
@@ -213,14 +213,14 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-[#3D2B1F]/10 border border-[#3D2B1F]/20 rounded-lg text-[#3D2B1F] placeholder-[#3D2B1F]/40 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all"
                     placeholder="votre@email.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-white font-semibold mb-2">
+                <label htmlFor="subject" className="block text-[#3D2B1F] font-semibold mb-2">
                   {t('contact.form.subject')} *
                 </label>
                 <input
@@ -236,7 +236,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-white font-semibold mb-2">
+                <label htmlFor="message" className="block text-[#3D2B1F] font-semibold mb-2">
                   {t('contact.form.message')} *
                 </label>
                 <textarea
@@ -265,10 +265,10 @@ export default function Contact() {
                 />
               </div>
 
-              <div className={`bg-white/5 border rounded-lg p-6 my-6 space-y-4 transition-all ${
-                showTermsError ? 'border-red-500 bg-red-500/10' : 'border-white/10'
+              <div className={`bg-[#3D2B1F]/5 border rounded-lg p-6 my-6 space-y-4 transition-all ${
+                showTermsError ? 'border-red-500 bg-red-500/10' : 'border-[#3D2B1F]/10'
               }`}>
-                <p className="text-white text-base font-bold leading-relaxed">
+                <p className="text-[#3D2B1F] text-base font-bold leading-relaxed">
                   {t('contact.form.consent.title')} *
                 </p>
                 <div className="flex items-start gap-3">
@@ -283,11 +283,11 @@ export default function Contact() {
                       }
                     }}
                     required
-                    className={`mt-1 w-5 h-5 rounded bg-white/10 text-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 cursor-pointer transition-all ${
-                      showTermsError ? 'border-2 border-red-500' : 'border border-white/20'
+                    className={`mt-1 w-5 h-5 rounded bg-[#3D2B1F]/10 text-gold focus:ring-2 focus:ring-gold focus:ring-offset-0 cursor-pointer transition-all ${
+                      showTermsError ? 'border-2 border-red-500' : 'border border-[#3D2B1F]/20'
                     }`}
                   />
-                  <label htmlFor="acceptTerms" className="text-white text-base leading-relaxed cursor-pointer">
+                  <label htmlFor="acceptTerms" className="text-[#3D2B1F] text-base leading-relaxed cursor-pointer">
                     {t('contact.form.consent.text')}{' '}
                     <a href="/cgu" target="_blank" rel="noopener noreferrer" className="text-gold hover:underline font-medium">
                       {t('contact.form.consent.terms')}
@@ -307,7 +307,7 @@ export default function Contact() {
               </div>
 
               <div className="flex items-center justify-between">
-                <p className="text-sm text-white/60">
+                <p className="text-sm text-[#3D2B1F]/60">
                   * {t('contact.form.required')}
                 </p>
 

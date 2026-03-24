@@ -33,16 +33,16 @@ export default function Millesime({ year }: MillesimeProps) {
   }, [year]);
 
   return (
-    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+    <div className="site-wrapper h-screen flex flex-col bg-white overflow-hidden">
       <Header />
 
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-8">
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-[#3D2B1F] mb-4">
             Millésime <span className="text-brand-gold font-bold italic">{year}</span>
           </h1>
-          <p className="text-gray-400 text-lg">
+          <p className="text-[#3D2B1F]/70 text-lg">
             {ecards.length} e-card{ecards.length > 1 ? 's' : ''} de l'année {year}
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function Millesime({ year }: MillesimeProps) {
 
         {!loading && ecards.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-400 text-lg mb-4">
+            <p className="text-[#3D2B1F]/70 text-lg mb-4">
               Aucune e-card pour cette année
             </p>
             <a href="/s-inspirer" className="text-brand-gold hover:underline">

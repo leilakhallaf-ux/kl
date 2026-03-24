@@ -53,7 +53,7 @@ function FilterDropdown({ label, options, selected, onToggle, onClear }: Dropdow
         className={`px-4 py-2 rounded-sm border transition-all duration-300 flex items-center gap-2 ${
           selected.length > 0
             ? 'bg-brand-gold/20 border-brand-gold text-brand-gold'
-            : 'bg-gray-900/50 border-gray-700 text-gray-300 hover:border-brand-gold/50'
+            : 'bg-gray-100 border-gray-300 text-[#3D2B1F] hover:border-brand-gold/50'
         }`}
       >
         <span className="text-sm font-light">
@@ -68,11 +68,11 @@ function FilterDropdown({ label, options, selected, onToggle, onClear }: Dropdow
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-64 bg-gray-900 border border-brand-gold/30 rounded-sm shadow-xl z-50 max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-brand-gold/30 rounded-sm shadow-xl z-50 max-h-96 overflow-y-auto">
           {selected.length > 0 && (
             <button
               onClick={onClear}
-              className="w-full px-4 py-2 text-left text-sm text-brand-gold hover:bg-brand-gold/10 flex items-center gap-2 border-b border-gray-800"
+              className="w-full px-4 py-2 text-left text-sm text-brand-gold hover:bg-brand-gold/10 flex items-center gap-2 border-b border-gray-200"
             >
               <X className="w-3 h-3" />
               {t('catalogue.clearAll')}
@@ -87,9 +87,9 @@ function FilterDropdown({ label, options, selected, onToggle, onClear }: Dropdow
                 type="checkbox"
                 checked={selected.includes(option)}
                 onChange={() => onToggle(option)}
-                className="w-4 h-4 rounded border-gray-600 text-brand-gold focus:ring-brand-gold focus:ring-offset-0 bg-gray-800"
+                className="w-4 h-4 rounded border-gray-400 text-brand-gold focus:ring-brand-gold focus:ring-offset-0 bg-white"
               />
-              <span className="text-sm text-gray-300">{option}</span>
+              <span className="text-sm text-[#3D2B1F]">{option}</span>
             </label>
           ))}
         </div>
@@ -142,10 +142,10 @@ export default function FilterBar({ onFilterChange, options }: FilterBarProps) {
   const hasActiveFilters = Object.values(filters).some((f) => f.length > 0);
 
   return (
-    <div className="sticky top-0 z-40 bg-brand-black/95 backdrop-blur-sm border-b border-brand-gold/20 py-4">
+    <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-brand-gold/20 py-4">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm text-gray-400 font-light">{t('catalogue.filters')}</span>
+          <span className="text-sm text-[#3D2B1F]/60 font-light">{t('catalogue.filters')}</span>
 
           <FilterDropdown
             label={t('catalogue.advertiser')}

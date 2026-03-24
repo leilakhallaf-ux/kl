@@ -39,28 +39,28 @@ export default function Home() {
   }, [currentYear]);
 
   return (
-    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+    <div className="site-wrapper h-screen flex flex-col bg-white overflow-hidden">
       <Header currentPath="/" />
 
       <main className="flex-1 overflow-y-auto">
-        <section className="relative overflow-hidden pt-4 pb-2 md:pt-12 md:pb-3">
-        <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent"></div>
+        <section className="hero-section relative overflow-hidden pt-4 pb-2 md:pt-12 md:pb-3 bg-blanc-chaud">
+        <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-transparent pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="text-center">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-6">
-              <span className="text-white">{t('home.hero.title', 'La plateforme inspirationnelle qui donne')}</span>
+              <span className="text-[#3D2B1F]">{t('home.hero.title', 'La plateforme inspirationnelle qui donne')}</span>
               <br />
-              <span className="text-gold">{t('home.hero.subtitle', 'une seconde vie aux e-cards')}</span>
+              <span className="text-gold-strong">{t('home.hero.subtitle', 'une seconde vie aux e-cards')}</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-2xl text-white/70 font-light mb-2 md:mb-3 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-2xl text-[#3D2B1F]/75 font-light mb-2 md:mb-3 leading-relaxed">
               {t('home.hero.tagline', 'Le "Pinterest" de la carte de vœux électronique').split('"Pinterest"').map((part, i, arr) =>
                 i < arr.length - 1 ? <>{part}<span className="italic">"Pinterest"</span></> : part
               )}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-white/50 mb-4 md:mb-6">
+            <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-xs md:text-sm text-[#3D2B1F]/65 mb-4 md:mb-6">
               <div className="flex items-center gap-2">
                 <Calendar className="w-4 h-4 md:w-5 md:h-5 text-gold" />
                 <span>{t('home.hero.feature1', 'Archives depuis 2008')}</span>
@@ -81,7 +81,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-2 md:py-4">
         <div className="mb-8 md:mb-12">
           <div className="flex items-center justify-between mb-4 md:mb-6">
-            <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
+            <h2 className="font-serif text-xl md:text-3xl font-semibold text-[#3D2B1F]">
               {t('home.latest.title', 'Dernières')} <span className="text-gold italic font-bold">{t('home.latest.gems', 'pépites')}</span> {t('home.latest.added', 'ajoutées')}
             </h2>
             <a
@@ -100,7 +100,7 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-6 py-0 md:py-2">
           <div className="mb-8 md:mb-12">
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
+              <h2 className="font-serif text-xl md:text-3xl font-semibold text-[#3D2B1F]">
                 {t('home.vintage.title', 'Millésime')} <span className="text-gold italic font-bold">{currentYear}</span>
               </h2>
               <a
@@ -120,7 +120,7 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-6 py-0 md:py-2">
           <div className="mb-4 md:mb-6">
             <div className="flex items-center justify-between mb-4 md:mb-6">
-              <h2 className="font-serif text-xl md:text-3xl font-semibold text-white">
+              <h2 className="font-serif text-xl md:text-3xl font-semibold text-[#3D2B1F]">
                 <span className="text-gold italic font-bold">{t('home.bestof.title', 'Best-of')}</span> - {t('home.bestof.subtitle', 'Les 3 plus appréciées')}
               </h2>
               <a

@@ -37,13 +37,13 @@ export default function BestOf() {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+    <div className="site-wrapper h-screen flex flex-col bg-white overflow-hidden">
       <Header currentPath="/best-of" />
 
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12 text-center">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#3D2B1F] mb-2">
             {t('bestof.title')}
           </h1>
 
@@ -56,11 +56,11 @@ export default function BestOf() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-gradient-gold"></div>
-              <h2 className="font-display text-2xl font-semibold text-white">
+              <h2 className="font-display text-2xl font-semibold text-[#3D2B1F]">
                 {t('bestof.editorial.title')}
               </h2>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-[#3D2B1F]/70 mb-6">
               {t('bestof.editorial.subtitle')}
             </p>
             <ECardGrid ecards={featuredEcards} loading={loading} />
@@ -71,11 +71,11 @@ export default function BestOf() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-1 h-8 bg-gradient-gold"></div>
-              <h2 className="font-display text-2xl font-semibold text-white">
+              <h2 className="font-display text-2xl font-semibold text-[#3D2B1F]">
                 {t('bestof.mostLiked.title')}
               </h2>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-[#3D2B1F]/70 mb-6">
               {t('bestof.mostLiked.subtitle')}
             </p>
             <ECardGrid ecards={topLiked} loading={loading} />
@@ -86,11 +86,11 @@ export default function BestOf() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-8 h-8 text-brand-gold" />
-              <h2 className="font-display text-2xl font-semibold text-white">
+              <h2 className="font-display text-2xl font-semibold text-[#3D2B1F]">
                 {t('bestof.topRated.title')}
               </h2>
             </div>
-            <p className="text-gray-400 mb-6">
+            <p className="text-[#3D2B1F]/70 mb-6">
               {t('bestof.topRated.subtitle')}
             </p>
             <ECardGrid ecards={topRated} loading={loading} />
@@ -99,7 +99,7 @@ export default function BestOf() {
 
         {!loading && featuredEcards.length === 0 && topLiked.length === 0 && topRated.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-gray-400 text-lg">
+            <p className="text-[#3D2B1F]/70 text-lg">
               {t('bestof.empty')}
             </p>
           </div>

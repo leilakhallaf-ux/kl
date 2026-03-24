@@ -7,12 +7,12 @@ export default function GDPR() {
   const { t } = useTranslations();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
+    <div className="site-wrapper min-h-screen bg-white flex flex-col">
       <Header />
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <div className="bg-[#3D2B1F]/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-[#3D2B1F]/10">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#3D2B1F] mb-2">
             {t('gdpr.title')}
           </h1>
 
@@ -20,7 +20,7 @@ export default function GDPR() {
             {t('gdpr.hero.title')}
           </h2>
 
-          <div className="text-white/80 space-y-8 leading-relaxed">
+          <div className="text-[#3D2B1F]/80 space-y-8 leading-relaxed">
             <p className="text-lg">
               {t('gdpr.intro')}
             </p>
@@ -66,12 +66,12 @@ export default function GDPR() {
                 {t('gdpr.rights.intro')}
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong className="text-white">{t('gdpr.rights.access.title')}</strong> {t('gdpr.rights.access.text')}</li>
-                <li><strong className="text-white">{t('gdpr.rights.rectification.title')}</strong> {t('gdpr.rights.rectification.text')}</li>
-                <li><strong className="text-white">{t('gdpr.rights.erasure.title')}</strong> {t('gdpr.rights.erasure.text')}</li>
-                <li><strong className="text-white">{t('gdpr.rights.limitation.title')}</strong> {t('gdpr.rights.limitation.text')}</li>
-                <li><strong className="text-white">{t('gdpr.rights.opposition.title')}</strong> {t('gdpr.rights.opposition.text')}</li>
-                <li><strong className="text-white">{t('gdpr.rights.portability.title')}</strong> {t('gdpr.rights.portability.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.access.title')}</strong> {t('gdpr.rights.access.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.rectification.title')}</strong> {t('gdpr.rights.rectification.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.erasure.title')}</strong> {t('gdpr.rights.erasure.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.limitation.title')}</strong> {t('gdpr.rights.limitation.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.opposition.title')}</strong> {t('gdpr.rights.opposition.text')}</li>
+                <li><strong className="text-[#3D2B1F]">{t('gdpr.rights.portability.title')}</strong> {t('gdpr.rights.portability.text')}</li>
               </ul>
               <p className="mt-4">
                 {t('gdpr.rights.contact')}

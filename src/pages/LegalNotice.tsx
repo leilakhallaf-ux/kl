@@ -7,12 +7,12 @@ export default function LegalNotice() {
   const { t } = useTranslations();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col">
+    <div className="site-wrapper min-h-screen bg-white flex flex-col">
       <Header />
 
       <main className="flex-1 container mx-auto px-4 py-16 max-w-full lg:max-w-7xl">
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-white/10">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+        <div className="bg-[#3D2B1F]/5 backdrop-blur-sm rounded-lg p-8 md:p-12 border border-[#3D2B1F]/10">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#3D2B1F] mb-2">
             {t('legal.title')}
           </h1>
 
@@ -20,7 +20,7 @@ export default function LegalNotice() {
             {t('legal.hero.title')}
           </h2>
 
-          <div className="text-white/80 space-y-8 leading-relaxed">
+          <div className="text-[#3D2B1F]/80 space-y-8 leading-relaxed">
             <p className="text-lg">
               {t('legal.intro')}
             </p>
@@ -32,10 +32,10 @@ export default function LegalNotice() {
               <p className="mb-3">
                 {t('legal.editor.text')}
               </p>
-              <p className="mb-2"><strong className="text-white">{t('legal.editor.address')}</strong> [Adresse complète]</p>
-              <p className="mb-2"><strong className="text-white">{t('legal.editor.email')}</strong> contact@ecards-archive.com</p>
-              <p className="mb-2"><strong className="text-white">{t('legal.editor.phone')}</strong> [Numéro de téléphone]</p>
-              <p><strong className="text-white">{t('legal.editor.director')}</strong> [Nom du responsable]</p>
+              <p className="mb-2"><strong className="text-[#3D2B1F]">{t('legal.editor.address')}</strong> [Adresse complète]</p>
+              <p className="mb-2"><strong className="text-[#3D2B1F]">{t('legal.editor.email')}</strong> contact@ecards-archive.com</p>
+              <p className="mb-2"><strong className="text-[#3D2B1F]">{t('legal.editor.phone')}</strong> [Numéro de téléphone]</p>
+              <p><strong className="text-[#3D2B1F]">{t('legal.editor.director')}</strong> [Nom du responsable]</p>
             </div>
 
             <div>
@@ -45,8 +45,8 @@ export default function LegalNotice() {
               <p className="mb-2">
                 {t('legal.hosting.text')}
               </p>
-              <p className="mb-2"><strong className="text-white">{t('legal.hosting.address')}</strong> 970 Toa Payoh North, #07-04, Singapore 318992</p>
-              <p><strong className="text-white">{t('legal.hosting.website')}</strong> https://supabase.com</p>
+              <p className="mb-2"><strong className="text-[#3D2B1F]">{t('legal.hosting.address')}</strong> 970 Toa Payoh North, #07-04, Singapore 318992</p>
+              <p><strong className="text-[#3D2B1F]">{t('legal.hosting.website')}</strong> https://supabase.com</p>
             </div>
 
             <div>

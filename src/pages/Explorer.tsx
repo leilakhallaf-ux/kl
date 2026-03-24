@@ -67,13 +67,13 @@ export default function Explorer() {
       });
 
   return (
-    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+    <div className="site-wrapper h-screen flex flex-col bg-white overflow-hidden">
       <Header currentPath="/explorer" />
 
       <main className="flex-1 overflow-y-auto pt-20">
         <section className="container mx-auto px-4 pt-4 pb-12">
         <div className="mb-12">
-          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-[#3D2B1F] mb-2">
             {t('explorer.title')}
           </h1>
 
@@ -85,13 +85,13 @@ export default function Explorer() {
         <div className="mb-12">
           <form onSubmit={handleSearch} className="flex gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#3D2B1F]/50" />
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={t('explorer.searchPlaceholder')}
-                className="w-full pl-12 pr-4 py-4 bg-gray-900 border border-gray-700 rounded-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold transition-colors"
+                className="w-full pl-12 pr-4 py-4 bg-[#3D2B1F]/10 border border-[#3D2B1F]/10 rounded-sm text-[#3D2B1F] placeholder-[#3D2B1F]/50 focus:outline-none focus:border-brand-gold transition-colors"
               />
             </div>
             <button
@@ -106,7 +106,7 @@ export default function Explorer() {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <Tag className="w-6 h-6 text-brand-gold" />
-            <h2 className="font-display text-2xl font-semibold text-white">
+            <h2 className="font-display text-2xl font-semibold text-[#3D2B1F]">
               {t('explorer.browseByTags')}
             </h2>
           </div>
@@ -118,7 +118,7 @@ export default function Explorer() {
                 className={`px-4 py-2 rounded-sm transition-all duration-300 ${
                   selectedLetter === 'all'
                     ? 'bg-brand-gold text-brand-black'
-                    : 'bg-gray-900 text-gray-400 hover:bg-gray-800 hover:text-brand-gold'
+                    : 'bg-[#3D2B1F]/10 text-[#3D2B1F]/70 hover:bg-gray-800 hover:text-brand-gold'
                 }`}
               >
                 {t('explorer.all')}
@@ -128,7 +128,7 @@ export default function Explorer() {
                 className={`px-4 py-2 rounded-sm transition-all duration-300 ${
                   selectedLetter === '0-9'
                     ? 'bg-brand-gold text-brand-black'
-                    : 'bg-gray-900 text-gray-400 hover:bg-gray-800 hover:text-brand-gold'
+                    : 'bg-[#3D2B1F]/10 text-[#3D2B1F]/70 hover:bg-gray-800 hover:text-brand-gold'
                 }`}
               >
                 0-9
@@ -140,7 +140,7 @@ export default function Explorer() {
                   className={`w-10 h-10 rounded-sm transition-all duration-300 ${
                     selectedLetter === letter
                       ? 'bg-brand-gold text-brand-black'
-                      : 'bg-gray-900 text-gray-400 hover:bg-gray-800 hover:text-brand-gold'
+                      : 'bg-[#3D2B1F]/10 text-[#3D2B1F]/70 hover:bg-gray-800 hover:text-brand-gold'
                   }`}
                 >
                   {letter}
@@ -154,7 +154,7 @@ export default function Explorer() {
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}
-                className="px-4 py-2 bg-gray-900/50 border border-gray-700 text-gray-300 rounded-sm hover:bg-brand-gold/20 hover:border-brand-gold hover:text-brand-gold transition-all duration-300"
+                className="px-4 py-2 bg-[#3D2B1F]/10/50 border border-[#3D2B1F]/10 text-[#3D2B1F]/70 rounded-sm hover:bg-brand-gold/20 hover:border-brand-gold hover:text-brand-gold transition-all duration-300"
               >
                 {tag}
               </button>
@@ -162,7 +162,7 @@ export default function Explorer() {
           </div>
 
           {filteredTags.length === 0 && (
-            <p className="text-gray-500 text-center py-8">
+            <p className="text-[#3D2B1F]/50 text-center py-8">
               {t('explorer.noTagsForLetter')}
             </p>
           )}
@@ -170,7 +170,7 @@ export default function Explorer() {
 
         {ecards.length > 0 && (
           <div className="mt-12">
-            <h3 className="font-display text-2xl font-semibold text-white mb-6">
+            <h3 className="font-display text-2xl font-semibold text-[#3D2B1F] mb-6">
               {t('explorer.results', {
                 count: ecards.length,
                 s: ecards.length > 1 ? 's' : ''
@@ -182,7 +182,7 @@ export default function Explorer() {
 
         {!loading && ecards.length === 0 && searchTerm && (
           <div className="text-center py-20">
-            <p className="text-gray-400 text-lg">
+            <p className="text-[#3D2B1F]/70 text-lg">
               {t('explorer.noResultsFor', { term: searchTerm }, `Aucun résultat pour "${searchTerm}"`)}
             </p>
           </div>
