@@ -1,0 +1,147 @@
+import { useEffect, useState } from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import FilterBar, { type Filters } from '../components/FilterBar';
+import ECardGrid from '../components/ECardGrid';
+import { getECards, getFilterOptions, getVintages } from '../lib/ecard-api';
+import type { ECard } from '../lib/database.types';
+import { useTranslations } from '../hooks/useTranslations';
+
+export default function Catalogue() {
+  const { t } = useTranslations();
+  const [ecards, setEcards] = useState<ECard[]>([]);
+  const [filteredEcards, setFilteredEcards] = useState<ECard[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filterOptions, setFilterOptions] = useState({
+    advertisers: [],
+    vintages: [],
+    agencies: [],
+    distributors: [],
+    technologies: [],
+    topics: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [ecardsData, options, vintages] = await Promise.all([
+          getECards({ orderBy: 'created_at', orderDirection: 'desc' }),
+          getFilterOptions(),
+          getVintages(),
+        ]);
+
+        setEcards(ecardsData);
+        setFilteredEcards(ecardsData);
+        setFilterOptions({
+          advertisers: options.advertisers,
+          vintages: vintages,
+          agencies: options.agencies,
+          distributors: options.distributors,
+          technologies: options.technologies,
+          topics: options.topics,
+        });
+      } catch (error) {
+        console.error('Error fetching e-cards:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleFilterChange = (filters: Filters) => {
+    let filtered = [...ecards];
+
+    if (filters.advertisers.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        filters.advertisers.some((adv) =>
+          ecard.advertiser_name.toLowerCase().includes(adv.toLowerCase())
+        )
+      );
+    }
+
+    if (filters.vintages.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        filters.vintages.includes(ecard.vintage)
+      );
+    }
+
+    if (filters.agencies.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        ecard.agency &&
+        filters.agencies.some((agency) =>
+          ecard.agency!.toLowerCase().includes(agency.toLowerCase())
+        )
+      );
+    }
+
+    if (filters.distributors.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        ecard.distributor &&
+        filters.distributors.some((dist) =>
+          ecard.distributor!.toLowerCase().includes(dist.toLowerCase())
+        )
+      );
+    }
+
+    if (filters.technologies.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        ecard.technology &&
+        filters.technologies.some((tech) =>
+          ecard.technology!.toLowerCase().includes(tech.toLowerCase())
+        )
+      );
+    }
+
+    if (filters.topics.length > 0) {
+      filtered = filtered.filter((ecard) =>
+        ecard.topic &&
+        filters.topics.some((topic) =>
+          ecard.topic!.toLowerCase().includes(topic.toLowerCase())
+        )
+      );
+    }
+
+    setFilteredEcards(filtered);
+  };
+
+  return (
+    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+      <Header currentPath="/s-inspirer" />
+
+      <FilterBar onFilterChange={handleFilterChange} options={filterOptions} />
+
+      <main className="flex-1 overflow-y-auto">
+        <section className="container mx-auto px-4 pb-12">
+        <div className="mb-8">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
+            {t('catalogue.title')}
+          </h1>
+          <p className="text-gray-400 text-lg">
+            {t('catalogue.count', {
+              count: filteredEcards.length,
+              s: filteredEcards.length > 1 ? 's' : ''
+            })}
+          </p>
+        </div>
+
+        <ECardGrid ecards={filteredEcards} loading={loading} />
+
+        {!loading && filteredEcards.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg mb-4">
+              {t('catalogue.noResults')}
+            </p>
+            <p className="text-gray-500">
+              {t('catalogue.tryModifyFilters')}
+            </p>
+          </div>
+        )}
+      </section>
+
+      <Footer />
+      </main>
+    </div>
+  );
+}

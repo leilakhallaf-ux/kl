@@ -1,0 +1,113 @@
+import { useEffect, useState } from 'react';
+import { Award, TrendingUp } from 'lucide-react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import ECardGrid from '../components/ECardGrid';
+import { getECards } from '../lib/ecard-api';
+import type { ECard } from '../lib/database.types';
+import { useTranslations } from '../hooks/useTranslations';
+
+export default function BestOf() {
+  const { t } = useTranslations();
+  const [featuredEcards, setFeaturedEcards] = useState<ECard[]>([]);
+  const [topLiked, setTopLiked] = useState<ECard[]>([]);
+  const [topRated, setTopRated] = useState<ECard[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchECards = async () => {
+      try {
+        const [featured, liked, rated] = await Promise.all([
+          getECards({ is_featured: true, orderBy: 'created_at', orderDirection: 'desc' }),
+          getECards({ orderBy: 'likes', orderDirection: 'desc', limit: 12 }),
+          getECards({ orderBy: 'score_avg', orderDirection: 'desc', limit: 12 }),
+        ]);
+
+        setFeaturedEcards(featured);
+        setTopLiked(liked);
+        setTopRated(rated);
+      } catch (error) {
+        console.error('Error fetching e-cards:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchECards();
+  }, []);
+
+  return (
+    <div className="h-screen flex flex-col bg-rich-black overflow-hidden">
+      <Header currentPath="/best-of" />
+
+      <main className="flex-1 overflow-y-auto pt-20">
+        <section className="container mx-auto px-4 pt-4 pb-12">
+        <div className="mb-12 text-center">
+          <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">
+            {t('bestof.title')}
+          </h1>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-gold mb-8">
+            {t('bestof.subtitle')}
+          </h2>
+        </div>
+
+        {featuredEcards.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-gradient-gold"></div>
+              <h2 className="font-display text-2xl font-semibold text-white">
+                {t('bestof.editorial.title')}
+              </h2>
+            </div>
+            <p className="text-gray-400 mb-6">
+              {t('bestof.editorial.subtitle')}
+            </p>
+            <ECardGrid ecards={featuredEcards} loading={loading} />
+          </div>
+        )}
+
+        {topLiked.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-gradient-gold"></div>
+              <h2 className="font-display text-2xl font-semibold text-white">
+                {t('bestof.mostLiked.title')}
+              </h2>
+            </div>
+            <p className="text-gray-400 mb-6">
+              {t('bestof.mostLiked.subtitle')}
+            </p>
+            <ECardGrid ecards={topLiked} loading={loading} />
+          </div>
+        )}
+
+        {topRated.length > 0 && (
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <TrendingUp className="w-8 h-8 text-brand-gold" />
+              <h2 className="font-display text-2xl font-semibold text-white">
+                {t('bestof.topRated.title')}
+              </h2>
+            </div>
+            <p className="text-gray-400 mb-6">
+              {t('bestof.topRated.subtitle')}
+            </p>
+            <ECardGrid ecards={topRated} loading={loading} />
+          </div>
+        )}
+
+        {!loading && featuredEcards.length === 0 && topLiked.length === 0 && topRated.length === 0 && (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">
+              {t('bestof.empty')}
+            </p>
+          </div>
+        )}
+      </section>
+
+      <Footer />
+      </main>
+    </div>
+  );
+}

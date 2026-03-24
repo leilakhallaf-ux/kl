@@ -1,0 +1,78 @@
+import { Heart, Zap, Eye, Star } from 'lucide-react';
+import type { ECard } from '../lib/database.types';
+
+interface ECardCardProps {
+  ecard: ECard;
+}
+
+export default function ECardCard({ ecard }: ECardCardProps) {
+  const isFlash = ecard.technology?.toLowerCase().includes('flash') || ecard.swf_url;
+
+  return (
+    <a
+      href={`/ecard/${ecard.id}`}
+      className="group block bg-black/30 overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500"
+    >
+      <div className="relative aspect-[16/11] bg-black/50 overflow-hidden">
+        {ecard.thumbnail_url ? (
+          <img
+            src={ecard.thumbnail_url}
+            alt={ecard.advertiser_name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+        ) : ecard.advertiser_logo_url ? (
+          <img
+            src={ecard.advertiser_logo_url}
+            alt={ecard.advertiser_name}
+            className="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-8">
+            <h3 className="font-serif text-xl text-white/80 text-center">
+              {ecard.advertiser_name}
+            </h3>
+          </div>
+        )}
+
+        {isFlash && (
+          <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-1">
+            <Zap className="w-3 h-3 text-rich-black" />
+            <span className="text-xs font-medium text-rich-black">Flash</span>
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4 text-xs text-gold">
+            <span className="flex items-center gap-1">
+              <Heart className="w-3 h-3" />
+              {ecard.likes}
+            </span>
+            <span className="flex items-center gap-1">
+              <Eye className="w-3 h-3" />
+              {ecard.views}
+            </span>
+            {ecard.score_avg > 0 && (
+              <span className="flex items-center gap-1">
+                <Star className="w-3 h-3 text-gold" fill="currentColor" />
+                {ecard.score_avg.toFixed(1)}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div className="p-2 bg-black/20">
+        <h3 className="font-serif text-sm text-white mb-1 line-clamp-1 group-hover:text-gold transition-colors duration-300">
+          {ecard.advertiser_name}
+        </h3>
+
+        <div className="flex items-center justify-between text-xs text-white/60">
+          <span className="capitalize font-light text-[10px]">{ecard.card_type}</span>
+          <span className="text-gold font-serif font-medium text-[10px]">{ecard.vintage}</span>
+        </div>
+      </div>
+    </a>
+  );
+}
