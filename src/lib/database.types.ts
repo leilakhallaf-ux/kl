@@ -37,6 +37,7 @@ export interface ECard {
   url: string | null;
   fallback_url: string | null;
   swf_url: string | null;
+    video_url: string | null;
   is_hosted: boolean;
   file_path: string | null;
   campaign_aim: string | null;
