@@ -227,7 +227,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                 </a>
               )}
 
-              {ecard.url && (
+              {ecard.url && !ecard.video_url && (
                 <div className="flex justify-center">
                   <a
                     href={ecard.url}
