@@ -6,7 +6,7 @@ import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECa
 import { getLanguageName } from '../lib/utils';
 import type { ECard } from '../lib/database.types';
 
-interface ECardDetailProps {
+interface ECardDetailProps {h
   id: string;
 }
 
@@ -367,7 +367,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
             </div>
           )}
 
-          {ecard.credits && Object.keys(ecard.credits).length > 0 && (
+          {ecard.credits && (Array.isArray(ecard.credits) ? ecard.credits.length > 0 : Object.keys(ecard.credits).length > 0) && (
             <div className="mt-4 bg-gray-100 rounded-sm border border-gray-300">
               <button
                 onClick={() => setShowCredits(!showCredits)}
@@ -382,10 +382,13 @@ export default function ECardDetail({ id }: ECardDetailProps) {
               </button>
               {showCredits && (
                 <div className="px-6 pb-6 space-y-2 text-sm">
-                  {Object.entries(ecard.credits).map(([key, value]) => (
-                    <div key={key} className="flex">
-                      <span className="text-gray-600 min-w-[120px]">{key}:</span>
-                      <span className="text-[#3D2B1F]">{String(value)}</span>
+                  {(Array.isArray(ecard.credits)
+                    ? ecard.credits
+                    : Object.entries(ecard.credits).map(([role, name]) => ({ role, name: String(name) }))
+                  ).map((credit, index) => (
+                    <div key={index} className="flex">
+                      <span className="text-gray-600 min-w-[120px]">{credit.role}:</span>
+                      <span className="text-[#3D2B1F]">{credit.name}</span>
                     </div>
                   ))}
                 </div>
