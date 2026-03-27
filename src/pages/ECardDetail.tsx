@@ -50,7 +50,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
     }
   };
   const handleRate = async (score: number) => {
-    if (!ecard) return;
+     if (!ecard || userRating) return;
     try {
       await rateECard(ecard.id, score);
       setUserRating(score);
