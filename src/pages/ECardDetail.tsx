@@ -23,7 +23,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
       try {
         const data = await getECardById(id);
         if (data) {
-          setEcard(data);
+          setEcard({ ...data, views: data.views + 1 });
           await incrementViews(id);
           const isLiked = await hasLiked(id);
           setLiked(isLiked);
