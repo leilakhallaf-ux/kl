@@ -1,6 +1,20 @@
 import { supabase } from './supabase';
 import type { ECard } from './database.types';
 
+// Generate or retrieve a unique browser identifier (persisted in localStorage)
+// This replaces IP-based identification to avoid conflicts when multiple users
+// share the same public IP (e.g. corporate networks, shared WiFi)
+const getBrowserId = (): string => {
+  const STORAGE_KEY = 'ecards_browser_id';
+  let browserId = localStorage.getItem(STORAGE_KEY);
+  if (!browserId) {
+    browserId = crypto.randomUUID();
+    localStorage.setItem(STORAGE_KEY, browserId);
+  }
+  return browserId;
+};
+
+// Keep getClientIP as fallback for legacy data, but no longer used for identification
 const getClientIP = async (): Promise<string> => {
   try {
     const response = await fetch('https://api.ipify.org?format=json');
@@ -89,6 +103,7 @@ export const incrementViews = async (ecardId: string) => {
 
 export const likeECard = async (ecardId: string) => {
   const { data: { user } } = await supabase.auth.getUser();
+  const browserId = getBrowserId();
   const ip = await getClientIP();
 
   const { error } = await supabase
@@ -96,7 +111,8 @@ export const likeECard = async (ecardId: string) => {
     .insert({
       ecard_id: ecardId,
       user_id: user?.id || null,
-      ip_address: !user ? ip : null,
+      ip_address: ip,
+      browser_id: !user ? browserId : null,
     });
 
   if (error) throw error;
@@ -104,14 +120,14 @@ export const likeECard = async (ecardId: string) => {
 
 export const unlikeECard = async (ecardId: string) => {
   const { data: { user } } = await supabase.auth.getUser();
-  const ip = await getClientIP();
+  const browserId = getBrowserId();
 
   let query = supabase.from('user_likes').delete().eq('ecard_id', ecardId);
 
   if (user) {
     query = query.eq('user_id', user.id);
   } else {
-    query = query.eq('ip_address', ip);
+    query = query.eq('browser_id', browserId);
   }
 
   const { error } = await query;
@@ -120,7 +136,7 @@ export const unlikeECard = async (ecardId: string) => {
 
 export const hasLiked = async (ecardId: string): Promise<boolean> => {
   const { data: { user } } = await supabase.auth.getUser();
-  const ip = await getClientIP();
+  const browserId = getBrowserId();
 
   let query = supabase
     .from('user_likes')
@@ -130,7 +146,7 @@ export const hasLiked = async (ecardId: string): Promise<boolean> => {
   if (user) {
     query = query.eq('user_id', user.id);
   } else {
-    query = query.eq('ip_address', ip);
+    query = query.eq('browser_id', browserId);
   }
 
   const { data } = await query.maybeSingle();
@@ -139,6 +155,7 @@ export const hasLiked = async (ecardId: string): Promise<boolean> => {
 
 export const rateECard = async (ecardId: string, score: number) => {
   const { data: { user } } = await supabase.auth.getUser();
+  const browserId = getBrowserId();
   const ip = await getClientIP();
 
   const { error } = await supabase
@@ -146,16 +163,17 @@ export const rateECard = async (ecardId: string, score: number) => {
     .upsert({
       ecard_id: ecardId,
       user_id: user?.id || null,
-      ip_address: !user ? ip : null,
+      ip_address: ip,
+      browser_id: !user ? browserId : null,
       score,
-    }, { onConflict: user ? 'user_id,ecard_id' : 'ip_address,ecard_id' });
+    });
 
   if (error) throw error;
 };
 
 export const getUserRating = async (ecardId: string): Promise<number | null> => {
   const { data: { user } } = await supabase.auth.getUser();
-  const ip = await getClientIP();
+  const browserId = getBrowserId();
 
   let query = supabase
     .from('user_ratings')
@@ -165,7 +183,7 @@ export const getUserRating = async (ecardId: string): Promise<number | null> => 
   if (user) {
     query = query.eq('user_id', user.id);
   } else {
-    query = query.eq('ip_address', ip);
+    query = query.eq('browser_id', browserId);
   }
 
   const { data } = await query.maybeSingle();
