@@ -39,23 +39,16 @@ export default function ECardDetail({ id }: ECardDetailProps) {
     fetchECard();
   }, [id]);
 
-  const handleLike = async () => {
-    if (!ecard) return;
+   const handleLike = async () => {
+    if (!ecard || liked) return;
     try {
-      if (liked) {
-        await unlikeECard(ecard.id);
-        setLiked(false);
-        setEcard({ ...ecard, likes: ecard.likes - 1 });
-      } else {
-        await likeECard(ecard.id);
-        setLiked(true);
-        setEcard({ ...ecard, likes: ecard.likes + 1 });
-      }
+      await likeECard(ecard.id);
+      setLiked(true);
+      setEcard({ ...ecard, likes: ecard.likes + 1 });
     } catch (error) {
       console.error('Error liking e-card:', error);
     }
   };
-
   const handleRate = async (score: number) => {
     if (!ecard) return;
     try {
