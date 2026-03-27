@@ -148,7 +148,7 @@ export const rateECard = async (ecardId: string, score: number) => {
       user_id: user?.id || null,
       ip_address: !user ? ip : null,
       score,
-    });
+    }, { onConflict: user ? 'user_id,ecard_id' : 'ip_address,ecard_id' });
 
   if (error) throw error;
 };
