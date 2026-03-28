@@ -60,6 +60,17 @@ export interface ECard {
     is_featured: boolean;
 }
 
+export interface ECardVariant {
+    id: string;
+    ecard_id: string;
+    label: string;
+    url: string | null;
+    variant_type: 'web' | 'mobile' | 'email' | 'anglaise' | 'autre';
+    language: string;
+    sort_order: number;
+    created_at: string;
+}
+
 export interface UserLike {
     id: string;
     user_id: string | null;
