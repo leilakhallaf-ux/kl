@@ -104,19 +104,49 @@ export default function ShareModal({ isOpen, onClose, url, title, thumbnailUrl, 
           </button>
         </div>
 
-        {/* Thumbnail preview */}
+        {/* Thumbnail preview avec badge ecards-corporate.com */}
         {thumbnailUrl && (
           <div className="px-6 pt-5">
-            <div className="rounded overflow-hidden border border-[#C5A55A]/20">
+            <div className="relative rounded overflow-hidden border border-[#C5A55A]/20">
               <img
                 src={thumbnailUrl}
                 alt={advertiserName}
                 className="w-full h-32 object-cover"
               />
+              {/* Badge FLASH ecards-corporate.com — fond doré, texte noir */}
+              <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-2">
+                <div
+                  className="px-4 py-1 flex items-center gap-1.5"
+                  style={{
+                    background: 'linear-gradient(135deg, #C5A55A 0%, #D4B76A 50%, #C5A55A 100%)',
+                    borderRadius: '3px',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                    border: '1px solid rgba(255,255,255,0.15)',
+                  }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#1A1A1A" style={{ flexShrink: 0 }}>
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                  <span
+                    style={{
+                      color: '#1A1A1A',
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      fontFamily: 'Montserrat, sans-serif',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    ecards-corporate.com
+                  </span>
+                </div>
+              </div>
             </div>
             <p className="mt-2 text-sm text-gray-400 text-center truncate">{advertiserName}</p>
           </div>
         )}
+
 
         {/* Social media grid */}
         <div className="px-6 py-5">
