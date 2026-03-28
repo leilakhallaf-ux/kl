@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, Play, Zap, Video, Globe, Smartphone, Mail, ExternalLink } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ShareModal from '../components/ShareModal';
 import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating, getECardVariants } from '../lib/ecard-api';
 import { getLanguageName } from '../lib/utils';
 import type { ECard, ECardVariant } from '../lib/database.types';
@@ -18,6 +19,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
   const [showCredits, setShowCredits] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [variants, setVariants] = useState<ECardVariant[]>([]);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   useEffect(() => {
     const fetchECard = async () => {
@@ -32,6 +34,33 @@ export default function ECardDetail({ id }: ECardDetailProps) {
           setUserRating(rating);
           const variantsData = await getECardVariants(id);
           setVariants(variantsData);
+
+          // Mise Ã  jour dynamique des meta tags OG pour le partage
+          const ogTitle = `${data.advertiser_name} â E-Cards Corporate`;
+          const ogDesc = data.description || `DÃ©couvrez la e-card de ${data.advertiser_name} sur E-Cards Corporate`;
+          const ogImage = data.thumbnail_url || '';
+
+          document.title = ogTitle;
+          const setMeta = (property: string, content: string) => {
+            let el = document.querySelector(`meta[property="${property}"]`) || document.querySelector(`meta[name="${property}"]`);
+            if (el) {
+              el.setAttribute('content', content);
+            } else {
+              el = document.createElement('meta');
+              el.setAttribute(property.startsWith('og:') ? 'property' : 'name', property);
+              el.setAttribute('content', content);
+              document.head.appendChild(el);
+            }
+          };
+          setMeta('og:title', ogTitle);
+          setMeta('og:description', ogDesc);
+          setMeta('og:image', ogImage);
+          setMeta('og:url', window.location.href);
+          setMeta('og:type', 'article');
+          setMeta('twitter:card', 'summary_large_image');
+          setMeta('twitter:title', ogTitle);
+          setMeta('twitter:description', ogDesc);
+          setMeta('twitter:image', ogImage);
         }
       } catch (error) {
         console.error('Error fetching e-card:', error);
@@ -70,21 +99,8 @@ export default function ECardDetail({ id }: ECardDetailProps) {
     }
   };
 
-  const handleShare = async () => {
-    const url = window.location.href;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: ecard?.advertiser_name,
-          url: url,
-        });
-      } catch (error) {
-        console.error('Error sharing:', error);
-      }
-    } else {
-      navigator.clipboard.writeText(url);
-      alert('Lien copiÃ© dans le presse-papier !');
-    }
+  const handleShare = () => {
+    setShowShareModal(true);
   };
 
   const handlePlayVideo = () => {
@@ -447,6 +463,15 @@ export default function ECardDetail({ id }: ECardDetailProps) {
         </section>
         <Footer />
       </main>
+
+      <ShareModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        url={window.location.href}
+        title={`${ecard.advertiser_name} â E-Cards Corporate`}
+        thumbnailUrl={ecard.thumbnail_url || undefined}
+        advertiserName={ecard.advertiser_name}
+      />
     </div>
   );
 }
