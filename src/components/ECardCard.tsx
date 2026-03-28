@@ -1,4 +1,4 @@
-import { Heart, Zap, Eye, Star } from 'lucide-react';
+import { Heart, Zap, Eye, Star, Video } from 'lucide-react';
 import type { ECard } from '../lib/database.types';
 
 interface ECardCardProps {
@@ -6,7 +6,9 @@ interface ECardCardProps {
 }
 
 export default function ECardCard({ ecard }: ECardCardProps) {
-  const isFlash = ecard.technology?.toLowerCase().includes('flash') || ecard.swf_url;
+  // Discriminant : video_url présent = carte vidéo, sinon = carte lien
+  const isVideo = !!ecard.video_url;
+  const isFlash = isVideo && ecard.technology?.toLowerCase().includes('flash');
 
   return (
     <a
@@ -36,12 +38,18 @@ export default function ECardCard({ ecard }: ECardCardProps) {
           </div>
         )}
 
-        {isFlash && (
-          <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-1">
-            <Zap className="w-3 h-3 text-rich-black" />
-            <span className="text-xs font-medium text-rich-black">Flash</span>
+        {isFlash ? (
+          <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-[2px]">
+            <Video className="w-4 h-4 text-rich-black" />
+            <Zap className="w-3.5 h-3.5 text-rich-black" />
+            <span className="text-xs font-bold text-rich-black ml-[3px]">Flash</span>
           </div>
-        )}
+        ) : isVideo ? (
+          <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-1">
+            <Video className="w-4 h-4 text-rich-black" />
+            <span className="text-xs font-bold text-rich-black">Vidéo</span>
+          </div>
+        ) : null}
 
         <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4 text-xs text-gold">
