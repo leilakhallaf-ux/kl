@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, Play } from 'lucide-react';
+import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, Play, Zap, Video } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating } from '../lib/ecard-api';
@@ -166,14 +166,17 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                           )}
                         </div>
                       )}
-                      {/* Overlay Play */}
-                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/50 transition-colors duration-300">
-                        <div className="w-20 h-20 rounded-full bg-brand-gold/90 flex items-center justify-center group-hover:bg-brand-gold group-hover:scale-110 transition-all duration-300 shadow-lg">
-                          <Play className="w-10 h-10 text-rich-black ml-1" fill="currentColor" />
+                      {/* Overlay Play doré */}
+                      <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors duration-300">
+                        <div className="w-[72px] h-[72px] rounded-full bg-gold/90 flex items-center justify-center group-hover:bg-gold group-hover:scale-110 transition-all duration-300 shadow-lg shadow-gold/40">
+                          <Play className="w-7 h-7 text-rich-black ml-1" fill="currentColor" />
                         </div>
                       </div>
-                      <div className="absolute bottom-3 left-3 bg-black/70 text-white text-xs px-2 py-1 rounded">
-                        Vidéo de la e-card
+                      {/* Badge Flash en bas à gauche (toutes les vidéos sont Flash pour l'instant) */}
+                      <div className="absolute bottom-3 left-3 flex items-center gap-[2px] px-3 py-1.5 bg-gold/90">
+                        <Video className="w-4 h-4 text-rich-black" />
+                        <Zap className="w-3.5 h-3.5 text-rich-black" />
+                        <span className="text-xs font-bold text-rich-black ml-[3px]">Flash</span>
                       </div>
                     </div>
                   ) : (
@@ -196,27 +199,35 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   rel="noopener noreferrer"
                   className="block bg-gray-100 rounded-sm overflow-hidden border border-gray-300 hover:border-brand-gold/50 transition-all duration-300 cursor-pointer group"
                 >
-                  {ecard.thumbnail_url ? (
-                    <img
-                      src={ecard.thumbnail_url}
-                      alt={ecard.advertiser_name}
-                      className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  ) : (
-                    <div className="w-full aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-8">
-                      {ecard.advertiser_logo_url ? (
-                        <img
-                          src={ecard.advertiser_logo_url}
-                          alt={ecard.advertiser_name}
-                          className="max-w-sm opacity-50"
-                        />
-                      ) : (
-                        <h2 className="font-display text-3xl font-bold text-[#3D2B1F]/30 text-center">
-                          {ecard.advertiser_name}
-                        </h2>
-                      )}
+                  <div className="relative">
+                    {ecard.thumbnail_url ? (
+                      <img
+                        src={ecard.thumbnail_url}
+                        alt={ecard.advertiser_name}
+                        className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="w-full aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-8">
+                        {ecard.advertiser_logo_url ? (
+                          <img
+                            src={ecard.advertiser_logo_url}
+                            alt={ecard.advertiser_name}
+                            className="max-w-sm opacity-50"
+                          />
+                        ) : (
+                          <h2 className="font-display text-3xl font-bold text-[#3D2B1F]/30 text-center">
+                            {ecard.advertiser_name}
+                          </h2>
+                        )}
+                      </div>
+                    )}
+                    {/* Bouton Play doré centré */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-[72px] h-[72px] rounded-full bg-gold/90 flex items-center justify-center group-hover:bg-gold group-hover:scale-110 transition-all duration-300 shadow-lg shadow-gold/40">
+                        <Play className="w-7 h-7 text-rich-black ml-1" fill="currentColor" />
+                      </div>
                     </div>
-                  )}
+                  </div>
                 </a>
               )}
 
