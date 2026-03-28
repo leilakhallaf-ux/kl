@@ -6,9 +6,9 @@ interface ECardCardProps {
 }
 
 export default function ECardCard({ ecard }: ECardCardProps) {
-  // Discriminant : video_url présent = carte vidéo, sinon = carte lien
+  // Discriminant unique : video_url présent = Flash (pour l'instant, toutes les vidéos sont Flash)
+  // La distinction Flash vs Vidéo viendra avec le radio button admin
   const isVideo = !!ecard.video_url;
-  const isFlash = isVideo && ecard.technology?.toLowerCase().includes('flash');
 
   return (
     <a
@@ -38,18 +38,13 @@ export default function ECardCard({ ecard }: ECardCardProps) {
           </div>
         )}
 
-        {isFlash ? (
+        {isVideo && (
           <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-[2px]">
             <Video className="w-4 h-4 text-rich-black" />
             <Zap className="w-3.5 h-3.5 text-rich-black" />
             <span className="text-xs font-bold text-rich-black ml-[3px]">Flash</span>
           </div>
-        ) : isVideo ? (
-          <div className="absolute top-3 right-3 px-2 py-1 bg-gold/90 flex items-center gap-1">
-            <Video className="w-4 h-4 text-rich-black" />
-            <span className="text-xs font-bold text-rich-black">Vidéo</span>
-          </div>
-        ) : null}
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div className="absolute bottom-4 left-4 right-4 flex items-center gap-4 text-xs text-gold">
