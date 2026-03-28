@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import type { ECard } from './database.types';
+import type { ECard, ECardVariant } from './database.types';
 
 // Generate or retrieve a unique browser identifier (persisted in localStorage)
 // This replaces IP-based identification to avoid conflicts when multiple users
@@ -91,6 +91,20 @@ export const getECardById = async (id: string) => {
 
   if (error) throw error;
   return data as ECard | null;
+};
+
+export const getECardVariants = async (ecardId: string): Promise<ECardVariant[]> => {
+  const { data, error } = await supabase
+    .from('e_card_variants')
+    .select('*')
+    .eq('ecard_id', ecardId)
+    .order('sort_order', { ascending: true });
+
+  if (error) {
+    console.error('Error fetching variants:', error);
+    return [];
+  }
+  return data as ECardVariant[];
 };
 
 export const incrementViews = async (ecardId: string) => {
