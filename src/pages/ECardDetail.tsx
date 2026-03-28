@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, Play, Zap, Video } from 'lucide-react';
+import { Heart, Star, Eye, Share2, ChevronDown, ChevronUp, Play, Zap, Video, Globe, Smartphone, Mail, ExternalLink } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating } from '../lib/ecard-api';
+import { getECardById, incrementViews, likeECard, unlikeECard, hasLiked, rateECard, getUserRating, getECardVariants } from '../lib/ecard-api';
 import { getLanguageName } from '../lib/utils';
-import type { ECard } from '../lib/database.types';
+import type { ECard, ECardVariant } from '../lib/database.types';
 
 interface ECardDetailProps {h
   id: string;
@@ -17,6 +17,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
   const [userRating, setUserRating] = useState<number | null>(null);
   const [showCredits, setShowCredits] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [variants, setVariants] = useState<ECardVariant[]>([]);
 
   useEffect(() => {
     const fetchECard = async () => {
@@ -29,6 +30,8 @@ export default function ECardDetail({ id }: ECardDetailProps) {
           setLiked(isLiked);
           const rating = await getUserRating(id);
           setUserRating(rating);
+          const variantsData = await getECardVariants(id);
+          setVariants(variantsData);
         }
       } catch (error) {
         console.error('Error fetching e-card:', error);
@@ -80,7 +83,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
       }
     } else {
       navigator.clipboard.writeText(url);
-      alert('Lien copié dans le presse-papier !');
+      alert('Lien copiÃ© dans le presse-papier !');
     }
   };
 
@@ -166,13 +169,13 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                           )}
                         </div>
                       )}
-                      {/* Overlay Play doré */}
+                      {/* Overlay Play dorÃ© */}
                       <div className="absolute inset-0 bg-black/30 flex items-center justify-center group-hover:bg-black/40 transition-colors duration-300">
                         <div className="w-[72px] h-[72px] rounded-full bg-gold/90 flex items-center justify-center group-hover:bg-gold group-hover:scale-110 transition-all duration-300 shadow-lg shadow-gold/40">
                           <Play className="w-7 h-7 text-rich-black ml-1" fill="currentColor" />
                         </div>
                       </div>
-                      {/* Badge Flash en bas à gauche (toutes les vidéos sont Flash pour l'instant) */}
+                      {/* Badge Flash en bas Ã  gauche (toutes les vidÃ©os sont Flash pour l'instant) */}
                       <div className="absolute bottom-3 left-3 flex items-center gap-[2px] px-3 py-1.5 bg-gold/90">
                         <Video className="w-4 h-4 text-rich-black" />
                         <Zap className="w-3.5 h-3.5 text-rich-black" />
@@ -187,12 +190,12 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                       poster={ecard.thumbnail_url || undefined}
                     >
                       <source src={ecard.video_url} type="video/mp4" />
-                      Votre navigateur ne supporte pas la lecture vidéo.
+                      Votre navigateur ne supporte pas la lecture vidÃ©o.
                     </video>
                   )}
                 </div>
               ) : (
-                /* === THUMBNAIL (si pas de vidéo) === */
+                /* === THUMBNAIL (si pas de vidÃ©o) === */
                 <a
                   href={ecard.url}
                   target="_blank"
@@ -221,7 +224,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                         )}
                       </div>
                     )}
-                    {/* Bouton Play doré centré */}
+                    {/* Bouton Play dorÃ© centrÃ© */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="w-[72px] h-[72px] rounded-full bg-gold/90 flex items-center justify-center group-hover:bg-gold group-hover:scale-110 transition-all duration-300 shadow-lg shadow-gold/40">
                         <Play className="w-7 h-7 text-rich-black ml-1" fill="currentColor" />
@@ -241,6 +244,41 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                   >
                     Voir la e-card originale
                   </a>
+                </div>
+              )}
+
+              {/* === VARIANTES === */}
+              {variants.length > 0 && (
+                <div className="bg-gray-100 rounded-sm p-5 border border-gray-300">
+                  <h3 className="text-sm font-display text-[#3D2B1F] mb-3 uppercase tracking-wider">
+                    Autres versions
+                  </h3>
+                  <div className="space-y-2">
+                    {variants.map((variant) => {
+                      const icon = variant.variant_type === 'anglaise' ? <Globe className="w-4 h-4" />
+                        : variant.variant_type === 'mobile' ? <Smartphone className="w-4 h-4" />
+                        : variant.variant_type === 'email' ? <Mail className="w-4 h-4" />
+                        : <ExternalLink className="w-4 h-4" />;
+                      return (
+                        <a
+                          key={variant.id}
+                          href={variant.url || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-3 px-4 py-3 bg-white border border-gray-200 rounded-sm hover:border-brand-gold/50 hover:bg-brand-gold/5 transition-all duration-300 group"
+                        >
+                          <span className="text-gray-400 group-hover:text-brand-gold transition-colors duration-300">
+                            {icon}
+                          </span>
+                          <span className="text-sm text-[#3D2B1F] font-medium flex-1">
+                            {variant.label}
+                          </span>
+                          <span className="text-xs text-gray-400 uppercase">{variant.language}</span>
+                          <ExternalLink className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-gold transition-colors duration-300" />
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
@@ -268,7 +306,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                 )}
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Millésime</span>
+                    <span className="text-gray-600">MillÃ©sime</span>
                     <span className="text-brand-gold font-semibold">{ecard.vintage}</span>
                   </div>
                   <div className="flex justify-between">
@@ -377,7 +415,7 @@ export default function ECardDetail({ id }: ECardDetailProps) {
                 onClick={() => setShowCredits(!showCredits)}
                 className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-200/50 transition-colors"
               >
-                <h3 className="text-lg font-display text-[#3D2B1F]">Crédits</h3>
+                <h3 className="text-lg font-display text-[#3D2B1F]">CrÃ©dits</h3>
                 {showCredits ? (
                   <ChevronUp className="w-5 h-5 text-brand-gold" />
                 ) : (
